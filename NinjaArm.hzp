@@ -68,8 +68,43 @@
         <file file_name="Drivers/VNH3SP30TRdriver.cpp" />
         <file file_name="Drivers/VenusGpsDriver.cpp" />
       </folder>
-      <folder Name="STM32Driver" />
+      <folder Name="STM32Driver">
+        <file file_name="STM32Driver/src/misc.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_adc.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_can.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_crc.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_cryp.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_cryp_aes.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_cryp_des.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_cryp_tdes.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_dac.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_dbgmcu.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_dcmi.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_dma.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_exti.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_flash.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_fsmc.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_gpio.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_hash.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_hash_md5.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_hash_sha1.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_i2c.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_iwdg.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_pwr.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_rcc.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_rng.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_rtc.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_sdio.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_spi.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_syscfg.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_tim.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_usart.c" />
+        <file file_name="STM32Driver/src/stm32f2xx_wwdg.c" />
+      </folder>
       <file file_name="system_stm32f2xx.c" />
+      <folder Name="Utilities">
+        <file file_name="Utilities/InterruptTemplate.cpp" />
+      </folder>
     </folder>
     <folder Name="System Files">
       <file file_name="$(StudioDir)/source/thumb_crt0.s" />
@@ -102,5 +137,5 @@
   <configuration
     Name="Common"
     c_preprocessor_definitions="STM32F2xx_STDPERITH_LIB;STARTUP_FROM_RESET;USE_STDPERIPH_DRIVER"
-    c_user_include_directories=".;./Math/;./Utilities/;./STM32Driver/inc/;./Headers/;./STM32F2xx_StdPeriph_Lib_V1.1.0/" />
+    c_user_include_directories=".;./Math/;./Utilities/;./STM32Driver/inc/;./Headers/;./STM32F2xx_StdPeriph_Lib_V1.1.0/Libraries/CMSIS/Device/ST/STM32F2xx/Include/" />
 </solution>

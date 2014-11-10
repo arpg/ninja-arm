@@ -4,8 +4,6 @@
 //
 // This file contains the interrupt template class which is used to call
 // interrupt ISR functions on derived members
-//
-// Author: Nima Keivan
 //-----------------------------------------------------------------------------
 #include "stm32f2xx_conf.h"
 #define enableInterrupts() __enable_irq()
