@@ -1,0 +1,43 @@
+<!DOCTYPE CrossStudio_Project_File>
+<solution Name="STM32F2XX-EVAL" version="2">  
+  <project Name="Example" template_name="STM32_EXE">
+    <configuration Name="Common" build_remove_unused_symbols="Yes" c_preprocessor_definitions="USE_STDPERIPH_DRIVER;USE_STM3220F_EVAL" c_user_include_directories=".;$(STM32F2xx_STDPERIPH_LIB)/Libraries/CMSIS/Device/ST/STM32F2xx/Include;$(STM32F2xx_STDPERIPH_LIB)/Libraries/CMSIS/Include;$(STM32F2xx_STDPERIPH_LIB)/Libraries/STM32F2xx_StdPeriph_Driver/inc;$(STM32F2xx_STDPERIPH_LIB)/Utilities/STM32_EVAL/Common;$(STM32F2xx_STDPERIPH_LIB)/Utilities/STM32_EVAL/STM322xG_EVAL" Target="STM32F207IG"/>
+    <configuration Name="Release" c_preprocessor_definitions="STARTUP_FROM_RESET"/>
+    <folder Name="Source Files">    
+      <file file_name="stm32f2xx_conf.h"/>
+      <file file_name="stm32f2xx_it.c"/>        
+      <file file_name="stm32f2xx_it.h"/>
+      <file file_name="main.c"/>    
+      <file file_name="system_stm32f2xx.c"/>      
+    </folder>
+    <folder Name="Driver Files" path="$(STM32F2xx_STDPERIPH_LIB)/Libraries/STM32F2xx_StdPeriph_Driver/src" filter="*.c"/>
+    <folder Name="Utility Files">
+      <file file_name="$(STM32F2xx_STDPERIPH_LIB)/Utilities/STM32_EVAL/STM322xG_EVAL/stm322xg_eval.c"/>
+      <file file_name="$(STM32F2xx_STDPERIPH_LIB)/Utilities/STM32_EVAL/STM322xG_EVAL/stm322xg_eval_audio_codec.c">
+        <configuration Name="Common" build_exclude_from_build="Yes"/>
+      </file>
+      <file file_name="$(STM32F2xx_STDPERIPH_LIB)/Utilities/STM32_EVAL/STM322xG_EVAL/stm322xg_eval_fsmc_onenand.c">
+        <configuration Name="Common" build_exclude_from_build="Yes"/>
+      </file>
+      <file file_name="$(STM32F2xx_STDPERIPH_LIB)/Utilities/STM32_EVAL/STM322xG_EVAL/stm322xg_eval_fsmc_psram.c">
+        <configuration Name="Common" build_exclude_from_build="Yes"/>
+      </file>
+      <file file_name="$(STM32F2xx_STDPERIPH_LIB)/Utilities/STM32_EVAL/STM322xG_EVAL/stm322xg_eval_fsmc_sram.c">
+        <configuration Name="Common" build_exclude_from_build="Yes"/>
+      </file>
+      <file file_name="$(STM32F2xx_STDPERIPH_LIB)/Utilities/STM32_EVAL/STM322xG_EVAL/stm322xg_eval_i2c_ee.c">
+        <configuration Name="Common" build_exclude_from_build="Yes"/>
+      </file>
+      <file file_name="$(STM32F2xx_STDPERIPH_LIB)/Utilities/STM32_EVAL/STM322xG_EVAL/stm322xg_eval_ioe.c">
+        <configuration Name="Common" build_exclude_from_build="Yes"/>
+      </file>
+      <file file_name="$(STM32F2xx_STDPERIPH_LIB)/Utilities/STM32_EVAL/STM322xG_EVAL/stm322xg_eval_lcd.c"/>
+      <file file_name="$(STM32F2xx_STDPERIPH_LIB)/Utilities/STM32_EVAL/STM322xG_EVAL/stm322xg_eval_sdio_sd.c">
+        <configuration Name="Common" build_exclude_from_build="Yes"/>
+      </file>
+    </folder>
+    <folder Name="Documentation Files">
+      <file file_name="readme.txt"/>
+    </folder>
+  </project>
+</solution>

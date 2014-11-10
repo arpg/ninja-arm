@@ -1,0 +1,134 @@
+<!DOCTYPE CrossStudio_for_ARM_Session_File>
+<session>
+ <Bookmarks/>
+ <Breakpoints>
+  <BreakpointListItem line="68" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="2" counter="0" isFunctionBreakpoint="false" filename="/Users/Sina/Documents/CrossWorks Projects/Headers/SerialPrt.h" expression="" />
+ </Breakpoints>
+ <ExecutionProfileWindow/>
+ <FrameBufferWindow>
+  <FrameBufferWindow addressText="" bufferWidth="-1" bufferHeight="-1" addressSpace="" />
+ </FrameBufferWindow>
+ <Memory1>
+  <MemoryWindow autoEvaluate="0" addressText="&amp;DataPtr" numColumns="8" sizeText="sizeof(DataPtr)" dataSize="1" radix="16" name="CarFirmware" addressSpace="" />
+ </Memory1>
+ <Memory2>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="CarFirmware" addressSpace="" />
+ </Memory2>
+ <Memory3>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="CarFirmware" addressSpace="" />
+ </Memory3>
+ <Memory4>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="CarFirmware" addressSpace="" />
+ </Memory4>
+ <Project>
+  <ProjectSessionItem path="NinjaArm" name="unnamed" />
+  <ProjectSessionItem path="NinjaArm;NinjaArm" name="unnamed" />
+  <ProjectSessionItem path="NinjaArm;NinjaArm;Source Files" name="unnamed" />
+  <ProjectSessionItem path="NinjaArm;NinjaArm;Source Files;Drivers" name="unnamed" />
+ </Project>
+ <Register1>
+  <RegisterWindow openNodes="WWDG" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="" name="CarFirmware" />
+ </Register1>
+ <Register2>
+  <RegisterWindow openNodes="CPU - Current Context" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="" name="CarFirmware" />
+ </Register2>
+ <Register3>
+  <RegisterWindow openNodes="CPU - Current Context" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="" name="CarFirmware" />
+ </Register3>
+ <Register4>
+  <RegisterWindow openNodes="CPU - Current Context" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="" name="CarFirmware" />
+ </Register4>
+ <TargetWindow programAction="" uploadFileType="" programLoadAddress="" programSize="" uploadFileName="" uploadMemoryInterface="" programFileName="" uploadStartAddress="" programFileType="" uploadSize="" programMemoryInterface="" />
+ <TraceWindow>
+  <Trace enabled="Yes" />
+ </TraceWindow>
+ <Watch1>
+  <Watches active="1" update="Never" />
+ </Watch1>
+ <Watch2>
+  <Watches active="0" update="Never" />
+ </Watch2>
+ <Watch3>
+  <Watches active="0" update="Never" />
+ </Watch3>
+ <Watch4>
+  <Watches active="0" update="Never" />
+ </Watch4>
+ <Files>
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/Documents/CrossWorks Projects/main.cpp" y="14" path="/Users/Sina/Documents/CrossWorks Projects/main.cpp" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/Documents/CrossWorks Projects/Utilities/interruptTemplate.h" y="22" path="/Users/Sina/Documents/CrossWorks Projects/Utilities/interruptTemplate.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/Documents/CrossWorks Projects/Headers/ShaftEncoder.h" y="71" path="/Users/Sina/Documents/CrossWorks Projects/Headers/ShaftEncoder.h" left="0" selected="0" name="unnamed" top="39" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="17" debugPath="/Users/Sina/Documents/CrossWorks Projects/Headers/module.h" y="31" path="/Users/Sina/Documents/CrossWorks Projects/Headers/module.h" left="0" selected="0" name="unnamed" top="10" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="1" debugPath="/Users/Sina/Documents/CrossWorks Projects/Headers/SerialPrt.h" y="65" path="/Users/Sina/Documents/CrossWorks Projects/Headers/SerialPrt.h" left="0" selected="0" name="unnamed" top="42" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="19" debugPath="/Users/Sina/Documents/CrossWorks Projects/SerialPrt.cpp" y="0" path="/Users/Sina/Documents/CrossWorks Projects/SerialPrt.cpp" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="4" debugPath="/Users/Sina/Documents/CrossWorks Projects/module.cpp" y="504" path="/Users/Sina/Documents/CrossWorks Projects/module.cpp" left="0" selected="0" name="unnamed" top="495" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="1" debugPath="/Users/Sina/Documents/CrossWorks Projects/Headers/main.h" y="8" path="/Users/Sina/Documents/CrossWorks Projects/Headers/main.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="22" debugPath="/Users/Sina/Documents/CrossWorks Projects/Drivers/VNH3SP30TRdriver.cpp" y="220" path="/Users/Sina/Documents/CrossWorks Projects/Drivers/VNH3SP30TRdriver.cpp" left="0" selected="0" name="unnamed" top="205" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="68" debugPath="/Users/Sina/Documents/CrossWorks Projects/system_stm32f2xx.c" y="349" path="/Users/Sina/Documents/CrossWorks Projects/system_stm32f2xx.c" left="0" selected="1" name="unnamed" top="325" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="UTF-8" x="0" debugPath="/Users/Sina/Library/Rowley Associates Limited/CrossWorks for ARM/v3/packages/targets/STM32/include/stm32f2xx.h" y="15" path="/Users/Sina/Library/Rowley Associates Limited/CrossWorks for ARM/v3/packages/targets/STM32/include/stm32f2xx.h" left="0" selected="0" name="unnamed" top="120" />
+ </Files>
+ <ARMCrossStudioWindow activeProject="NinjaArm" autoConnectTarget="Olimex ARM-USB-TINY" debugSearchFileMap="C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 3.2/include/stlport/stl/_algobase.h
+
+C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 3.2/source/thumb_crt0.s
+
+C:/Users/Sina/AppData/Local/Rowley Associates Limited/CrossWorks for ARM/v3/packages/targets/CMSIS_3/CMSIS/Include/core_cm3.h
+
+C:/Users/Sina/AppData/Local/Rowley Associates Limited/CrossWorks for ARM/v3/packages/targets/CMSIS_3/CMSIS/Include/core_cmFunc.h
+
+C:/Users/Sina/AppData/Local/Rowley Associates Limited/CrossWorks for ARM/v3/packages/targets/STM32/STM32F2XX.vec
+
+C:/Users/Sina/AppData/Local/Rowley Associates Limited/CrossWorks for ARM/v3/packages/targets/STM32/STM32_Startup.s
+
+Drivers/MPU9150driver.h
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/Drivers/MPU9150Driver.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/Drivers/VNH3SP30TRdriver.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/Drivers/ftdicomsdriver.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/Drivers/ftdicomsdriver.h
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/misc.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_adc.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_dma.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_exti.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_gpio.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_i2c.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_iwdg.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_rcc.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_syscfg.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_tim.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_usart.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/ShaftEncoder.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/ShaftEncoder.h
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/Utilities/InterruptTemplate.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/main.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/module.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/stm32f2xx_it.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/system_stm32f2xx.c
+
+Utilities/InterruptTemplate.h
+
+Utilities/Utils.h
+
+Utilities/interruptTemplate.h
+" fileDialogInitialDirectory="/Users/Sina/Documents/CrossWorks Projects" fileDialogDefaultFilter="*.c" autoConnectCapabilities="266111" debugSearchPath="" buildConfiguration="THUMB Debug" />
+</session>
