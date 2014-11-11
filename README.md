@@ -1,4 +1,4 @@
 arm-ninja
 =========
 
-MCU Firmware to drive ninja car
+MCU Firmware of ninja car
