@@ -1,0 +1,141 @@
+<!DOCTYPE CrossStudio_for_ARM_Session_File>
+<session>
+ <Bookmarks/>
+ <Breakpoints/>
+ <ExecutionProfileWindow/>
+ <FrameBufferWindow>
+  <FrameBufferWindow addressText="" bufferWidth="-1" bufferHeight="-1" addressSpace="" />
+ </FrameBufferWindow>
+ <Memory1>
+  <MemoryWindow autoEvaluate="0" addressText="&amp;DataPtr" numColumns="8" sizeText="sizeof(DataPtr)" dataSize="1" radix="16" name="Example" addressSpace="" />
+ </Memory1>
+ <Memory2>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="Example" addressSpace="" />
+ </Memory2>
+ <Memory3>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="Example" addressSpace="" />
+ </Memory3>
+ <Memory4>
+  <MemoryWindow autoEvaluate="0" addressText="" numColumns="8" sizeText="" dataSize="1" radix="16" name="Example" addressSpace="" />
+ </Memory4>
+ <Project>
+  <ProjectSessionItem path="STM32F2XX-EVAL" name="unnamed" />
+  <ProjectSessionItem path="STM32F2XX-EVAL;Example" name="unnamed" />
+  <ProjectSessionItem path="STM32F2XX-EVAL;Example;Driver Files" name="unnamed" />
+  <ProjectSessionItem path="STM32F2XX-EVAL;Example;Source Files" name="unnamed" />
+ </Project>
+ <Register1>
+  <RegisterWindow openNodes="CPU - Current Context" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp" name="Example" />
+ </Register1>
+ <Register2>
+  <RegisterWindow openNodes="CPU - Current Context" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp" name="Example" />
+ </Register2>
+ <Register3>
+  <RegisterWindow openNodes="CPU - Current Context" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp" name="Example" />
+ </Register3>
+ <Register4>
+  <RegisterWindow openNodes="CPU - Current Context" binaryNodes="" unsignedNodes="" decimalNodes="" octalNodes="" asciiNodes="" visibleNodes="CPU - Current Context/r0;CPU - Current Context/r1;CPU - Current Context/r2;CPU - Current Context/r3;CPU - Current Context/r4;CPU - Current Context/r5;CPU - Current Context/r6;CPU - Current Context/r7;CPU - Current Context/r8;CPU - Current Context/r9;CPU - Current Context/r10;CPU - Current Context/r11;CPU - Current Context/r12;CPU - Current Context/sp(r13);CPU - Current Context/lr(r14);CPU - Current Context/pc(r15);CPU - Current Context/apsr;CPU/r0;CPU/r1;CPU/r2;CPU/r3;CPU/r4;CPU/r5;CPU/r6;CPU/r7;CPU/r8;CPU/r9;CPU/r10;CPU/r11;CPU/r12;CPU/sp(r13);CPU/lr(r14);CPU/pc(r15);CPU/xpsr;CPU/msp;CPU/psp;CPU/cfbp" name="Example" />
+ </Register4>
+ <TargetWindow programAction="" uploadFileType="" programLoadAddress="" programSize="" uploadFileName="" uploadMemoryInterface="" programFileName="" uploadStartAddress="" programFileType="" uploadSize="" programMemoryInterface="" />
+ <TraceWindow>
+  <Trace enabled="Yes" />
+ </TraceWindow>
+ <Watch1>
+  <Watches active="1" update="Never" />
+ </Watch1>
+ <Watch2>
+  <Watches active="0" update="Never" />
+ </Watch2>
+ <Watch3>
+  <Watches active="0" update="Never" />
+ </Watch3>
+ <Watch4>
+  <Watches active="0" update="Never" />
+ </Watch4>
+ <Files>
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/Library/Rowley Associates Limited/CrossWorks for ARM/v3/packages/targets/STM32/STM32_Startup.s" y="292" path="/Users/Sina/Library/Rowley Associates Limited/CrossWorks for ARM/v3/packages/targets/STM32/STM32_Startup.s" left="0" selected="0" name="unnamed" top="281" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/Headers/module.h" y="0" path="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/Headers/module.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/Utilities/InterruptTemplate.h" y="41" path="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/Utilities/InterruptTemplate.h" left="0" selected="0" name="unnamed" top="27" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/main.cpp" y="51" path="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/main.cpp" left="0" selected="1" name="unnamed" top="30" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="26" debugPath="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/module.cpp" y="69" path="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/module.cpp" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/Documents/CrossWorks Projects/STM32F2xx_StdPeriph_Lib_V1.1.0/Libraries/STM32F2xx_StdPeriph_Driver/inc/stm32f2xx_rcc.h" y="0" path="/Users/Sina/Documents/CrossWorks Projects/STM32F2xx_StdPeriph_Lib_V1.1.0/Libraries/STM32F2xx_StdPeriph_Driver/inc/stm32f2xx_rcc.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/Documents/CrossWorks Projects/STM32F2xx_StdPeriph_Lib_V1.1.0/Libraries/STM32F2xx_StdPeriph_Driver/inc/stm32f2xx_tim.h" y="0" path="/Users/Sina/Documents/CrossWorks Projects/STM32F2xx_StdPeriph_Lib_V1.1.0/Libraries/STM32F2xx_StdPeriph_Driver/inc/stm32f2xx_tim.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/Documents/CrossWorks Projects/STM32F2xx_StdPeriph_Lib_V1.1.0/Libraries/STM32F2xx_StdPeriph_Driver/inc/stm32f2xx_gpio.h" y="0" path="/Users/Sina/Documents/CrossWorks Projects/STM32F2xx_StdPeriph_Lib_V1.1.0/Libraries/STM32F2xx_StdPeriph_Driver/inc/stm32f2xx_gpio.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/Documents/CrossWorks Projects/STM32F2xx_StdPeriph_Lib_V1.1.0/Libraries/STM32F2xx_StdPeriph_Driver/inc/misc.h" y="0" path="/Users/Sina/Documents/CrossWorks Projects/STM32F2xx_StdPeriph_Lib_V1.1.0/Libraries/STM32F2xx_StdPeriph_Driver/inc/misc.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/Documents/CrossWorks Projects/STM32F2xx_StdPeriph_Lib_V1.1.0/Libraries/STM32F2xx_StdPeriph_Driver/inc/stm32f2xx_adc.h" y="0" path="/Users/Sina/Documents/CrossWorks Projects/STM32F2xx_StdPeriph_Lib_V1.1.0/Libraries/STM32F2xx_StdPeriph_Driver/inc/stm32f2xx_adc.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/Utilities/interruptTemplate.h" y="0" path="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/Utilities/interruptTemplate.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/Utilities/UartPacketDriver.h" y="0" path="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/Utilities/UartPacketDriver.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/Math/imuKalman.h" y="76" path="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/Math/imuKalman.h" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/stm32f2xx_it.c" y="143" path="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/stm32f2xx_it.c" left="0" selected="0" name="unnamed" top="117" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="18" debugPath="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/Drivers/MPU9150Driver.cpp" y="13" path="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/Drivers/MPU9150Driver.cpp" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/Drivers/MPU9150Driver.h" y="10" path="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/Drivers/MPU9150Driver.h" left="0" selected="0" name="unnamed" top="21" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="Math/fixed.h" y="34" path="Math/fixed.h" left="0" selected="0" name="unnamed" top="27" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/Math/matrix.cpp" y="1" path="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/Math/matrix.cpp" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="main.h" y="23" path="main.h" left="0" selected="0" name="unnamed" top="23" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/main.h" y="82" path="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/main.h" left="0" selected="0" name="unnamed" top="55" />
+ </Files>
+ <ARMCrossStudioWindow activeProject="Example" autoConnectTarget="Olimex ARM-USB-TINY" debugSearchFileMap="C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 3.2/include/stlport/stl/_algobase.h
+
+C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 3.2/source/thumb_crt0.s
+
+C:/Users/Sina/AppData/Local/Rowley Associates Limited/CrossWorks for ARM/v3/packages/targets/CMSIS_3/CMSIS/Include/core_cm3.h
+
+C:/Users/Sina/AppData/Local/Rowley Associates Limited/CrossWorks for ARM/v3/packages/targets/CMSIS_3/CMSIS/Include/core_cmFunc.h
+
+C:/Users/Sina/AppData/Local/Rowley Associates Limited/CrossWorks for ARM/v3/packages/targets/STM32/STM32F2XX.vec
+
+C:/Users/Sina/AppData/Local/Rowley Associates Limited/CrossWorks for ARM/v3/packages/targets/STM32/STM32_Startup.s
+
+Drivers/MPU9150driver.h
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/Drivers/MPU9150Driver.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/Drivers/VNH3SP30TRdriver.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/Drivers/ftdicomsdriver.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/Drivers/ftdicomsdriver.h
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/misc.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_adc.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_dma.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_exti.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_gpio.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_i2c.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_iwdg.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_rcc.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_syscfg.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_tim.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_usart.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/ShaftEncoder.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/ShaftEncoder.h
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/Utilities/InterruptTemplate.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/main.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/module.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/stm32f2xx_it.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/system_stm32f2xx.c
+
+Utilities/InterruptTemplate.h
+
+Utilities/Utils.h
+
+Utilities/interruptTemplate.h
+" fileDialogInitialDirectory="/Users/Sina/rpg/arm-ninja/STM32F2xx_StdPeriph_Lib_V1.1.0/Project/STM32F2xx_StdPeriph_Template/Math" fileDialogDefaultFilter="*.c;*.cpp;*.cxx;*.cc;*.h;*.hpp;*.hxx" autoConnectCapabilities="266111" debugSearchPath="" buildConfiguration="THUMB Debug" />
+</session>

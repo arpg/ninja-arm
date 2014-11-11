@@ -12,7 +12,7 @@
       arm_linker_heap_size="128"
       arm_linker_jtag_pad_pre_dr="1"
       arm_linker_jtag_pad_pre_ir="5"
-      arm_linker_process_stack_size="0"
+      arm_linker_process_stack_size="512"
       arm_linker_stack_size="256"
       arm_simulator_memory_simulation_filename="$(TargetsDir)/STM32/STM32SimulatorMemory.dll"
       arm_simulator_memory_simulation_parameter="STM32F207VG;0x100000;0x20000"

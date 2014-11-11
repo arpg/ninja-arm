@@ -46,18 +46,31 @@ __IO float SysTickDelayMs;
   */
 int main(void)
 {
-
   RCC_ClocksTypeDef RCC_Clocks;
+
   /*!< At this stage the microcontroller clock setting is already configured, 
-   this is done through SystemInit() function which is called from startup
-   file (startup_stm32f2xx.s) before to branch to application main.
-   To reconfigure the default setting of SystemInit() function, refer to
-   system_stm32f2xx.c file
-  */  
+       this is done through SystemInit() function which is called from startup
+       file (startup_stm32f2xx.s) before to branch to application main.
+       To reconfigure the default setting of SystemInit() function, refer to
+       system_stm32f2xx.c file
+     */  
 
-  SystemCoreClockUpdate();
-    int i = SystemCoreClock; 
+  /* SysTick end of count event each 10ms */
+  RCC_GetClocksFreq(&RCC_Clocks);
+  SysTick_Config(RCC_Clocks.HCLK_Frequency / 100);
 
+  int aa = 0;
+  for(int i=0;i<3;i++)
+    aa++;
+
+
+ // SystemCoreClockUpdate();
+   // int i = SystemCoreClock; 
+    int b=0;
+    for( int j = 0; j < 5 ; j++ )
+    {
+      b++;
+    }
     //reset all interrupt handlers
     InterruptTemplate::initialiseHandlers();
 

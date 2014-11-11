@@ -35,13 +35,56 @@
 #include "stm322xg_eval_lcd.h"
 #include <stdio.h>
 
-/* Exported types ------------------------------------------------------------*/
-/* Exported constants --------------------------------------------------------*/
-/* Exported macro ------------------------------------------------------------*/
-/* Exported functions ------------------------------------------------------- */
+#define MAXSIZE 7
+
 void TimingDelay_Decrement(void);
 void Delay(__IO uint32_t nTime);
 
 #endif /* __MAIN_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+/*
+ 
+#ifndef __MAIN_H
+#define __MAIN_H
+
+#define MAXSIZE 7
+
+#include <libarm.h>
+#include <string.h>
+//#include "mathRoutines.h"
+//#include "fixed.h"
+
+#include "stm32f2xx.h"
+#include "stm322xg_eval.h"
+#include "stm322xg_eval_lcd.h"
+#include <stdio.h>
+
+void TimingDelay_Decrement(void);
+void Delay(__IO uint32_t nTime);
+
+#define int16LSB(x) x & 0xFF
+#define int16MSB(x) (x>>8) & 0xFF
+
+
+#define NULL 0
+#define ASSERT_FAIL(x) if( x == false ){ fail(); }
+#define setTimeout(x) TimingDelay = x
+#define isTimedOut() TimingDelay <= 0
+
+//extern __IO uint32_t TimingDelay;
+extern __IO float SysTickDelayMs;
+
+unsigned long getTicks();
+
+float getTimeSpan(unsigned long tickEnd, unsigned long tickStart);
+
+void fail();
+
+//extern "C" void __cxa_pure_virtual(void);
+
+#endif 
+
+
+*/

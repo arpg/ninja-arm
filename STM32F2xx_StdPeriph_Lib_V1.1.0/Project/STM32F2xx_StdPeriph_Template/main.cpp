@@ -27,6 +27,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "module.h"
+
 
 /** @addtogroup Template_Project
   * @{
@@ -65,48 +67,18 @@ int main(void)
   RCC_GetClocksFreq(&RCC_Clocks);
   SysTick_Config(RCC_Clocks.HCLK_Frequency / 100);
 
-  /* Initialize LEDs and LCD available on STM322xG-EVAL board *****************/
-  STM_EVAL_LEDInit(LED1);
-  STM_EVAL_LEDInit(LED2);
-  STM_EVAL_LEDInit(LED3);
-  STM_EVAL_LEDInit(LED4);
+  int aa = 0;
+  for(int i=0;i<3;i++)
+    aa++;
 
-  /* Initialize the LCD */
-  STM322xG_LCD_Init();
-
-  /* Display message on STM322xG-EVAL LCD *************************************/
-  /* Clear the LCD */ 
-  LCD_Clear(White);
-
-  /* Set the LCD Back Color */
-  LCD_SetBackColor(Blue);
-  /* Set the LCD Text Color */
-  LCD_SetTextColor(White);
-  LCD_DisplayStringLine(LINE(0), (uint8_t *)MESSAGE1);
-  LCD_DisplayStringLine(LINE(1), (uint8_t *)MESSAGE2);
-  LCD_DisplayStringLine(LINE(2), (uint8_t *)MESSAGE3);
-
-  /* Turn on LEDs available on STM322xG-EVAL **********************************/
-  STM_EVAL_LEDOn(LED1);
-  STM_EVAL_LEDOn(LED2);
-  STM_EVAL_LEDOn(LED3);
-  STM_EVAL_LEDOn(LED4);
-
-  /* Add your application code here
-     */
+    Module module;
+    module.Delay_ms(500);    // wait for voltage to become stable
+    module.Initialize();
+    module.Run();
 
   /* Infinite loop */
   while (1)
   {
-    /* Toggle LD4 */
-    STM_EVAL_LEDToggle(LED4);
-
-    /* Insert 50 ms delay */
-    Delay(5);
-
-    /* Toggle LD2 */
-    STM_EVAL_LEDToggle(LED2);
-
     /* Insert 50 ms delay */
     Delay(5);
   }

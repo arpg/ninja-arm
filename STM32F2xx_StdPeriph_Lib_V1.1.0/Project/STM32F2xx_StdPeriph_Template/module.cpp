@@ -14,10 +14,10 @@
 #include "stm32f2xx_tim.h"
 #include "stm32f2xx_gpio.h"
 #include "misc.h"
-
-#include "imuKalman.h"
+#include <string.h>
+//#include "imuKalman.h"
 #include "interruptTemplate.h"
-//#include "UartPacketDriver.h"
+#include "UartPacketDriver.h"
 
 //#include "LSM303Driver.h"
 //#include "IMU3000Driver.h"
