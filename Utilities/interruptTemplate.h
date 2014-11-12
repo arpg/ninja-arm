@@ -99,7 +99,7 @@ public:
 
     static void onNotifyInterruptDma2Stream0();
     static void onNotifyInterruptDma2Stream3();
-    static void onNotifyInterruptDma2Stream4();
+    //static void onNotifyInterruptDma2Stream4();
 
 
     //-----------------------------------------------------------------------------

@@ -383,14 +383,14 @@ void InterruptTemplate::onNotifyInterruptDma2Stream3()
 // DMA1 stream 4 Event notification function. The system calls this function to notify
 // the interrupt manager of an interrupt
 //-----------------------------------------------------------------------------
-void InterruptTemplate::onNotifyInterruptDma2Stream4()
-{
-    for(int i = 0 ; i < MAX_INTERRUPT_HANDLERS ; i++ )
-    {
-        if( DMA2STREAM4_INTERRUPT_HANDLER[i] != NULL)
-            DMA2STREAM4_INTERRUPT_HANDLER[i]->onInterruptDma2Stream4();
-    }
-}
+//void InterruptTemplate::onNotifyInterruptDma2Stream4()
+//{
+//    for(int i = 0 ; i < MAX_INTERRUPT_HANDLERS ; i++ )
+//    {
+//        if( DMA2STREAM4_INTERRUPT_HANDLER[i] != NULL)
+//            DMA2STREAM4_INTERRUPT_HANDLER[i]->onInterruptDma2Stream4();
+//    }
+//}
 
 //-----------------------------------------------------------------------------
 // Empty function definitions

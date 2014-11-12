@@ -2,39 +2,38 @@
   ******************************************************************************
   * @file    Project/STM32F2xx_StdPeriph_Template/stm32f2xx_it.c 
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    18-April-2011
+  * @version V1.1.0
+  * @date    13-April-2012
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and 
   *          peripherals interrupt service routine.
   ******************************************************************************
   * @attention
   *
-  * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
-  * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
-  * TIME. AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY
-  * DIRECT, INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
-  * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
-  * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
   *
-  * <h2><center>&copy; COPYRIGHT 2011 STMicroelectronics</center></h2>
+  * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
+  * You may not use this file except in compliance with the License.
+  * You may obtain a copy of the License at:
+  *
+  *        http://www.st.com/software_license_agreement_liberty_v2
+  *
+  * Unless required by applicable law or agreed to in writing, software 
+  * distributed under the License is distributed on an "AS IS" BASIS, 
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
+  *
   ******************************************************************************
   */ 
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f2xx_it.h"
-#include "stm32f2xx_tim.h"
 #include "main.h"
-#include "interruptTemplate.h"
-
-//using namespace Andromeda;
 
 /** @addtogroup Template_Project
   * @{
   */
-
-#define MODULE_TIMER_PERIOD			0xFFFFFFFF					//overflow every 4 minutes @15mhZ
-#define MODULE_TIMER				TIM2	
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -68,7 +67,6 @@ void HardFault_Handler(void)
   {
   }
 }
-
 
 /**
   * @brief  This function handles Memory Manage exception.
@@ -143,81 +141,7 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
-	InterruptTemplate::onNotifyInterruptSystick();
-	TimingDelay_Decrement();
-}
-
-void EXTI0_IRQHandler(void)
-{
-	InterruptTemplate::onNotifyInterruptExti0();
-}
-
-void EXTI1_IRQHandler(void)
-{
-	InterruptTemplate::onNotifyInterruptExti1();
-}
-//
-void EXTI4_IRQHandler(void)
-{
-	InterruptTemplate::onNotifyInterruptExti4();
-}
-//
-void EXTI9_5_IRQHandler(void)
-{
-	InterruptTemplate::onNotifyInterruptExti9_5();
-}
-
-void TIM2_IRQHandler(void)
-{
-	//perform timing calculations
-	if( TIM_GetFlagStatus(MODULE_TIMER,TIM_IT_Update) == ENABLE )
-	{
-		//add the timer value to the total time past   
-		_totalTicks += MODULE_TIMER_PERIOD;
-		TIM_ClearFlag(MODULE_TIMER,TIM_IT_Update);
-	}
-
-	InterruptTemplate::onNotifyInterruptTim2();
-}
-
-void I2C1_EV_IRQHandler(void)
-{
-	InterruptTemplate::onNotifyInterruptI2c1Ev();
-}
-
-void I2C2_EV_IRQHandler(void)
-{
-	InterruptTemplate::onNotifyInterruptI2c2Ev();
-}
-
-void I2C3_EV_IRQHandler(void)
-{
-    InterruptTemplate::onNotifyInterruptI2c3Ev();
-}
-
-void DMA1_Stream0_IRQHandler(void)
-{
-	InterruptTemplate::onNotifyInterruptDma1Stream0();
-}
-
-void DMA1_Stream1_IRQHandler(void)
-{
-	InterruptTemplate::onNotifyInterruptDma1Stream1();
-}
-
-void DMA1_Stream2_IRQHandler(void)
-{
-	InterruptTemplate::onNotifyInterruptDma1Stream2();
-}
-
-void DMA1_Stream3_IRQHandler(void)
-{
-	InterruptTemplate::onNotifyInterruptDma1Stream3();
-}
-
-void USART3_IRQHandler(void)
-{
-	InterruptTemplate::onNotifyInterruptUsart3();
+  TimingDelay_Decrement();
 }
 
 /******************************************************************************/
@@ -241,4 +165,4 @@ void USART3_IRQHandler(void)
   */ 
 
 
-/******************* (C) COPYRIGHT 2011 STMicroelectronics *****END OF FILE****/
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

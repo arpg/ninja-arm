@@ -1,40 +1,48 @@
+/**
+  ******************************************************************************
+  * @file    Project/STM32F2xx_StdPeriph_Template/main.c 
+  * @author  MCD Application Team
+  * @version V1.1.0
+  * @date    13-April-2012
+  * @brief   Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  *
+  * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
+  * You may not use this file except in compliance with the License.
+  * You may obtain a copy of the License at:
+  *
+  *        http://www.st.com/software_license_agreement_liberty_v2
+  *
+  * Unless required by applicable law or agreed to in writing, software 
+  * distributed under the License is distributed on an "AS IS" BASIS, 
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
+  *
+  ******************************************************************************
+  */ 
+
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-//#include "imuKalman.h"
-#include "interruptTemplate.h"
-#include "UartPacketDriver.h"
-//#include "MPU9150Driver.h"
-//#include "MPU9150DriverDMA.h"
-#include "stm32f2xx.h"
-#include "stm32f2xx_rcc.h"
-#include "stm32f2xx_tim.h"
-#include "stm32f2xx_gpio.h"
-//#include "LSM303Driver.h"
-//#include "IMU3000Driver.h"
-//#include "VenusGpsDriver.h"
 #include "module.h"
-//#include "interruptTemplate.h"
-
-unsigned long _totalTicks = 0;
-
- void __cxa_pure_virtual(void)
-{
-// call to a pure virtual function happened ... wow, should never happen ... stop
-while(1);
-}
 
 
-using namespace Andromeda;
 /** @addtogroup Template_Project
   * @{
   */
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
+#define MESSAGE1   "     STM32F2xx      " 
+#define MESSAGE2   " Device running on  " 
+#define MESSAGE3   "   STM322xG-EVAL    " 
+
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-__IO uint32_t TimingDelay;
-__IO float SysTickDelayMs;
+static __IO uint32_t TimingDelay;
 
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
@@ -63,32 +71,17 @@ int main(void)
   for(int i=0;i<3;i++)
     aa++;
 
-
- // SystemCoreClockUpdate();
-   // int i = SystemCoreClock; 
-    int b=0;
-    for( int j = 0; j < 5 ; j++ )
-    {
-      b++;
-    }
-    //reset all interrupt handlers
-    InterruptTemplate::initialiseHandlers();
-
-    /* SysTick end of count event each 10ms */
-    RCC_GetClocksFreq(&RCC_Clocks);
-    SysTickDelayMs = 10;
-    SysTick_Config(RCC_Clocks.HCLK_Frequency / 100);
-
-    //MPU9150Driver driver;
-    //driver.initialise();
-
     Module module;
     module.Delay_ms(500);    // wait for voltage to become stable
     module.Initialize();
     module.Run();
 
-
-
+  /* Infinite loop */
+  while (1)
+  {
+    /* Insert 50 ms delay */
+    Delay(5);
+  }
 }
 
 /**
@@ -116,59 +109,6 @@ void TimingDelay_Decrement(void)
   }
 }
 
-//-----------------------------------------------------------------------------
-// Returns the current elapsed tick count
-//-----------------------------------------------------------------------------
-//unsigned long getTicks()
-//{
-//	disableInterrupts();
-//	if( TIM_GetFlagStatus(MODULE_TIMER,TIM_IT_Update) == ENABLE )
-//	{
-//		//then an overflow interrupt is pending, we must tend to it now
-//		_totalTicks += MODULE_TIMER_PERIOD;
-//	}
-//
-//	unsigned long ticks = _totalTicks +TIM_GetCounter(MODULE_TIMER);
-//	enableInterrupts();
-//	return ticks;
-//}
-
-//-----------------------------------------------------------------------------
-//	Based on the given ticks, returns time in seconds
-//-----------------------------------------------------------------------------
-//float getTimeSpan(unsigned long tickEnd, unsigned long tickStart)
-//{
-//	unsigned long totalTicks =0 ;
-//	if( tickStart > tickEnd )
-//	{
-//		if( (tickStart - tickEnd) < TIM_GetCounter(MODULE_TIMER) )
-//		{
-//			//this is an error state where the TC has rolled over but the interrupt to 
-//			//service it has not done so yet and the value hasn't been added to _totalTicks
-//			return 0;
-//		}
-//
-//		//then counts have rolled over
-//		totalTicks = tickEnd + (MODULE_TIMER_PERIOD - tickStart);
-//	}
-//	else
-//		totalTicks = tickEnd - tickStart;
-//
-//	//return the time in seconds
-//	return totalTicks *  MODULE_TICKS_TO_SECONDS;
-//}
-
-//-----------------------------------------------------------------------------
-// The fail loop. 
-//-----------------------------------------------------------------------------
-void fail()
-{
-	while(1)
-	{
-	}
-}
-
-
 #ifdef  USE_FULL_ASSERT
 
 /**
@@ -195,4 +135,4 @@ void assert_failed(uint8_t* file, uint32_t line)
   */
 
 
-/******************* (C) COPYRIGHT 2011 STMicroelectronics *****END OF FILE****/
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

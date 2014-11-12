@@ -8,8 +8,10 @@
 //-----------------------------------------------------------------------------
 #include "main.h"
 #include "interruptTemplate.h"
-//#include "MPU9150registers.h" 
-#include "MPU9150driver.h"
+//#include "MPU9150registers.h"
+#include "mathRoutines.h" 
+#include "MPU9150Driver.h"
+#include <string.h>
 
 
 //-----------------------------------------------------------------------------
