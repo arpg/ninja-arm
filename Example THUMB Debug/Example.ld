@@ -67,14 +67,14 @@ SECTIONS
   __DBG_segment_start__ = 0xe0042000;
   __DBG_segment_end__ = 0xe0042010;
 
-  __HEAPSIZE__ = 128;
+  __HEAPSIZE__ = 1024;
   __STACKSIZE_ABT__ = 0;
   __STACKSIZE_FIQ__ = 0;
   __STACKSIZE_IRQ__ = 0;
-  __STACKSIZE_PROCESS__ = 0;
+  __STACKSIZE_PROCESS__ = 1024;
   __STACKSIZE_SVC__ = 0;
   __STACKSIZE_UND__ = 0;
-  __STACKSIZE__ = 256;
+  __STACKSIZE__ = 2048;
 
   __vectors_ram_load_start__ = ALIGN(__RAM_segment_start__ , 256);
   .vectors_ram ALIGN(__RAM_segment_start__ , 256) (NOLOAD) : AT(ALIGN(__RAM_segment_start__ , 256))

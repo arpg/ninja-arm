@@ -1,5 +1,5 @@
-#ifndef UTILSX_H
-#define UTILSX_H
+#ifndef UTILS_H
+#define UTILS_H
 
 #include "stm32f2xx.h"
 #include "stm32f2xx.h"
@@ -41,21 +41,8 @@ struct GPIO_Pin
     {}
 };
 
+
 ///////////////////////////////////////////////////////////////////////////////
-inline void RCCSetClock(const void* pPeriph, const uint32_t nClockId, const FunctionalState NewState)
-{
-    uint32_t nPeriph = (uint32_t)pPeriph;
-    if(nPeriph >= APB1PERIPH_BASE && nPeriph < APB2PERIPH_BASE ){
-        RCC_APB1PeriphClockCmd(nClockId,NewState);
-    }else if(nPeriph >= APB2PERIPH_BASE && nPeriph <= AHB1PERIPH_BASE){
-        RCC_APB2PeriphClockCmd(nClockId,NewState);
-    }else if(nPeriph >= AHB1PERIPH_BASE && nPeriph <= AHB2PERIPH_BASE){
-        RCC_AHB1PeriphClockCmd(nClockId,NewState);
-    }else if(nPeriph >= AHB2PERIPH_BASE){
-        RCC_AHB2PeriphClockCmd(nClockId,NewState);
-    }else if(nClockId == RCC_AHB3Periph_FSMC){
-        RCC_AHB3PeriphClockCmd(nClockId,NewState);
-    }
-}
+int RCCSetClock(const void* pPeriph, const uint32_t nClockId, const FunctionalState NewState);
 
 #endif // UTILSX_H

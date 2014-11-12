@@ -67,10 +67,6 @@ int main(void)
   RCC_GetClocksFreq(&RCC_Clocks);
   SysTick_Config(RCC_Clocks.HCLK_Frequency / 100);
 
-  int aa = 0;
-  for(int i=0;i<3;i++)
-    aa++;
-
     Module module;
     module.Delay_ms(500);    // wait for voltage to become stable
     module.Initialize();
