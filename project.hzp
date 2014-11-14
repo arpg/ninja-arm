@@ -9,10 +9,10 @@
       arm_core_type="Cortex-M3"
       arm_fpu_type="None"
       arm_gcc_target="arm-unknown-eabi"
-      arm_linker_heap_size="1024"
+      arm_linker_heap_size="2048"
       arm_linker_jtag_pad_pre_dr="1"
       arm_linker_jtag_pad_pre_ir="5"
-      arm_linker_process_stack_size="1024"
+      arm_linker_process_stack_size="2048"
       arm_linker_stack_size="2048"
       arm_simulator_memory_simulation_filename="$(TargetsDir)/STM32/STM32SimulatorMemory.dll"
       arm_simulator_memory_simulation_parameter="STM32F207VG;0x100000;0x20000"
@@ -22,8 +22,8 @@
       arm_target_loader_applicable_loaders="Flash"
       arm_target_loader_default_loader="Flash"
       arm_target_restrict_memory_accesses="Yes"
-      build_remove_unused_symbols="No"
-      c_preprocessor_definitions="USE_STDPERIPH_DRIVER;STM32F2xx_STDPERITH_LIB;STARTUP_FROM_RESET;USE_STDPERIPH_DRIVER"
+      build_remove_unused_symbols="Yes"
+      c_preprocessor_definitions="USE_STDPERIPH_DRIVER;STM32F2xx_STDPERITH_LIB;STARTUP_FROM_RESET"
       c_user_include_directories=".;$(STM32F2xx_STDPERIPH_LIB)/Libraries/CMSIS/Device/ST/STM32F2xx/Include;$(STM32F2xx_STDPERIPH_LIB)/Libraries/CMSIS/Include;$(STM32F2xx_STDPERIPH_LIB)/Libraries/STM32F2xx_StdPeriph_Driver/inc;$(STM32F2xx_STDPERIPH_LIB)/Utilities/STM32_EVAL/Common;$(STM32F2xx_STDPERIPH_LIB)/Utilities/STM32_EVAL/STM322xG_EVAL;./Headers;./Drivers;./Math;./Utilities"
       debug_register_definition_file="$(TargetsDir)/STM32/STM32F20x_Peripherals.xml"
       linker_memory_map_file="$(TargetsDir)/STM32/STM32F207VG_MemoryMap.xml"
@@ -43,7 +43,9 @@
       <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc" />
       <file file_name="main.cpp" />
       <file file_name="module.cpp" />
-      <file file_name="Drivers/MPU9150Driver.cpp" />
+      <file file_name="Drivers/MPU9150Driver.cpp">
+        <configuration Name="THUMB Debug" build_exclude_from_build="Yes" />
+      </file>
       <file file_name="ShaftEncoder.cpp" />
       <file file_name="Math/mathRoutines.cpp" />
       <file file_name="Math/matrix.cpp" />
@@ -123,6 +125,6 @@
     Name="Release"
     c_preprocessor_definitions="NDEBUG"
     gcc_debugging_level="Level 1"
-    gcc_optimization_level="Level 1"
+    gcc_optimization_level="None"
     hidden="Yes" />
 </solution>

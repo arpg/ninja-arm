@@ -30,8 +30,8 @@
 #include "Drivers/VNH3SP30TRdriver.h"
 #include "Drivers/ftdicomsdriver.h"  
 #include "Headers/ShaftEncoder.h"
-#include "Drivers/MPU9150driverDMA.h"
-#include "Drivers/MPU9150driver.h"
+//#include "Drivers/MPU9150driverDMA.h"
+//#include "Drivers/MPU9150driver.h"
 
 class Module : InterruptTemplate
 {
@@ -63,8 +63,8 @@ class Module : InterruptTemplate
       VNH3SP30TRDriver m_MainMotorDriver;
       FtdiComsDriver m_ComsDriver;
       Encoder MyEncoders;
-      MPU9150Driver m_MPU9150Driver;
-      MPU9150_Data_Structure IMU_Data;
+      //MPU9150Driver m_MPU9150Driver;
+      //MPU9150_Data_Structure IMU_Data;
       void Initialize();
       Module();
       void Run();

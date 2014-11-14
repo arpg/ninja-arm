@@ -61,6 +61,7 @@ void Module::Run()
     
     while(1)
     {
+/*    
         unsigned char pPacketData[256];
         memset(pPacketData, 0, 256);
         short nLengthOut=5;
@@ -108,7 +109,7 @@ void Module::Run()
           LoopCounter--;
         else if(LoopCounter>0)
           LoopCounter++;
-
+*/
 ////////////////////////////////////////////////////////////////
 //  Test Functions for Debug
 ////////////////////////////////////////////////////////////////
@@ -134,11 +135,11 @@ void Module::Run()
         //int Pot2Value = ADC1ConvertedValue[0];
         
         //////////////////////////////// PWM Test
-        /*for(int j=0; j<10000; j++)
+        for(int j=0; j<10000; j++)
         {
           SetServoPos(0,((double)j/10000));
-          for(int ii = 0; ii < 1000; ii++){}
-        }*/
+          Delay_ms(1);
+        }
         
         /////////////////////////////// Test Motor
         /*
@@ -173,12 +174,12 @@ void Module::Run()
         //MyEncoders.GetEncoderPoses(&MyPoses);
         
         ///////////////////////////////// Led Test
-/*
-          SetRgbLed(true,true,true);
-          Delay_ms(10);
-          SetRgbLed(false,false,false);
-          Delay_ms(500);
-*/
+
+          SetRgbLed(true,false,false);
+          Delay_ms(1000);
+          SetRgbLed(false,true,true);
+          Delay_ms(1000);
+
     /* Update IWDG counter */
     IWDG_ReloadCounter();
       
@@ -229,7 +230,7 @@ void Module::Initialize()
 
     MyEncoders.Config();
 
-    m_MPU9150Driver.initialise();
+    //m_MPU9150Driver.initialise();
 
     //initialize the motor driver
     m_MainMotorDriver.Initialize(TIM10,RCC_APB2Periph_TIM10,
@@ -264,13 +265,13 @@ void Module::Initialize()
 //		_venusGps.initialise();
 
 //		configureInterrupts();
-          SetRgbLed(true,true,true);
+  //        SetRgbLed(true,true,true);
           Delay_ms(200);
-          SetRgbLed(false,false,false);
+//          SetRgbLed(false,false,false);
           Delay_ms(200);
           
           
-          Init_WatchDog();
+//          Init_WatchDog();
           
 }
 

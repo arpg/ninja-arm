@@ -67,11 +67,11 @@ SECTIONS
   __DBG_segment_start__ = 0xe0042000;
   __DBG_segment_end__ = 0xe0042010;
 
-  __HEAPSIZE__ = 1024;
+  __HEAPSIZE__ = 2048;
   __STACKSIZE_ABT__ = 0;
   __STACKSIZE_FIQ__ = 0;
   __STACKSIZE_IRQ__ = 0;
-  __STACKSIZE_PROCESS__ = 1024;
+  __STACKSIZE_PROCESS__ = 2048;
   __STACKSIZE_SVC__ = 0;
   __STACKSIZE_UND__ = 0;
   __STACKSIZE__ = 2048;

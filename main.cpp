@@ -29,17 +29,6 @@
 #include "main.h"
 #include "module.h"
 
-
-/** @addtogroup Template_Project
-  * @{
-  */
-
-/* Private typedef -----------------------------------------------------------*/
-/* Private define ------------------------------------------------------------*/
-#define MESSAGE1   "     STM32F2xx      " 
-#define MESSAGE2   " Device running on  " 
-#define MESSAGE3   "   STM322xG-EVAL    " 
-
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 static __IO uint32_t TimingDelay;
@@ -65,12 +54,20 @@ int main(void)
 
   /* SysTick end of count event each 10ms */
   RCC_GetClocksFreq(&RCC_Clocks);
+  unsigned long int a1 = RCC_Clocks.SYSCLK_Frequency;
+  unsigned long int a2 = RCC_Clocks.HCLK_Frequency;
+  unsigned long int a3 = RCC_Clocks.PCLK1_Frequency;
+  unsigned long int a4 = RCC_Clocks.PCLK2_Frequency;
   SysTick_Config(RCC_Clocks.HCLK_Frequency / 100);
 
-    Module module;
-    module.Delay_ms(500);    // wait for voltage to become stable
-    module.Initialize();
-    module.Run();
+  Module module;
+    
+  //module.SetRgbLed(true,true,true);
+  module.Delay_ms(500);
+  //module.SetRgbLed(false,false,false);
+    
+  module.Initialize();
+  module.Run();
 
   /* Infinite loop */
   while (1)
