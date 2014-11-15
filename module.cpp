@@ -30,9 +30,9 @@
 
 uint32_t Module::m_nPwmFreq = 200000;
 uint16_t Module::m_nPwmPeriod = 0.006 / (1.0/(double)Module::m_nPwmFreq);//0.02 / (1.0/(double)Module::m_nPwmFreq);
-uint16_t Module::m_nPwmMin = 0.00029 / (1.0/(double)Module::m_nPwmFreq);
-uint16_t Module::m_nPwmMax = 0.00062 / (1.0/(double)Module::m_nPwmFreq);
-uint16_t Module::m_nPwmMid = 0.001 / (1.0/(double)Module::m_nPwmFreq);
+uint16_t Module::m_nPwmMin = 320;//0.01 / (1.0/(double)Module::m_nPwmFreq);
+uint16_t Module::m_nPwmMax = 590;//0.2 / (1.0/(double)Module::m_nPwmFreq);
+uint16_t Module::m_nPwmMid = (Module::m_nPwmMax-Module::m_nPwmMin)*0.5+Module::m_nPwmMin;//0.0015 / (1.0/(double)Module::m_nPwmFreq);
 
 __IO uint16_t ADC1ConvertedValue[6] = {0,0,0,0,0,0};
 __IO uint32_t ADC1ConvertedVoltage = 0;
@@ -58,7 +58,7 @@ void Module::Run()
     float val = 0.0;
     int LoopCounter = 1;
     ADC_SoftwareStartConv(ADC1);
-    
+    //SetServoPos(0,0.5);
     while(1)
     {
 /*    
@@ -135,12 +135,13 @@ void Module::Run()
         //int Pot2Value = ADC1ConvertedValue[0];
         
         //////////////////////////////// PWM Test
-        for(int j=0; j<10000; j++)
+        /*
+        for(int j=0; j<1000; j++)
         {
-          SetServoPos(0,((double)j/10000));
-          Delay_ms(1);
+          SetServoPos(0,(double)j/1000);
+          Delay_ms(20);
         }
-        
+        */
         /////////////////////////////// Test Motor
         /*
         m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeForward);
@@ -174,12 +175,12 @@ void Module::Run()
         //MyEncoders.GetEncoderPoses(&MyPoses);
         
         ///////////////////////////////// Led Test
-
+        /*
           SetRgbLed(true,false,false);
           Delay_ms(1000);
           SetRgbLed(false,true,true);
           Delay_ms(1000);
-
+      */
     /* Update IWDG counter */
     IWDG_ReloadCounter();
       
@@ -514,6 +515,7 @@ void Module::SetServoPos(const int nServo, const float dPos)
       dClampedPos = dPos;
 
     int nClampedPos = (dClampedPos * (float)(m_nPwmMax-m_nPwmMin) ) + m_nPwmMin;
+    //int nClampedPos = dPos;
     switch(nServo){
         case 0:
             TIM_SetCompare1(TIM4, nClampedPos);
