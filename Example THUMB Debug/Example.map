@@ -198,12 +198,28 @@ Discarded input sections
  .text          0x00000000        0x0 Example THUMB Debug/module.o
  .data          0x00000000        0x0 Example THUMB Debug/module.o
  .bss           0x00000000        0x0 Example THUMB Debug/module.o
+ .bss.ADC1ConvertedValue
+                0x00000000        0xc Example THUMB Debug/module.o
  .bss.ADC1ConvertedVoltage
                 0x00000000        0x4 Example THUMB Debug/module.o
  .text._ZN6Module13Init_WatchDogEv
                 0x00000000       0x2c Example THUMB Debug/module.o
  .text._ZN6Module13ADC_Push2PackER22Transmit_CommandPacket
                 0x00000000       0x6c Example THUMB Debug/module.o
+ .text._ZN6Module13Adc_Comm_InitEv
+                0x00000000       0x2c Example THUMB Debug/module.o
+ .text._ZN6Module16Adc_Channel_InitEv
+                0x00000000       0x84 Example THUMB Debug/module.o
+ .text._ZN6Module10DMA_ConfigEv
+                0x00000000       0x74 Example THUMB Debug/module.o
+ .text._ZN6Module11GPIO_ConfigEv
+                0x00000000       0x2c Example THUMB Debug/module.o
+ .text._ZN6Module12ConfigureADCEv
+                0x00000000       0x60 Example THUMB Debug/module.o
+ .text._ZN6Module12ConfigurePwmEv
+                0x00000000      0x180 Example THUMB Debug/module.o
+ .text._ZN6Module12ConfigureLedEv
+                0x00000000       0x4c Example THUMB Debug/module.o
  .text._ZN6Module19ConfigureInterruptsEv
                 0x00000000       0x50 Example THUMB Debug/module.o
  .debug_macro   0x00000000      0x898 Example THUMB Debug/module.o
@@ -290,10 +306,19 @@ Discarded input sections
  .text          0x00000000        0x0 Example THUMB Debug/ShaftEncoder.o
  .data          0x00000000        0x0 Example THUMB Debug/ShaftEncoder.o
  .bss           0x00000000        0x0 Example THUMB Debug/ShaftEncoder.o
+ .text._ZN7Encoder6ConfigEv
+                0x00000000      0x23c Example THUMB Debug/ShaftEncoder.o
  .text._ZN7Encoder15GetEncoderPosesER12EncoderPoses
                 0x00000000       0x44 Example THUMB Debug/ShaftEncoder.o
  .text._ZN7Encoder9Push2PackER22Transmit_CommandPacket
                 0x00000000       0x44 Example THUMB Debug/ShaftEncoder.o
+ .debug_frame   0x00000000       0x90 Example THUMB Debug/ShaftEncoder.o
+ .debug_info    0x00000000      0x776 Example THUMB Debug/ShaftEncoder.o
+ .debug_abbrev  0x00000000      0x1cc Example THUMB Debug/ShaftEncoder.o
+ .debug_aranges
+                0x00000000       0x30 Example THUMB Debug/ShaftEncoder.o
+ .debug_ranges  0x00000000       0x20 Example THUMB Debug/ShaftEncoder.o
+ .debug_macro   0x00000000      0x185 Example THUMB Debug/ShaftEncoder.o
  .debug_macro   0x00000000      0x898 Example THUMB Debug/ShaftEncoder.o
  .debug_macro   0x00000000      0x184 Example THUMB Debug/ShaftEncoder.o
  .debug_macro   0x00000000       0x5c Example THUMB Debug/ShaftEncoder.o
@@ -330,6 +355,11 @@ Discarded input sections
  .debug_macro   0x00000000       0x82 Example THUMB Debug/ShaftEncoder.o
  .debug_macro   0x00000000       0x76 Example THUMB Debug/ShaftEncoder.o
  .debug_macro   0x00000000       0xca Example THUMB Debug/ShaftEncoder.o
+ .debug_line    0x00000000      0x517 Example THUMB Debug/ShaftEncoder.o
+ .debug_str     0x00000000    0x53ec5 Example THUMB Debug/ShaftEncoder.o
+ .comment       0x00000000       0x4f Example THUMB Debug/ShaftEncoder.o
+ .ARM.attributes
+                0x00000000       0x33 Example THUMB Debug/ShaftEncoder.o
  .group         0x00000000        0x8 Example THUMB Debug/mathRoutines.o
  .group         0x00000000        0x8 Example THUMB Debug/mathRoutines.o
  .group         0x00000000        0x8 Example THUMB Debug/mathRoutines.o
@@ -1394,10 +1424,15 @@ Discarded input sections
  .bss           0x00000000        0x0 Example THUMB Debug/stm32f2xx_adc.o
  .text.ADC_DeInit
                 0x00000000       0x1c Example THUMB Debug/stm32f2xx_adc.o
+ .text.ADC_Init
+                0x00000000       0xa8 Example THUMB Debug/stm32f2xx_adc.o
  .text.ADC_StructInit
                 0x00000000       0x3c Example THUMB Debug/stm32f2xx_adc.o
+ .text.ADC_CommonInit
+                0x00000000       0x50 Example THUMB Debug/stm32f2xx_adc.o
  .text.ADC_CommonStructInit
                 0x00000000       0x2c Example THUMB Debug/stm32f2xx_adc.o
+ .text.ADC_Cmd  0x00000000       0x38 Example THUMB Debug/stm32f2xx_adc.o
  .text.ADC_AnalogWatchdogCmd
                 0x00000000       0x38 Example THUMB Debug/stm32f2xx_adc.o
  .text.ADC_AnalogWatchdogThresholdsConfig
@@ -1408,6 +1443,8 @@ Discarded input sections
                 0x00000000       0x38 Example THUMB Debug/stm32f2xx_adc.o
  .text.ADC_VBATCmd
                 0x00000000       0x38 Example THUMB Debug/stm32f2xx_adc.o
+ .text.ADC_RegularChannelConfig
+                0x00000000      0x188 Example THUMB Debug/stm32f2xx_adc.o
  .text.ADC_GetSoftwareStartConvStatus
                 0x00000000       0x30 Example THUMB Debug/stm32f2xx_adc.o
  .text.ADC_EOCOnEachRegularChannelCmd
@@ -1422,6 +1459,10 @@ Discarded input sections
                 0x00000000       0x1c Example THUMB Debug/stm32f2xx_adc.o
  .text.ADC_GetMultiModeConversionValue
                 0x00000000       0x18 Example THUMB Debug/stm32f2xx_adc.o
+ .text.ADC_DMACmd
+                0x00000000       0x38 Example THUMB Debug/stm32f2xx_adc.o
+ .text.ADC_DMARequestAfterLastTransferCmd
+                0x00000000       0x38 Example THUMB Debug/stm32f2xx_adc.o
  .text.ADC_MultiModeDMARequestAfterLastTransferCmd
                 0x00000000       0x38 Example THUMB Debug/stm32f2xx_adc.o
  .text.ADC_InjectedChannelConfig
@@ -4349,6 +4390,8 @@ Discarded input sections
                 0x00000000       0x38 Example THUMB Debug/stm32f2xx_tim.o
  .text.TIM_SetCounter
                 0x00000000       0x1c Example THUMB Debug/stm32f2xx_tim.o
+ .text.TIM_SetAutoreload
+                0x00000000       0x1c Example THUMB Debug/stm32f2xx_tim.o
  .text.TIM_GetCounter
                 0x00000000       0x18 Example THUMB Debug/stm32f2xx_tim.o
  .text.TIM_GetPrescaler
@@ -4357,10 +4400,16 @@ Discarded input sections
                 0x00000000       0x40 Example THUMB Debug/stm32f2xx_tim.o
  .text.TIM_UpdateRequestConfig
                 0x00000000       0x40 Example THUMB Debug/stm32f2xx_tim.o
+ .text.TIM_ARRPreloadConfig
+                0x00000000       0x40 Example THUMB Debug/stm32f2xx_tim.o
  .text.TIM_SelectOnePulseMode
                 0x00000000       0x38 Example THUMB Debug/stm32f2xx_tim.o
  .text.TIM_SetClockDivision
                 0x00000000       0x38 Example THUMB Debug/stm32f2xx_tim.o
+ .text.TIM_OC2Init
+                0x00000000      0x110 Example THUMB Debug/stm32f2xx_tim.o
+ .text.TIM_OC3Init
+                0x00000000      0x10c Example THUMB Debug/stm32f2xx_tim.o
  .text.TIM_OC4Init
                 0x00000000       0xcc Example THUMB Debug/stm32f2xx_tim.o
  .text.TIM_SelectOCxM
@@ -4373,6 +4422,10 @@ Discarded input sections
                 0x00000000       0x38 Example THUMB Debug/stm32f2xx_tim.o
  .text.TIM_ForcedOC4Config
                 0x00000000       0x3c Example THUMB Debug/stm32f2xx_tim.o
+ .text.TIM_OC2PreloadConfig
+                0x00000000       0x3c Example THUMB Debug/stm32f2xx_tim.o
+ .text.TIM_OC3PreloadConfig
+                0x00000000       0x38 Example THUMB Debug/stm32f2xx_tim.o
  .text.TIM_OC4PreloadConfig
                 0x00000000       0x3c Example THUMB Debug/stm32f2xx_tim.o
  .text.TIM_OC1FastConfig
@@ -4479,6 +4532,8 @@ Discarded input sections
                 0x00000000       0x38 Example THUMB Debug/stm32f2xx_tim.o
  .text.TIM_ETRConfig
                 0x00000000       0x48 Example THUMB Debug/stm32f2xx_tim.o
+ .text.TIM_EncoderInterfaceConfig
+                0x00000000       0x8c Example THUMB Debug/stm32f2xx_tim.o
  .text.TIM_SelectHallSensor
                 0x00000000       0x40 Example THUMB Debug/stm32f2xx_tim.o
  .text.TIM_RemapConfig
@@ -5099,8 +5154,6 @@ Discarded input sections
  .text.libc     0x00000000        0x0 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
  .data.libc     0x00000000        0x0 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
  .bss.libc      0x00000000        0x0 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
- .text.libc.__int32_to_float64
-                0x00000000       0x30 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
  .text.libc.__int64_to_float32
                 0x00000000       0x94 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
  .text.libc.__int64_to_float64
@@ -5135,10 +5188,6 @@ Discarded input sections
                 0x00000000       0x34 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
  .text.libc.__float32_cmpun
                 0x00000000       0x20 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
- .text.libc.__float64_add
-                0x00000000      0x294 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
- .text.libc.__float64_mul
-                0x00000000      0x16c /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
  .text.libc.__float64_cmp
                 0x00000000       0x64 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
  .text.libc.__float64_cmpeq
@@ -6968,7 +7017,7 @@ Linker script and memory map
                 0x00000001                . = ASSERT (((__init_start__ == __init_end__) || ((__init_end__ >= __FLASH_segment_start__) && (__init_end__ <= __FLASH_segment_end__))), error: .init is too large to fit in FLASH memory segment)
                 0x080003b4                __text_load_start__ = ALIGN (__init_end__, 0x4)
 
-.text           0x080003b4     0x3c7c
+.text           0x080003b4     0x3384
                 0x080003b4                __text_start__ = .
  *(.text .text.* .glue_7t .glue_7 .gnu.linkonce.t.* .gcc_except_table .ARM.extab* .gnu.linkonce.armextab.*)
  .glue_7        0x00000000        0x0 linker stubs
@@ -7011,420 +7060,378 @@ Linker script and memory map
                 0x08000708                Module::Module()
                 0x08000708                Module::Module()
  .text._ZN6Module3RunEv
-                0x08000774       0x50 Example THUMB Debug/module.o
+                0x08000774       0x94 Example THUMB Debug/module.o
                 0x08000774                Module::Run()
  .text._ZN6Module8Delay_msEi
-                0x080007c4       0x3c Example THUMB Debug/module.o
-                0x080007c4                Module::Delay_ms(int)
+                0x08000808       0x3c Example THUMB Debug/module.o
+                0x08000808                Module::Delay_ms(int)
  .text._ZN6Module10InitializeEv
-                0x08000800      0x2c0 Example THUMB Debug/module.o
-                0x08000800                Module::Initialize()
- .text._ZN6Module13Adc_Comm_InitEv
-                0x08000ac0       0x2c Example THUMB Debug/module.o
-                0x08000ac0                Module::Adc_Comm_Init()
- .text._ZN6Module16Adc_Channel_InitEv
-                0x08000aec       0x84 Example THUMB Debug/module.o
-                0x08000aec                Module::Adc_Channel_Init()
- .text._ZN6Module10DMA_ConfigEv
-                0x08000b70       0x74 Example THUMB Debug/module.o
-                0x08000b70                Module::DMA_Config()
- .text._ZN6Module11GPIO_ConfigEv
-                0x08000be4       0x2c Example THUMB Debug/module.o
-                0x08000be4                Module::GPIO_Config()
- .text._ZN6Module12ConfigureADCEv
-                0x08000c10       0x60 Example THUMB Debug/module.o
-                0x08000c10                Module::ConfigureADC()
- .text._ZN6Module12ConfigurePwmEv
-                0x08000c70      0x180 Example THUMB Debug/module.o
-                0x08000c70                Module::ConfigurePwm()
- .text._ZN6Module12ConfigureLedEv
-                0x08000df0       0x4c Example THUMB Debug/module.o
-                0x08000df0                Module::ConfigureLed()
+                0x08000844      0x210 Example THUMB Debug/module.o
+                0x08000844                Module::Initialize()
  .text._ZN6Module9SetRgbLedEbbb
-                0x08000e3c       0x60 Example THUMB Debug/module.o
-                0x08000e3c                Module::SetRgbLed(bool, bool, bool)
+                0x08000a54       0x60 Example THUMB Debug/module.o
+                0x08000a54                Module::SetRgbLed(bool, bool, bool)
  .text._ZN6Module11SetServoPosEif
-                0x08000e9c       0xe0 Example THUMB Debug/module.o
-                0x08000e9c                Module::SetServoPos(int, float)
+                0x08000ab4       0xe0 Example THUMB Debug/module.o
+                0x08000ab4                Module::SetServoPos(int, float)
  .text._ZN6Module18onInterruptSystickEv
-                0x08000f7c       0x14 Example THUMB Debug/module.o
-                0x08000f7c                Module::onInterruptSystick()
+                0x08000b94       0x14 Example THUMB Debug/module.o
+                0x08000b94                Module::onInterruptSystick()
  .text._Z41__static_initialization_and_destruction_0ii
-                0x08000f90      0x140 Example THUMB Debug/module.o
+                0x08000ba8       0xd8 Example THUMB Debug/module.o
  .text._GLOBAL__sub_I__ZN6Module10m_nPwmFreqE
-                0x080010d0       0x10 Example THUMB Debug/module.o
- .text._ZN7Encoder6ConfigEv
-                0x080010e0      0x23c Example THUMB Debug/ShaftEncoder.o
-                0x080010e0                Encoder::Config()
+                0x08000c80       0x10 Example THUMB Debug/module.o
  .text._ZN8GPIO_PinC2Ev
-                0x0800131c       0x34 Example THUMB Debug/VNH3SP30TRdriver.o
-                0x0800131c                GPIO_Pin::GPIO_Pin()
-                0x0800131c                GPIO_Pin::GPIO_Pin()
+                0x08000c90       0x34 Example THUMB Debug/VNH3SP30TRdriver.o
+                0x08000c90                GPIO_Pin::GPIO_Pin()
+                0x08000c90                GPIO_Pin::GPIO_Pin()
  .text._ZN16VNH3SP30TRDriverC2Ev
-                0x08001350       0x6c Example THUMB Debug/VNH3SP30TRdriver.o
-                0x08001350                VNH3SP30TRDriver::VNH3SP30TRDriver()
-                0x08001350                VNH3SP30TRDriver::VNH3SP30TRDriver()
- .text._ZN16VNH3SP30TRDriver10InitializeEP11TIM_TypeDefjS1_jS1_j8GPIO_PinS2_S2_S2_S2_S2_S2_S2_S2_
-                0x080013bc      0x3a4 Example THUMB Debug/VNH3SP30TRdriver.o
-                0x080013bc                VNH3SP30TRDriver::Initialize(TIM_TypeDef*, unsigned int, TIM_TypeDef*, unsigned int, TIM_TypeDef*, unsigned int, GPIO_Pin, GPIO_Pin, GPIO_Pin, GPIO_Pin, GPIO_Pin, GPIO_Pin, GPIO_Pin, GPIO_Pin, GPIO_Pin)
+                0x08000cc4       0x58 Example THUMB Debug/VNH3SP30TRdriver.o
+                0x08000cc4                VNH3SP30TRDriver::VNH3SP30TRDriver()
+                0x08000cc4                VNH3SP30TRDriver::VNH3SP30TRDriver()
+ .text._ZN16VNH3SP30TRDriver10InitializeEP11TIM_TypeDefj8GPIO_PinS2_S2_S2_S2_S2_S2_
+                0x08000d1c      0x2ac Example THUMB Debug/VNH3SP30TRdriver.o
+                0x08000d1c                VNH3SP30TRDriver::Initialize(TIM_TypeDef*, unsigned int, GPIO_Pin, GPIO_Pin, GPIO_Pin, GPIO_Pin, GPIO_Pin, GPIO_Pin, GPIO_Pin)
  .text._ZN16VNH3SP30TRDriver7SetModeENS_4ModeE
-                0x08001760       0xc8 Example THUMB Debug/VNH3SP30TRdriver.o
-                0x08001760                VNH3SP30TRDriver::SetMode(VNH3SP30TRDriver::Mode)
+                0x08000fc8      0x1f4 Example THUMB Debug/VNH3SP30TRdriver.o
+                0x08000fc8                VNH3SP30TRDriver::SetMode(VNH3SP30TRDriver::Mode)
+ *fill*         0x080011bc        0x4 
  .text._ZN16VNH3SP30TRDriver8SetSpeedEf
-                0x08001828       0xd0 Example THUMB Debug/VNH3SP30TRdriver.o
-                0x08001828                VNH3SP30TRDriver::SetSpeed(float)
+                0x080011c0       0xb0 Example THUMB Debug/VNH3SP30TRdriver.o
+                0x080011c0                VNH3SP30TRDriver::SetSpeed(float)
  .text.NVIC_EnableIRQ
-                0x080018f8       0x30 Example THUMB Debug/ftdicomsdriver.o
+                0x08001270       0x30 Example THUMB Debug/ftdicomsdriver.o
  .text._ZN14FtdiComsDriverC2Ev
-                0x08001928       0x54 Example THUMB Debug/ftdicomsdriver.o
-                0x08001928                FtdiComsDriver::FtdiComsDriver()
-                0x08001928                FtdiComsDriver::FtdiComsDriver()
+                0x080012a0       0x54 Example THUMB Debug/ftdicomsdriver.o
+                0x080012a0                FtdiComsDriver::FtdiComsDriver()
+                0x080012a0                FtdiComsDriver::FtdiComsDriver()
  .text._ZN14FtdiComsDriver10InitializeE8GPIO_PinS0_S0_S0_
-                0x0800197c      0x128 Example THUMB Debug/ftdicomsdriver.o
-                0x0800197c                FtdiComsDriver::Initialize(GPIO_Pin, GPIO_Pin, GPIO_Pin, GPIO_Pin)
+                0x080012f4      0x128 Example THUMB Debug/ftdicomsdriver.o
+                0x080012f4                FtdiComsDriver::Initialize(GPIO_Pin, GPIO_Pin, GPIO_Pin, GPIO_Pin)
  .text._ZN14FtdiComsDriver13configureUartEv
-                0x08001aa4      0x2dc Example THUMB Debug/ftdicomsdriver.o
-                0x08001aa4                FtdiComsDriver::configureUart()
+                0x0800141c      0x2dc Example THUMB Debug/ftdicomsdriver.o
+                0x0800141c                FtdiComsDriver::configureUart()
  .text._ZN14FtdiComsDriver19configureInterruptsEv
-                0x08001d80       0x60 Example THUMB Debug/ftdicomsdriver.o
-                0x08001d80                FtdiComsDriver::configureInterrupts()
+                0x080016f8       0x60 Example THUMB Debug/ftdicomsdriver.o
+                0x080016f8                FtdiComsDriver::configureInterrupts()
  .text._ZN14FtdiComsDriver7onEndRxEv
-                0x08001de0       0xd0 Example THUMB Debug/ftdicomsdriver.o
-                0x08001de0                FtdiComsDriver::onEndRx()
+                0x08001758       0xd0 Example THUMB Debug/ftdicomsdriver.o
+                0x08001758                FtdiComsDriver::onEndRx()
  .text._ZN14FtdiComsDriver22onInterruptDma1Stream1Ev
-                0x08001eb0       0x14 Example THUMB Debug/ftdicomsdriver.o
-                0x08001eb0                FtdiComsDriver::onInterruptDma1Stream1()
+                0x08001828       0x14 Example THUMB Debug/ftdicomsdriver.o
+                0x08001828                FtdiComsDriver::onInterruptDma1Stream1()
  .text._ZN14FtdiComsDriver7onEndTxEv
-                0x08001ec4      0x108 Example THUMB Debug/ftdicomsdriver.o
-                0x08001ec4                FtdiComsDriver::onEndTx()
+                0x0800183c      0x108 Example THUMB Debug/ftdicomsdriver.o
+                0x0800183c                FtdiComsDriver::onEndTx()
  .text._ZN14FtdiComsDriver22onInterruptDma1Stream3Ev
-                0x08001fcc       0x14 Example THUMB Debug/ftdicomsdriver.o
-                0x08001fcc                FtdiComsDriver::onInterruptDma1Stream3()
+                0x08001944       0x14 Example THUMB Debug/ftdicomsdriver.o
+                0x08001944                FtdiComsDriver::onInterruptDma1Stream3()
  .text._ZN17InterruptTemplate20registerForInterruptEPPS_S0_
-                0x08001fe0       0x48 Example THUMB Debug/InterruptTemplate.o
-                0x08001fe0                InterruptTemplate::registerForInterrupt(InterruptTemplate**, InterruptTemplate*)
+                0x08001958       0x48 Example THUMB Debug/InterruptTemplate.o
+                0x08001958                InterruptTemplate::registerForInterrupt(InterruptTemplate**, InterruptTemplate*)
  .text._ZN17InterruptTemplate18onInterruptSystickEv
-                0x08002028       0x14 Example THUMB Debug/InterruptTemplate.o
-                0x08002028                InterruptTemplate::onInterruptSystick()
+                0x080019a0       0x14 Example THUMB Debug/InterruptTemplate.o
+                0x080019a0                InterruptTemplate::onInterruptSystick()
  .text._ZN17InterruptTemplate16onInterruptExti0Ev
-                0x0800203c       0x14 Example THUMB Debug/InterruptTemplate.o
-                0x0800203c                InterruptTemplate::onInterruptExti0()
+                0x080019b4       0x14 Example THUMB Debug/InterruptTemplate.o
+                0x080019b4                InterruptTemplate::onInterruptExti0()
  .text._ZN17InterruptTemplate16onInterruptExti1Ev
-                0x08002050       0x14 Example THUMB Debug/InterruptTemplate.o
-                0x08002050                InterruptTemplate::onInterruptExti1()
+                0x080019c8       0x14 Example THUMB Debug/InterruptTemplate.o
+                0x080019c8                InterruptTemplate::onInterruptExti1()
  .text._ZN17InterruptTemplate16onInterruptExti4Ev
-                0x08002064       0x14 Example THUMB Debug/InterruptTemplate.o
-                0x08002064                InterruptTemplate::onInterruptExti4()
+                0x080019dc       0x14 Example THUMB Debug/InterruptTemplate.o
+                0x080019dc                InterruptTemplate::onInterruptExti4()
  .text._ZN17InterruptTemplate16onInterruptExti5Ev
-                0x08002078       0x14 Example THUMB Debug/InterruptTemplate.o
-                0x08002078                InterruptTemplate::onInterruptExti5()
+                0x080019f0       0x14 Example THUMB Debug/InterruptTemplate.o
+                0x080019f0                InterruptTemplate::onInterruptExti5()
  .text._ZN17InterruptTemplate15onInterruptTim2Ev
-                0x0800208c       0x14 Example THUMB Debug/InterruptTemplate.o
-                0x0800208c                InterruptTemplate::onInterruptTim2()
+                0x08001a04       0x14 Example THUMB Debug/InterruptTemplate.o
+                0x08001a04                InterruptTemplate::onInterruptTim2()
  .text._ZN17InterruptTemplate17onInterruptI2c1EvEv
-                0x080020a0       0x14 Example THUMB Debug/InterruptTemplate.o
-                0x080020a0                InterruptTemplate::onInterruptI2c1Ev()
+                0x08001a18       0x14 Example THUMB Debug/InterruptTemplate.o
+                0x08001a18                InterruptTemplate::onInterruptI2c1Ev()
  .text._ZN17InterruptTemplate17onInterruptI2c2EvEv
-                0x080020b4       0x14 Example THUMB Debug/InterruptTemplate.o
-                0x080020b4                InterruptTemplate::onInterruptI2c2Ev()
+                0x08001a2c       0x14 Example THUMB Debug/InterruptTemplate.o
+                0x08001a2c                InterruptTemplate::onInterruptI2c2Ev()
  .text._ZN17InterruptTemplate17onInterruptI2c3EvEv
-                0x080020c8       0x14 Example THUMB Debug/InterruptTemplate.o
-                0x080020c8                InterruptTemplate::onInterruptI2c3Ev()
+                0x08001a40       0x14 Example THUMB Debug/InterruptTemplate.o
+                0x08001a40                InterruptTemplate::onInterruptI2c3Ev()
  .text._ZN17InterruptTemplate17onInterruptUsart3Ev
-                0x080020dc       0x14 Example THUMB Debug/InterruptTemplate.o
-                0x080020dc                InterruptTemplate::onInterruptUsart3()
+                0x08001a54       0x14 Example THUMB Debug/InterruptTemplate.o
+                0x08001a54                InterruptTemplate::onInterruptUsart3()
  .text._ZN17InterruptTemplate15onInterruptSpi1Ev
-                0x080020f0       0x14 Example THUMB Debug/InterruptTemplate.o
-                0x080020f0                InterruptTemplate::onInterruptSpi1()
+                0x08001a68       0x14 Example THUMB Debug/InterruptTemplate.o
+                0x08001a68                InterruptTemplate::onInterruptSpi1()
  .text._ZN17InterruptTemplate15onInterruptSpi2Ev
-                0x08002104       0x14 Example THUMB Debug/InterruptTemplate.o
-                0x08002104                InterruptTemplate::onInterruptSpi2()
+                0x08001a7c       0x14 Example THUMB Debug/InterruptTemplate.o
+                0x08001a7c                InterruptTemplate::onInterruptSpi2()
  .text._ZN17InterruptTemplate22onInterruptDma1Stream0Ev
-                0x08002118       0x14 Example THUMB Debug/InterruptTemplate.o
-                0x08002118                InterruptTemplate::onInterruptDma1Stream0()
+                0x08001a90       0x14 Example THUMB Debug/InterruptTemplate.o
+                0x08001a90                InterruptTemplate::onInterruptDma1Stream0()
  .text._ZN17InterruptTemplate22onInterruptDma1Stream1Ev
-                0x0800212c       0x14 Example THUMB Debug/InterruptTemplate.o
-                0x0800212c                InterruptTemplate::onInterruptDma1Stream1()
+                0x08001aa4       0x14 Example THUMB Debug/InterruptTemplate.o
+                0x08001aa4                InterruptTemplate::onInterruptDma1Stream1()
  .text._ZN17InterruptTemplate22onInterruptDma1Stream2Ev
-                0x08002140       0x14 Example THUMB Debug/InterruptTemplate.o
-                0x08002140                InterruptTemplate::onInterruptDma1Stream2()
+                0x08001ab8       0x14 Example THUMB Debug/InterruptTemplate.o
+                0x08001ab8                InterruptTemplate::onInterruptDma1Stream2()
  .text._ZN17InterruptTemplate22onInterruptDma1Stream3Ev
-                0x08002154       0x14 Example THUMB Debug/InterruptTemplate.o
-                0x08002154                InterruptTemplate::onInterruptDma1Stream3()
+                0x08001acc       0x14 Example THUMB Debug/InterruptTemplate.o
+                0x08001acc                InterruptTemplate::onInterruptDma1Stream3()
  .text._ZN17InterruptTemplate22onInterruptDma1Stream4Ev
-                0x08002168       0x14 Example THUMB Debug/InterruptTemplate.o
-                0x08002168                InterruptTemplate::onInterruptDma1Stream4()
+                0x08001ae0       0x14 Example THUMB Debug/InterruptTemplate.o
+                0x08001ae0                InterruptTemplate::onInterruptDma1Stream4()
  .text._ZN17InterruptTemplate22onInterruptDma2Stream0Ev
-                0x0800217c       0x14 Example THUMB Debug/InterruptTemplate.o
-                0x0800217c                InterruptTemplate::onInterruptDma2Stream0()
+                0x08001af4       0x14 Example THUMB Debug/InterruptTemplate.o
+                0x08001af4                InterruptTemplate::onInterruptDma2Stream0()
  .text._ZN17InterruptTemplate22onInterruptDma2Stream3Ev
-                0x08002190       0x14 Example THUMB Debug/InterruptTemplate.o
-                0x08002190                InterruptTemplate::onInterruptDma2Stream3()
+                0x08001b08       0x14 Example THUMB Debug/InterruptTemplate.o
+                0x08001b08                InterruptTemplate::onInterruptDma2Stream3()
  .text._ZN17InterruptTemplate22onInterruptDma2Stream4Ev
-                0x080021a4       0x14 Example THUMB Debug/InterruptTemplate.o
-                0x080021a4                InterruptTemplate::onInterruptDma2Stream4()
+                0x08001b1c       0x14 Example THUMB Debug/InterruptTemplate.o
+                0x08001b1c                InterruptTemplate::onInterruptDma2Stream4()
  .text.NMI_Handler
-                0x080021b8        0xc Example THUMB Debug/stm32f2xx_it.o
-                0x080021b8                NMI_Handler
+                0x08001b30        0xc Example THUMB Debug/stm32f2xx_it.o
+                0x08001b30                NMI_Handler
  .text.HardFault_Handler
-                0x080021c4        0x8 Example THUMB Debug/stm32f2xx_it.o
-                0x080021c4                HardFault_Handler
+                0x08001b3c        0x8 Example THUMB Debug/stm32f2xx_it.o
+                0x08001b3c                HardFault_Handler
  .text.MemManage_Handler
-                0x080021cc        0x8 Example THUMB Debug/stm32f2xx_it.o
-                0x080021cc                MemManage_Handler
+                0x08001b44        0x8 Example THUMB Debug/stm32f2xx_it.o
+                0x08001b44                MemManage_Handler
  .text.BusFault_Handler
-                0x080021d4        0x8 Example THUMB Debug/stm32f2xx_it.o
-                0x080021d4                BusFault_Handler
+                0x08001b4c        0x8 Example THUMB Debug/stm32f2xx_it.o
+                0x08001b4c                BusFault_Handler
  .text.UsageFault_Handler
-                0x080021dc        0x8 Example THUMB Debug/stm32f2xx_it.o
-                0x080021dc                UsageFault_Handler
+                0x08001b54        0x8 Example THUMB Debug/stm32f2xx_it.o
+                0x08001b54                UsageFault_Handler
  .text.SVC_Handler
-                0x080021e4        0xc Example THUMB Debug/stm32f2xx_it.o
-                0x080021e4                SVC_Handler
+                0x08001b5c        0xc Example THUMB Debug/stm32f2xx_it.o
+                0x08001b5c                SVC_Handler
  .text.DebugMon_Handler
-                0x080021f0        0xc Example THUMB Debug/stm32f2xx_it.o
-                0x080021f0                DebugMon_Handler
+                0x08001b68        0xc Example THUMB Debug/stm32f2xx_it.o
+                0x08001b68                DebugMon_Handler
  .text.PendSV_Handler
-                0x080021fc        0xc Example THUMB Debug/stm32f2xx_it.o
-                0x080021fc                PendSV_Handler
+                0x08001b74        0xc Example THUMB Debug/stm32f2xx_it.o
+                0x08001b74                PendSV_Handler
  .text.SysTick_Handler
-                0x08002208        0xc Example THUMB Debug/stm32f2xx_it.o
-                0x08002208                SysTick_Handler
+                0x08001b80        0xc Example THUMB Debug/stm32f2xx_it.o
+                0x08001b80                SysTick_Handler
  .text._Z11RCCSetClockPKvj15FunctionalState
-                0x08002214       0xbc Example THUMB Debug/Utils.o
-                0x08002214                RCCSetClock(void const*, unsigned int, FunctionalState)
+                0x08001b8c       0xbc Example THUMB Debug/Utils.o
+                0x08001b8c                RCCSetClock(void const*, unsigned int, FunctionalState)
  .text.NVIC_Init
-                0x080022d0       0xbc Example THUMB Debug/misc.o
-                0x080022d0                NVIC_Init
- .text.ADC_Init
-                0x0800238c       0xa8 Example THUMB Debug/stm32f2xx_adc.o
-                0x0800238c                ADC_Init
- .text.ADC_CommonInit
-                0x08002434       0x50 Example THUMB Debug/stm32f2xx_adc.o
-                0x08002434                ADC_CommonInit
- .text.ADC_Cmd  0x08002484       0x38 Example THUMB Debug/stm32f2xx_adc.o
-                0x08002484                ADC_Cmd
- .text.ADC_RegularChannelConfig
-                0x080024bc      0x188 Example THUMB Debug/stm32f2xx_adc.o
-                0x080024bc                ADC_RegularChannelConfig
+                0x08001c48       0xbc Example THUMB Debug/misc.o
+                0x08001c48                NVIC_Init
  .text.ADC_SoftwareStartConv
-                0x08002644       0x20 Example THUMB Debug/stm32f2xx_adc.o
-                0x08002644                ADC_SoftwareStartConv
- .text.ADC_DMACmd
-                0x08002664       0x38 Example THUMB Debug/stm32f2xx_adc.o
-                0x08002664                ADC_DMACmd
- .text.ADC_DMARequestAfterLastTransferCmd
-                0x0800269c       0x38 Example THUMB Debug/stm32f2xx_adc.o
-                0x0800269c                ADC_DMARequestAfterLastTransferCmd
+                0x08001d04       0x20 Example THUMB Debug/stm32f2xx_adc.o
+                0x08001d04                ADC_SoftwareStartConv
  .text.DMA_DeInit
-                0x080026d4      0x1a4 Example THUMB Debug/stm32f2xx_dma.o
-                0x080026d4                DMA_DeInit
+                0x08001d24      0x1a4 Example THUMB Debug/stm32f2xx_dma.o
+                0x08001d24                DMA_DeInit
  .text.DMA_Init
-                0x08002878       0xac Example THUMB Debug/stm32f2xx_dma.o
-                0x08002878                DMA_Init
+                0x08001ec8       0xac Example THUMB Debug/stm32f2xx_dma.o
+                0x08001ec8                DMA_Init
  .text.DMA_StructInit
-                0x08002924       0x6c Example THUMB Debug/stm32f2xx_dma.o
-                0x08002924                DMA_StructInit
- .text.DMA_Cmd  0x08002990       0x38 Example THUMB Debug/stm32f2xx_dma.o
-                0x08002990                DMA_Cmd
+                0x08001f74       0x6c Example THUMB Debug/stm32f2xx_dma.o
+                0x08001f74                DMA_StructInit
+ .text.DMA_Cmd  0x08001fe0       0x38 Example THUMB Debug/stm32f2xx_dma.o
+                0x08001fe0                DMA_Cmd
  .text.DMA_SetCurrDataCounter
-                0x080029c8       0x1c Example THUMB Debug/stm32f2xx_dma.o
-                0x080029c8                DMA_SetCurrDataCounter
+                0x08002018       0x1c Example THUMB Debug/stm32f2xx_dma.o
+                0x08002018                DMA_SetCurrDataCounter
  .text.DMA_DoubleBufferModeConfig
-                0x080029e4       0x3c Example THUMB Debug/stm32f2xx_dma.o
-                0x080029e4                DMA_DoubleBufferModeConfig
+                0x08002034       0x3c Example THUMB Debug/stm32f2xx_dma.o
+                0x08002034                DMA_DoubleBufferModeConfig
  .text.DMA_DoubleBufferModeCmd
-                0x08002a20       0x38 Example THUMB Debug/stm32f2xx_dma.o
-                0x08002a20                DMA_DoubleBufferModeCmd
+                0x08002070       0x38 Example THUMB Debug/stm32f2xx_dma.o
+                0x08002070                DMA_DoubleBufferModeCmd
  .text.DMA_GetCurrentMemoryTarget
-                0x08002a58       0x30 Example THUMB Debug/stm32f2xx_dma.o
-                0x08002a58                DMA_GetCurrentMemoryTarget
+                0x080020a8       0x30 Example THUMB Debug/stm32f2xx_dma.o
+                0x080020a8                DMA_GetCurrentMemoryTarget
  .text.DMA_GetCmdStatus
-                0x08002a88       0x30 Example THUMB Debug/stm32f2xx_dma.o
-                0x08002a88                DMA_GetCmdStatus
+                0x080020d8       0x30 Example THUMB Debug/stm32f2xx_dma.o
+                0x080020d8                DMA_GetCmdStatus
  .text.DMA_ClearFlag
-                0x08002ab8       0x5c Example THUMB Debug/stm32f2xx_dma.o
-                0x08002ab8                DMA_ClearFlag
+                0x08002108       0x5c Example THUMB Debug/stm32f2xx_dma.o
+                0x08002108                DMA_ClearFlag
  .text.DMA_ITConfig
-                0x08002b14       0x74 Example THUMB Debug/stm32f2xx_dma.o
-                0x08002b14                DMA_ITConfig
+                0x08002164       0x74 Example THUMB Debug/stm32f2xx_dma.o
+                0x08002164                DMA_ITConfig
  .text.GPIO_Init
-                0x08002b88      0x11c Example THUMB Debug/stm32f2xx_gpio.o
-                0x08002b88                GPIO_Init
+                0x080021d8      0x11c Example THUMB Debug/stm32f2xx_gpio.o
+                0x080021d8                GPIO_Init
  .text.GPIO_StructInit
-                0x08002ca4       0x34 Example THUMB Debug/stm32f2xx_gpio.o
-                0x08002ca4                GPIO_StructInit
+                0x080022f4       0x34 Example THUMB Debug/stm32f2xx_gpio.o
+                0x080022f4                GPIO_StructInit
  .text.GPIO_SetBits
-                0x08002cd8       0x1c Example THUMB Debug/stm32f2xx_gpio.o
-                0x08002cd8                GPIO_SetBits
+                0x08002328       0x1c Example THUMB Debug/stm32f2xx_gpio.o
+                0x08002328                GPIO_SetBits
  .text.GPIO_ResetBits
-                0x08002cf4       0x1c Example THUMB Debug/stm32f2xx_gpio.o
-                0x08002cf4                GPIO_ResetBits
+                0x08002344       0x1c Example THUMB Debug/stm32f2xx_gpio.o
+                0x08002344                GPIO_ResetBits
  .text.GPIO_PinAFConfig
-                0x08002d10       0x8c Example THUMB Debug/stm32f2xx_gpio.o
-                0x08002d10                GPIO_PinAFConfig
+                0x08002360       0x8c Example THUMB Debug/stm32f2xx_gpio.o
+                0x08002360                GPIO_PinAFConfig
  .text.IWDG_ReloadCounter
-                0x08002d9c       0x18 Example THUMB Debug/stm32f2xx_iwdg.o
-                0x08002d9c                IWDG_ReloadCounter
+                0x080023ec       0x18 Example THUMB Debug/stm32f2xx_iwdg.o
+                0x080023ec                IWDG_ReloadCounter
  .text.RCC_GetClocksFreq
-                0x08002db4      0x154 Example THUMB Debug/stm32f2xx_rcc.o
-                0x08002db4                RCC_GetClocksFreq
+                0x08002404      0x154 Example THUMB Debug/stm32f2xx_rcc.o
+                0x08002404                RCC_GetClocksFreq
  .text.RCC_AHB1PeriphClockCmd
-                0x08002f08       0x3c Example THUMB Debug/stm32f2xx_rcc.o
-                0x08002f08                RCC_AHB1PeriphClockCmd
+                0x08002558       0x3c Example THUMB Debug/stm32f2xx_rcc.o
+                0x08002558                RCC_AHB1PeriphClockCmd
  .text.RCC_AHB2PeriphClockCmd
-                0x08002f44       0x3c Example THUMB Debug/stm32f2xx_rcc.o
-                0x08002f44                RCC_AHB2PeriphClockCmd
+                0x08002594       0x3c Example THUMB Debug/stm32f2xx_rcc.o
+                0x08002594                RCC_AHB2PeriphClockCmd
  .text.RCC_AHB3PeriphClockCmd
-                0x08002f80       0x3c Example THUMB Debug/stm32f2xx_rcc.o
-                0x08002f80                RCC_AHB3PeriphClockCmd
+                0x080025d0       0x3c Example THUMB Debug/stm32f2xx_rcc.o
+                0x080025d0                RCC_AHB3PeriphClockCmd
  .text.RCC_APB1PeriphClockCmd
-                0x08002fbc       0x3c Example THUMB Debug/stm32f2xx_rcc.o
-                0x08002fbc                RCC_APB1PeriphClockCmd
+                0x0800260c       0x3c Example THUMB Debug/stm32f2xx_rcc.o
+                0x0800260c                RCC_APB1PeriphClockCmd
  .text.RCC_APB2PeriphClockCmd
-                0x08002ff8       0x3c Example THUMB Debug/stm32f2xx_rcc.o
-                0x08002ff8                RCC_APB2PeriphClockCmd
+                0x08002648       0x3c Example THUMB Debug/stm32f2xx_rcc.o
+                0x08002648                RCC_APB2PeriphClockCmd
  .text.RCC_APB1PeriphResetCmd
-                0x08003034       0x3c Example THUMB Debug/stm32f2xx_rcc.o
-                0x08003034                RCC_APB1PeriphResetCmd
+                0x08002684       0x3c Example THUMB Debug/stm32f2xx_rcc.o
+                0x08002684                RCC_APB1PeriphResetCmd
  .text.TIM_TimeBaseInit
-                0x08003070       0xd4 Example THUMB Debug/stm32f2xx_tim.o
-                0x08003070                TIM_TimeBaseInit
+                0x080026c0       0xd4 Example THUMB Debug/stm32f2xx_tim.o
+                0x080026c0                TIM_TimeBaseInit
  .text.TIM_TimeBaseStructInit
-                0x08003144       0x34 Example THUMB Debug/stm32f2xx_tim.o
-                0x08003144                TIM_TimeBaseStructInit
- .text.TIM_SetAutoreload
-                0x08003178       0x1c Example THUMB Debug/stm32f2xx_tim.o
-                0x08003178                TIM_SetAutoreload
- .text.TIM_ARRPreloadConfig
-                0x08003194       0x40 Example THUMB Debug/stm32f2xx_tim.o
-                0x08003194                TIM_ARRPreloadConfig
- .text.TIM_Cmd  0x080031d4       0x40 Example THUMB Debug/stm32f2xx_tim.o
-                0x080031d4                TIM_Cmd
+                0x08002794       0x34 Example THUMB Debug/stm32f2xx_tim.o
+                0x08002794                TIM_TimeBaseStructInit
+ .text.TIM_Cmd  0x080027c8       0x40 Example THUMB Debug/stm32f2xx_tim.o
+                0x080027c8                TIM_Cmd
  .text.TIM_OC1Init
-                0x08003214       0xf4 Example THUMB Debug/stm32f2xx_tim.o
-                0x08003214                TIM_OC1Init
- .text.TIM_OC2Init
-                0x08003308      0x110 Example THUMB Debug/stm32f2xx_tim.o
-                0x08003308                TIM_OC2Init
- .text.TIM_OC3Init
-                0x08003418      0x10c Example THUMB Debug/stm32f2xx_tim.o
-                0x08003418                TIM_OC3Init
+                0x08002808       0xf4 Example THUMB Debug/stm32f2xx_tim.o
+                0x08002808                TIM_OC1Init
  .text.TIM_OCStructInit
-                0x08003524       0x44 Example THUMB Debug/stm32f2xx_tim.o
-                0x08003524                TIM_OCStructInit
+                0x080028fc       0x44 Example THUMB Debug/stm32f2xx_tim.o
+                0x080028fc                TIM_OCStructInit
  .text.TIM_SetCompare1
-                0x08003568       0x1c Example THUMB Debug/stm32f2xx_tim.o
-                0x08003568                TIM_SetCompare1
+                0x08002940       0x1c Example THUMB Debug/stm32f2xx_tim.o
+                0x08002940                TIM_SetCompare1
  .text.TIM_SetCompare2
-                0x08003584       0x1c Example THUMB Debug/stm32f2xx_tim.o
-                0x08003584                TIM_SetCompare2
+                0x0800295c       0x1c Example THUMB Debug/stm32f2xx_tim.o
+                0x0800295c                TIM_SetCompare2
  .text.TIM_SetCompare3
-                0x080035a0       0x1c Example THUMB Debug/stm32f2xx_tim.o
-                0x080035a0                TIM_SetCompare3
+                0x08002978       0x1c Example THUMB Debug/stm32f2xx_tim.o
+                0x08002978                TIM_SetCompare3
  .text.TIM_SetCompare4
-                0x080035bc       0x1c Example THUMB Debug/stm32f2xx_tim.o
-                0x080035bc                TIM_SetCompare4
+                0x08002994       0x1c Example THUMB Debug/stm32f2xx_tim.o
+                0x08002994                TIM_SetCompare4
  .text.TIM_OC1PreloadConfig
-                0x080035d8       0x38 Example THUMB Debug/stm32f2xx_tim.o
-                0x080035d8                TIM_OC1PreloadConfig
- .text.TIM_OC2PreloadConfig
-                0x08003610       0x3c Example THUMB Debug/stm32f2xx_tim.o
-                0x08003610                TIM_OC2PreloadConfig
- .text.TIM_OC3PreloadConfig
-                0x0800364c       0x38 Example THUMB Debug/stm32f2xx_tim.o
-                0x0800364c                TIM_OC3PreloadConfig
- .text.TIM_EncoderInterfaceConfig
-                0x08003684       0x8c Example THUMB Debug/stm32f2xx_tim.o
-                0x08003684                TIM_EncoderInterfaceConfig
+                0x080029b0       0x38 Example THUMB Debug/stm32f2xx_tim.o
+                0x080029b0                TIM_OC1PreloadConfig
  .text.USART_Init
-                0x08003710      0x174 Example THUMB Debug/stm32f2xx_usart.o
-                0x08003710                USART_Init
+                0x080029e8      0x174 Example THUMB Debug/stm32f2xx_usart.o
+                0x080029e8                USART_Init
  .text.USART_StructInit
-                0x08003884       0x38 Example THUMB Debug/stm32f2xx_usart.o
-                0x08003884                USART_StructInit
+                0x08002b5c       0x38 Example THUMB Debug/stm32f2xx_usart.o
+                0x08002b5c                USART_StructInit
  .text.USART_Cmd
-                0x080038bc       0x40 Example THUMB Debug/stm32f2xx_usart.o
-                0x080038bc                USART_Cmd
+                0x08002b94       0x40 Example THUMB Debug/stm32f2xx_usart.o
+                0x08002b94                USART_Cmd
  .text.USART_OverSampling8Cmd
-                0x080038fc       0x44 Example THUMB Debug/stm32f2xx_usart.o
-                0x080038fc                USART_OverSampling8Cmd
+                0x08002bd4       0x44 Example THUMB Debug/stm32f2xx_usart.o
+                0x08002bd4                USART_OverSampling8Cmd
  .text.USART_DMACmd
-                0x08003940       0x48 Example THUMB Debug/stm32f2xx_usart.o
-                0x08003940                USART_DMACmd
+                0x08002c18       0x48 Example THUMB Debug/stm32f2xx_usart.o
+                0x08002c18                USART_DMACmd
  .text.USART_ITConfig
-                0x08003988       0x90 Example THUMB Debug/stm32f2xx_usart.o
-                0x08003988                USART_ITConfig
+                0x08002c60       0x90 Example THUMB Debug/stm32f2xx_usart.o
+                0x08002c60                USART_ITConfig
  .text.USART_ClearFlag
-                0x08003a18       0x20 Example THUMB Debug/stm32f2xx_usart.o
-                0x08003a18                USART_ClearFlag
+                0x08002cf0       0x20 Example THUMB Debug/stm32f2xx_usart.o
+                0x08002cf0                USART_ClearFlag
  .text.libc.__int32_to_float32
-                0x08003a38       0x30 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
-                0x08003a38                __aeabi_i2f
-                0x08003a38                __int32_to_float32
-                0x08003a38                __floatsisf
-                0x08003a48                __int32_to_float32_common
+                0x08002d10       0x30 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
+                0x08002d10                __aeabi_i2f
+                0x08002d10                __int32_to_float32
+                0x08002d10                __floatsisf
+                0x08002d20                __int32_to_float32_common
+ .text.libc.__int32_to_float64
+                0x08002d40       0x30 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
+                0x08002d40                __floatsidf
+                0x08002d40                __aeabi_i2d
+                0x08002d40                __int32_to_float64
  .text.libc.__uint32_to_float32
-                0x08003a68       0x10 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
-                0x08003a68                __uint32_to_float32
-                0x08003a68                __aeabi_ui2f
-                0x08003a68                __floatunsisf
+                0x08002d70       0x10 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
+                0x08002d70                __uint32_to_float32
+                0x08002d70                __aeabi_ui2f
+                0x08002d70                __floatunsisf
  .text.libc.__uint32_to_float64
-                0x08003a78       0x24 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
-                0x08003a78                __uint32_to_float64
-                0x08003a78                __aeabi_ui2d
-                0x08003a78                __floatunsidf
+                0x08002d80       0x24 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
+                0x08002d80                __uint32_to_float64
+                0x08002d80                __aeabi_ui2d
+                0x08002d80                __floatunsidf
  .text.libc.__float32_to_int32
-                0x08003a9c       0x40 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
-                0x08003a9c                __fixsfsi
-                0x08003a9c                __float32_to_int32
-                0x08003a9c                __aeabi_f2iz
+                0x08002da4       0x40 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
+                0x08002da4                __fixsfsi
+                0x08002da4                __float32_to_int32
+                0x08002da4                __aeabi_f2iz
  .text.libc.__float64_to_uint32
-                0x08003adc       0x2c /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
-                0x08003adc                __fixunsdfsi
-                0x08003adc                __aeabi_d2uiz
-                0x08003adc                __float64_to_uint32
+                0x08002de4       0x2c /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
+                0x08002de4                __fixunsdfsi
+                0x08002de4                __aeabi_d2uiz
+                0x08002de4                __float64_to_uint32
  .text.libc.__float32_to_float64
-                0x08003b08       0x38 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
-                0x08003b08                __extendsfdf2
-                0x08003b08                __float32_to_float64
-                0x08003b08                __aeabi_f2d
+                0x08002e10       0x38 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
+                0x08002e10                __extendsfdf2
+                0x08002e10                __float32_to_float64
+                0x08002e10                __aeabi_f2d
  .text.libc.__float32_add
-                0x08003b40      0x138 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
-                0x08003b40                __aeabi_frsub
-                0x08003b48                __subsf3
-                0x08003b48                __float32_sub
-                0x08003b48                __aeabi_fsub
-                0x08003b4c                __aeabi_fadd
-                0x08003b4c                __addsf3
-                0x08003b4c                __float32_add
+                0x08002e48      0x138 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
+                0x08002e48                __aeabi_frsub
+                0x08002e50                __subsf3
+                0x08002e50                __float32_sub
+                0x08002e50                __aeabi_fsub
+                0x08002e54                __aeabi_fadd
+                0x08002e54                __addsf3
+                0x08002e54                __float32_add
  .text.libc.__float32_mul
-                0x08003c78       0xd4 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
-                0x08003c78                __float32_mul
-                0x08003c78                __mulsf3
-                0x08003c78                __aeabi_fmul
+                0x08002f80       0xd4 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
+                0x08002f80                __float32_mul
+                0x08002f80                __mulsf3
+                0x08002f80                __aeabi_fmul
  .text.libc.__aeabi_fcmplt
-                0x08003d4c       0x30 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
-                0x08003d4c                __aeabi_fcmplt
+                0x08003054       0x30 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
+                0x08003054                __aeabi_fcmplt
  .text.libc.__aeabi_fcmpgt
-                0x08003d7c       0x30 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
-                0x08003d7c                __aeabi_fcmpgt
+                0x08003084       0x30 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
+                0x08003084                __aeabi_fcmpgt
+ .text.libc.__float64_add
+                0x080030b4      0x294 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
+                0x080030b4                __aeabi_drsub
+                0x080030bc                __float64_sub
+                0x080030bc                __aeabi_dsub
+                0x080030bc                __subdf3
+                0x080030c0                __aeabi_dadd
+                0x080030c0                __float64_add
+                0x080030c0                __adddf3
+ .text.libc.__float64_mul
+                0x08003348      0x16c /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
+                0x08003348                __aeabi_dmul
+                0x08003348                __float64_mul
+                0x08003348                __muldf3
  .text.libc.__float64_div
-                0x08003dac      0x214 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
-                0x08003dac                __aeabi_ddiv
-                0x08003dac                __divdf3
-                0x08003dac                __float64_div
+                0x080034b4      0x214 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
+                0x080034b4                __aeabi_ddiv
+                0x080034b4                __divdf3
+                0x080034b4                __float64_div
  .text.libc.__float64_cmplt
-                0x08003fc0       0x38 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
-                0x08003fc0                __aeabi_dcmplt
+                0x080036c8       0x38 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
+                0x080036c8                __aeabi_dcmplt
  .text.libc.memmove
-                0x08003ff8       0x38 /Applications/CrossWorks for ARM 3.3/lib/libc_v7m_t_le_eabi.a(libc2.o)
-                0x08003ff8                memmove
-                0x08003ff8                __aeabi_memmove8
-                0x08003ff8                __aeabi_memmove
-                0x08003ff8                __aeabi_memmove4
-                0x08004030                __text_end__ = (__text_start__ + SIZEOF (.text))
-                0x08004030                __text_load_end__ = __text_end__
+                0x08003700       0x38 /Applications/CrossWorks for ARM 3.3/lib/libc_v7m_t_le_eabi.a(libc2.o)
+                0x08003700                memmove
+                0x08003700                __aeabi_memmove8
+                0x08003700                __aeabi_memmove
+                0x08003700                __aeabi_memmove4
+                0x08003738                __text_end__ = (__text_start__ + SIZEOF (.text))
+                0x08003738                __text_load_end__ = __text_end__
 
 .vfp11_veneer   0x00000000        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
@@ -7435,70 +7442,70 @@ Linker script and memory map
 .iplt           0x00000000        0x0
  .iplt          0x00000000        0x0 Example THUMB Debug/system_stm32f2xx.o
                 0x00000001                . = ASSERT (((__text_start__ == __text_end__) || ((__text_end__ >= __FLASH_segment_start__) && (__text_end__ <= __FLASH_segment_end__))), error: .text is too large to fit in FLASH memory segment)
-                0x08004030                __dtors_load_start__ = ALIGN (__text_end__, 0x4)
+                0x08003738                __dtors_load_start__ = ALIGN (__text_end__, 0x4)
 
-.dtors          0x08004030        0x0
-                0x08004030                __dtors_start__ = .
+.dtors          0x08003738        0x0
+                0x08003738                __dtors_start__ = .
  *(SORT(.dtors.*))
  *(.dtors)
  *(.fini_array)
  *(SORT(.fini_array.*))
-                0x08004030                __dtors_end__ = (__dtors_start__ + SIZEOF (.dtors))
-                0x08004030                __dtors_load_end__ = __dtors_end__
+                0x08003738                __dtors_end__ = (__dtors_start__ + SIZEOF (.dtors))
+                0x08003738                __dtors_load_end__ = __dtors_end__
                 0x00000001                . = ASSERT (((__dtors_start__ == __dtors_end__) || ((__dtors_end__ >= __FLASH_segment_start__) && (__dtors_end__ <= __FLASH_segment_end__))), error: .dtors is too large to fit in FLASH memory segment)
-                0x08004030                __ctors_load_start__ = ALIGN (__dtors_end__, 0x4)
+                0x08003738                __ctors_load_start__ = ALIGN (__dtors_end__, 0x4)
 
-.ctors          0x08004030        0x4
-                0x08004030                __ctors_start__ = .
+.ctors          0x08003738        0x4
+                0x08003738                __ctors_start__ = .
  *(SORT(.ctors.*))
  *(.ctors)
  *(.init_array)
- .init_array    0x08004030        0x4 Example THUMB Debug/module.o
+ .init_array    0x08003738        0x4 Example THUMB Debug/module.o
  *(SORT(.init_array.*))
-                0x08004034                __ctors_end__ = (__ctors_start__ + SIZEOF (.ctors))
-                0x08004034                __ctors_load_end__ = __ctors_end__
+                0x0800373c                __ctors_end__ = (__ctors_start__ + SIZEOF (.ctors))
+                0x0800373c                __ctors_load_end__ = __ctors_end__
                 0x00000001                . = ASSERT (((__ctors_start__ == __ctors_end__) || ((__ctors_end__ >= __FLASH_segment_start__) && (__ctors_end__ <= __FLASH_segment_end__))), error: .ctors is too large to fit in FLASH memory segment)
-                0x08004034                __rodata_load_start__ = ALIGN (__ctors_end__, 0x4)
+                0x0800373c                __rodata_load_start__ = ALIGN (__ctors_end__, 0x4)
 
-.rodata         0x08004034      0x164
-                0x08004034                __rodata_start__ = .
+.rodata         0x0800373c      0x164
+                0x0800373c                __rodata_start__ = .
  *(.rodata .rodata.* .gnu.linkonce.r.*)
- *fill*         0x08004034        0x4 
+ *fill*         0x0800373c        0x4 
  .rodata._ZTV6Module
-                0x08004038       0x58 Example THUMB Debug/module.o
-                0x08004038                vtable for Module
+                0x08003740       0x58 Example THUMB Debug/module.o
+                0x08003740                vtable for Module
  .rodata._ZTV7Encoder
-                0x08004090       0x58 Example THUMB Debug/module.o
-                0x08004090                vtable for Encoder
+                0x08003798       0x58 Example THUMB Debug/module.o
+                0x08003798                vtable for Encoder
  .rodata._ZTV14FtdiComsDriver
-                0x080040e8       0x58 Example THUMB Debug/ftdicomsdriver.o
-                0x080040e8                vtable for FtdiComsDriver
+                0x080037f0       0x58 Example THUMB Debug/ftdicomsdriver.o
+                0x080037f0                vtable for FtdiComsDriver
  .rodata._ZTV17InterruptTemplate
-                0x08004140       0x58 Example THUMB Debug/InterruptTemplate.o
-                0x08004140                vtable for InterruptTemplate
-                0x08004198                __rodata_end__ = (__rodata_start__ + SIZEOF (.rodata))
-                0x08004198                __rodata_load_end__ = __rodata_end__
+                0x08003848       0x58 Example THUMB Debug/InterruptTemplate.o
+                0x08003848                vtable for InterruptTemplate
+                0x080038a0                __rodata_end__ = (__rodata_start__ + SIZEOF (.rodata))
+                0x080038a0                __rodata_load_end__ = __rodata_end__
 
 .rel.dyn        0x08000000        0x0
  .rel.iplt      0x00000000        0x0 Example THUMB Debug/system_stm32f2xx.o
                 0x00000001                . = ASSERT (((__rodata_start__ == __rodata_end__) || ((__rodata_end__ >= __FLASH_segment_start__) && (__rodata_end__ <= __FLASH_segment_end__))), error: .rodata is too large to fit in FLASH memory segment)
-                0x08004198                __ARM.exidx_load_start__ = ALIGN (__rodata_end__, 0x4)
+                0x080038a0                __ARM.exidx_load_start__ = ALIGN (__rodata_end__, 0x4)
 
-.ARM.exidx      0x08004198        0x0
-                0x08004198                __ARM.exidx_start__ = .
-                0x08004198                __exidx_start = __ARM.exidx_start__
+.ARM.exidx      0x080038a0        0x0
+                0x080038a0                __ARM.exidx_start__ = .
+                0x080038a0                __exidx_start = __ARM.exidx_start__
  *(.ARM.exidx .ARM.exidx.*)
-                0x08004198                __ARM.exidx_end__ = (__ARM.exidx_start__ + SIZEOF (.ARM.exidx))
-                0x08004198                __exidx_end = __ARM.exidx_end__
-                0x08004198                __ARM.exidx_load_end__ = __ARM.exidx_end__
+                0x080038a0                __ARM.exidx_end__ = (__ARM.exidx_start__ + SIZEOF (.ARM.exidx))
+                0x080038a0                __exidx_end = __ARM.exidx_end__
+                0x080038a0                __ARM.exidx_load_end__ = __ARM.exidx_end__
                 0x00000001                . = ASSERT (((__ARM.exidx_start__ == __ARM.exidx_end__) || ((__ARM.exidx_end__ >= __FLASH_segment_start__) && (__ARM.exidx_end__ <= __FLASH_segment_end__))), error: .ARM.exidx is too large to fit in FLASH memory segment)
-                0x08004198                __fast_load_start__ = ALIGN (__ARM.exidx_end__, 0x4)
+                0x080038a0                __fast_load_start__ = ALIGN (__ARM.exidx_end__, 0x4)
 
-.fast           0x20000000        0x0 load address 0x08004198
+.fast           0x20000000        0x0 load address 0x080038a0
                 0x20000000                __fast_start__ = .
  *(.fast .fast.*)
                 0x20000000                __fast_end__ = (__fast_start__ + SIZEOF (.fast))
-                0x08004198                __fast_load_end__ = (__fast_load_start__ + SIZEOF (.fast))
+                0x080038a0                __fast_load_end__ = (__fast_load_start__ + SIZEOF (.fast))
                 0x00000001                . = ASSERT (((__fast_load_start__ == __fast_load_end__) || ((__fast_load_end__ >= __FLASH_segment_start__) && (__fast_load_end__ <= __FLASH_segment_end__))), error: .fast is too large to fit in FLASH memory segment)
 
 .fast_run       0x20000000        0x0
@@ -7507,128 +7514,125 @@ Linker script and memory map
                 0x20000000                __fast_run_end__ = (__fast_run_start__ + SIZEOF (.fast_run))
                 0x20000000                __fast_run_load_end__ = __fast_run_end__
                 0x00000001                . = ASSERT (((__fast_run_start__ == __fast_run_end__) || ((__fast_run_end__ >= __RAM_segment_start__) && (__fast_run_end__ <= __RAM_segment_end__))), error: .fast_run is too large to fit in RAM memory segment)
-                0x08004198                __data_load_start__ = ALIGN ((__fast_load_start__ + SIZEOF (.fast)), 0x4)
+                0x080038a0                __data_load_start__ = ALIGN ((__fast_load_start__ + SIZEOF (.fast)), 0x4)
 
-.data           0x20000000       0x18 load address 0x08004198
+.data           0x20000000       0x1c load address 0x080038a0
                 0x20000000                __data_start__ = .
  *(.data .data.* .gnu.linkonce.d.*)
  .data._ZN6Module10m_nPwmFreqE
                 0x20000000        0x4 Example THUMB Debug/module.o
                 0x20000000                Module::m_nPwmFreq
+ .data._ZN6Module9m_nPwmMinE
+                0x20000004        0x2 Example THUMB Debug/module.o
+                0x20000004                Module::m_nPwmMin
+ .data._ZN6Module9m_nPwmMaxE
+                0x20000006        0x2 Example THUMB Debug/module.o
+                0x20000006                Module::m_nPwmMax
  .data._ZN16VNH3SP30TRDriver12m_nPwmPeriodE
-                0x20000004        0x2 Example THUMB Debug/VNH3SP30TRdriver.o
-                0x20000004                VNH3SP30TRDriver::m_nPwmPeriod
- *fill*         0x20000006        0x2 
+                0x20000008        0x2 Example THUMB Debug/VNH3SP30TRdriver.o
+                0x20000008                VNH3SP30TRDriver::m_nPwmPeriod
+ *fill*         0x2000000a        0x2 
  .data.APBAHBPrescTable
-                0x20000008       0x10 Example THUMB Debug/stm32f2xx_rcc.o
-                0x20000018                __data_end__ = (__data_start__ + SIZEOF (.data))
-                0x080041b0                __data_load_end__ = (__data_load_start__ + SIZEOF (.data))
+                0x2000000c       0x10 Example THUMB Debug/stm32f2xx_rcc.o
+                0x2000001c                __data_end__ = (__data_start__ + SIZEOF (.data))
+                0x080038bc                __data_load_end__ = (__data_load_start__ + SIZEOF (.data))
 
 .igot.plt       0x00000000        0x0
  .igot.plt      0x00000000        0x0 Example THUMB Debug/system_stm32f2xx.o
                 0x00000001                . = ASSERT (((__data_load_start__ == __data_load_end__) || ((__data_load_end__ >= __FLASH_segment_start__) && (__data_load_end__ <= __FLASH_segment_end__))), error: .data is too large to fit in FLASH memory segment)
 
-.data_run       0x20000000       0x18 load address 0x08004198
+.data_run       0x20000000       0x1c load address 0x080038a0
                 0x20000000                __data_run_start__ = .
-                0x20000018                . = MAX ((__data_run_start__ + SIZEOF (.data)), .)
- *fill*         0x20000000       0x18 
-                0x20000018                __data_run_end__ = (__data_run_start__ + SIZEOF (.data_run))
-                0x20000018                __data_run_load_end__ = __data_run_end__
+                0x2000001c                . = MAX ((__data_run_start__ + SIZEOF (.data)), .)
+ *fill*         0x20000000       0x1c 
+                0x2000001c                __data_run_end__ = (__data_run_start__ + SIZEOF (.data_run))
+                0x2000001c                __data_run_load_end__ = __data_run_end__
                 0x00000001                . = ASSERT (((__data_run_start__ == __data_run_end__) || ((__data_run_end__ >= __RAM_segment_start__) && (__data_run_end__ <= __RAM_segment_end__))), error: .data_run is too large to fit in RAM memory segment)
-                0x080041b0                __tdata_load_start__ = ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4)
+                0x080038bc                __tdata_load_start__ = ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4)
 
-.tdata          0x20000018        0x0 load address 0x080041b0
-                0x20000018                __tdata_start__ = .
+.tdata          0x2000001c        0x0 load address 0x080038bc
+                0x2000001c                __tdata_start__ = .
  *(.tdata .tdata.*)
-                0x20000018                __tdata_end__ = (__tdata_start__ + SIZEOF (.tdata))
-                0x080041b0                __tdata_load_end__ = (__tdata_load_start__ + SIZEOF (.tdata))
-                0x080041b0                __FLASH_segment_used_end__ = (ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4) + SIZEOF (.tdata))
+                0x2000001c                __tdata_end__ = (__tdata_start__ + SIZEOF (.tdata))
+                0x080038bc                __tdata_load_end__ = (__tdata_load_start__ + SIZEOF (.tdata))
+                0x080038bc                __FLASH_segment_used_end__ = (ALIGN ((__data_load_start__ + SIZEOF (.data)), 0x4) + SIZEOF (.tdata))
                 0x00000001                . = ASSERT (((__tdata_load_start__ == __tdata_load_end__) || ((__tdata_load_end__ >= __FLASH_segment_start__) && (__tdata_load_end__ <= __FLASH_segment_end__))), error: .tdata is too large to fit in FLASH memory segment)
 
-.tdata_run      0x20000018        0x0
-                0x20000018                __tdata_run_start__ = .
-                0x20000018                . = MAX ((__tdata_run_start__ + SIZEOF (.tdata)), .)
-                0x20000018                __tdata_run_end__ = (__tdata_run_start__ + SIZEOF (.tdata_run))
-                0x20000018                __tdata_run_load_end__ = __tdata_run_end__
+.tdata_run      0x2000001c        0x0
+                0x2000001c                __tdata_run_start__ = .
+                0x2000001c                . = MAX ((__tdata_run_start__ + SIZEOF (.tdata)), .)
+                0x2000001c                __tdata_run_end__ = (__tdata_run_start__ + SIZEOF (.tdata_run))
+                0x2000001c                __tdata_run_load_end__ = __tdata_run_end__
                 0x00000001                . = ASSERT (((__tdata_run_start__ == __tdata_run_end__) || ((__tdata_run_end__ >= __RAM_segment_start__) && (__tdata_run_end__ <= __RAM_segment_end__))), error: .tdata_run is too large to fit in RAM memory segment)
-                0x20000018                __bss_load_start__ = ALIGN (__tdata_run_end__, 0x4)
+                0x2000001c                __bss_load_start__ = ALIGN (__tdata_run_end__, 0x4)
 
-.bss            0x20000018       0x28
-                0x20000018                __bss_start__ = .
+.bss            0x2000001c       0x18
+                0x2000001c                __bss_start__ = .
  *(.bss .bss.* .gnu.linkonce.b.*)
  .bss._ZL11TimingDelay
-                0x20000018        0x4 Example THUMB Debug/main.o
+                0x2000001c        0x4 Example THUMB Debug/main.o
  .bss._ZN6Module12m_nPwmPeriodE
-                0x2000001c        0x2 Example THUMB Debug/module.o
-                0x2000001c                Module::m_nPwmPeriod
- .bss._ZN6Module9m_nPwmMinE
-                0x2000001e        0x2 Example THUMB Debug/module.o
-                0x2000001e                Module::m_nPwmMin
- .bss._ZN6Module9m_nPwmMaxE
                 0x20000020        0x2 Example THUMB Debug/module.o
-                0x20000020                Module::m_nPwmMax
+                0x20000020                Module::m_nPwmPeriod
  .bss._ZN6Module9m_nPwmMidE
                 0x20000022        0x2 Example THUMB Debug/module.o
                 0x20000022                Module::m_nPwmMid
- .bss.ADC1ConvertedValue
-                0x20000024        0xc Example THUMB Debug/module.o
-                0x20000024                ADC1ConvertedValue
  .bss._ZN17InterruptTemplate21g_handlersDma1Stream1E
-                0x20000030        0x8 Example THUMB Debug/InterruptTemplate.o
-                0x20000030                InterruptTemplate::g_handlersDma1Stream1
+                0x20000024        0x8 Example THUMB Debug/InterruptTemplate.o
+                0x20000024                InterruptTemplate::g_handlersDma1Stream1
  .bss._ZN17InterruptTemplate21g_handlersDma1Stream3E
-                0x20000038        0x8 Example THUMB Debug/InterruptTemplate.o
-                0x20000038                InterruptTemplate::g_handlersDma1Stream3
+                0x2000002c        0x8 Example THUMB Debug/InterruptTemplate.o
+                0x2000002c                InterruptTemplate::g_handlersDma1Stream3
  *(COMMON)
-                0x20000040                __bss_end__ = (__bss_start__ + SIZEOF (.bss))
-                0x20000040                __bss_load_end__ = __bss_end__
+                0x20000034                __bss_end__ = (__bss_start__ + SIZEOF (.bss))
+                0x20000034                __bss_load_end__ = __bss_end__
                 0x00000001                . = ASSERT (((__bss_start__ == __bss_end__) || ((__bss_end__ >= __RAM_segment_start__) && (__bss_end__ <= __RAM_segment_end__))), error: .bss is too large to fit in RAM memory segment)
-                0x20000040                __tbss_load_start__ = ALIGN (__bss_end__, 0x4)
+                0x20000034                __tbss_load_start__ = ALIGN (__bss_end__, 0x4)
 
-.tbss           0x20000040        0x0
-                0x20000040                __tbss_start__ = .
+.tbss           0x20000034        0x0
+                0x20000034                __tbss_start__ = .
  *(.tbss .tbss.*)
-                0x20000040                __tbss_end__ = (__tbss_start__ + SIZEOF (.tbss))
-                0x20000040                __tbss_load_end__ = __tbss_end__
+                0x20000034                __tbss_end__ = (__tbss_start__ + SIZEOF (.tbss))
+                0x20000034                __tbss_load_end__ = __tbss_end__
                 0x00000001                . = ASSERT (((__tbss_start__ == __tbss_end__) || ((__tbss_end__ >= __RAM_segment_start__) && (__tbss_end__ <= __RAM_segment_end__))), error: .tbss is too large to fit in RAM memory segment)
-                0x20000040                __non_init_load_start__ = ALIGN (__tbss_end__, 0x4)
+                0x20000034                __non_init_load_start__ = ALIGN (__tbss_end__, 0x4)
 
-.non_init       0x20000040        0x0
-                0x20000040                __non_init_start__ = .
+.non_init       0x20000034        0x0
+                0x20000034                __non_init_start__ = .
  *(.non_init .non_init.*)
-                0x20000040                __non_init_end__ = (__non_init_start__ + SIZEOF (.non_init))
-                0x20000040                __non_init_load_end__ = __non_init_end__
+                0x20000034                __non_init_end__ = (__non_init_start__ + SIZEOF (.non_init))
+                0x20000034                __non_init_load_end__ = __non_init_end__
                 0x00000001                . = ASSERT (((__non_init_start__ == __non_init_end__) || ((__non_init_end__ >= __RAM_segment_start__) && (__non_init_end__ <= __RAM_segment_end__))), error: .non_init is too large to fit in RAM memory segment)
-                0x20000040                __heap_load_start__ = ALIGN (__non_init_end__, 0x4)
+                0x20000034                __heap_load_start__ = ALIGN (__non_init_end__, 0x4)
 
-.heap           0x20000040      0x800
-                0x20000040                __heap_start__ = .
+.heap           0x20000034      0x800
+                0x20000034                __heap_start__ = .
  *(.heap .heap.*)
-                0x20000840                . = ALIGN (MAX ((__heap_start__ + __HEAPSIZE__), .), 0x4)
- *fill*         0x20000040      0x800 
-                0x20000840                __heap_end__ = (__heap_start__ + SIZEOF (.heap))
-                0x20000840                __heap_load_end__ = __heap_end__
+                0x20000834                . = ALIGN (MAX ((__heap_start__ + __HEAPSIZE__), .), 0x4)
+ *fill*         0x20000034      0x800 
+                0x20000834                __heap_end__ = (__heap_start__ + SIZEOF (.heap))
+                0x20000834                __heap_load_end__ = __heap_end__
                 0x00000001                . = ASSERT (((__heap_start__ == __heap_end__) || ((__heap_end__ >= __RAM_segment_start__) && (__heap_end__ <= __RAM_segment_end__))), error: .heap is too large to fit in RAM memory segment)
-                0x20000840                __stack_load_start__ = ALIGN (__heap_end__, 0x8)
+                0x20000838                __stack_load_start__ = ALIGN (__heap_end__, 0x8)
 
-.stack          0x20000840      0x800
-                0x20000840                __stack_start__ = .
+.stack          0x20000838      0x800
+                0x20000838                __stack_start__ = .
  *(.stack .stack.*)
-                0x20001040                . = ALIGN (MAX ((__stack_start__ + __STACKSIZE__), .), 0x8)
- *fill*         0x20000840      0x800 
-                0x20001040                __stack_end__ = (__stack_start__ + SIZEOF (.stack))
-                0x20001040                __stack_load_end__ = __stack_end__
+                0x20001038                . = ALIGN (MAX ((__stack_start__ + __STACKSIZE__), .), 0x8)
+ *fill*         0x20000838      0x800 
+                0x20001038                __stack_end__ = (__stack_start__ + SIZEOF (.stack))
+                0x20001038                __stack_load_end__ = __stack_end__
                 0x00000001                . = ASSERT (((__stack_start__ == __stack_end__) || ((__stack_end__ >= __RAM_segment_start__) && (__stack_end__ <= __RAM_segment_end__))), error: .stack is too large to fit in RAM memory segment)
-                0x20001040                __stack_process_load_start__ = ALIGN (__stack_end__, 0x8)
+                0x20001038                __stack_process_load_start__ = ALIGN (__stack_end__, 0x8)
 
-.stack_process  0x20001040      0x800
-                0x20001040                __stack_process_start__ = .
+.stack_process  0x20001038      0x800
+                0x20001038                __stack_process_start__ = .
  *(.stack_process .stack_process.*)
-                0x20001840                . = ALIGN (MAX ((__stack_process_start__ + __STACKSIZE_PROCESS__), .), 0x8)
- *fill*         0x20001040      0x800 
-                0x20001840                __stack_process_end__ = (__stack_process_start__ + SIZEOF (.stack_process))
-                0x20001840                __stack_process_load_end__ = __stack_process_end__
-                0x20001840                __RAM_segment_used_end__ = (ALIGN (__stack_end__, 0x8) + SIZEOF (.stack_process))
+                0x20001838                . = ALIGN (MAX ((__stack_process_start__ + __STACKSIZE_PROCESS__), .), 0x8)
+ *fill*         0x20001038      0x800 
+                0x20001838                __stack_process_end__ = (__stack_process_start__ + SIZEOF (.stack_process))
+                0x20001838                __stack_process_load_end__ = __stack_process_end__
+                0x20001838                __RAM_segment_used_end__ = (ALIGN (__stack_end__, 0x8) + SIZEOF (.stack_process))
                 0x00000001                . = ASSERT (((__stack_process_start__ == __stack_process_end__) || ((__stack_process_end__ >= __RAM_segment_start__) && (__stack_process_end__ <= __RAM_segment_end__))), error: .stack_process is too large to fit in RAM memory segment)
 START GROUP
 LOAD Example THUMB Debug/system_stm32f2xx.o
@@ -7690,72 +7694,69 @@ LOAD /Applications/CrossWorks for ARM 3.3/lib/libc_user_libc_v7m_t_le_eabi.a
 END GROUP
 OUTPUT(Example THUMB Debug/Example.elf elf32-littlearm)
 
-.debug_frame    0x00000000     0x7380
+.debug_frame    0x00000000     0x72f8
  .debug_frame   0x00000000       0x84 Example THUMB Debug/system_stm32f2xx.o
  .debug_frame   0x00000084       0xd8 Example THUMB Debug/main.o
- .debug_frame   0x0000015c      0x3f0 Example THUMB Debug/module.o
- .debug_frame   0x0000054c       0x90 Example THUMB Debug/ShaftEncoder.o
- .debug_frame   0x000005dc       0xec Example THUMB Debug/VNH3SP30TRdriver.o
- .debug_frame   0x000006c8      0x310 Example THUMB Debug/ftdicomsdriver.o
- .debug_frame   0x000009d8      0x6c4 Example THUMB Debug/InterruptTemplate.o
- .debug_frame   0x0000109c      0x134 Example THUMB Debug/stm32f2xx_it.o
- .debug_frame   0x000011d0       0x3c Example THUMB Debug/Utils.o
- .debug_frame   0x0000120c       0xd8 Example THUMB Debug/misc.o
- .debug_frame   0x000012e4      0x5f4 Example THUMB Debug/stm32f2xx_adc.o
- .debug_frame   0x000018d8      0x308 Example THUMB Debug/stm32f2xx_dma.o
- .debug_frame   0x00001be0      0x244 Example THUMB Debug/stm32f2xx_gpio.o
- .debug_frame   0x00001e24       0xf0 Example THUMB Debug/stm32f2xx_iwdg.o
- .debug_frame   0x00001f14      0x6dc Example THUMB Debug/stm32f2xx_rcc.o
- .debug_frame   0x000025f0      0xe8c Example THUMB Debug/stm32f2xx_tim.o
- .debug_frame   0x0000347c      0x4a0 Example THUMB Debug/stm32f2xx_usart.o
- .debug_frame   0x0000391c      0x640 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
- .debug_frame   0x00003f5c     0x3424 /Applications/CrossWorks for ARM 3.3/lib/libc_v7m_t_le_eabi.a(libc2.o)
+ .debug_frame   0x0000015c      0x3f4 Example THUMB Debug/module.o
+ .debug_frame   0x00000550       0xf0 Example THUMB Debug/VNH3SP30TRdriver.o
+ .debug_frame   0x00000640      0x310 Example THUMB Debug/ftdicomsdriver.o
+ .debug_frame   0x00000950      0x6c4 Example THUMB Debug/InterruptTemplate.o
+ .debug_frame   0x00001014      0x134 Example THUMB Debug/stm32f2xx_it.o
+ .debug_frame   0x00001148       0x3c Example THUMB Debug/Utils.o
+ .debug_frame   0x00001184       0xd8 Example THUMB Debug/misc.o
+ .debug_frame   0x0000125c      0x5f4 Example THUMB Debug/stm32f2xx_adc.o
+ .debug_frame   0x00001850      0x308 Example THUMB Debug/stm32f2xx_dma.o
+ .debug_frame   0x00001b58      0x244 Example THUMB Debug/stm32f2xx_gpio.o
+ .debug_frame   0x00001d9c       0xf0 Example THUMB Debug/stm32f2xx_iwdg.o
+ .debug_frame   0x00001e8c      0x6dc Example THUMB Debug/stm32f2xx_rcc.o
+ .debug_frame   0x00002568      0xe8c Example THUMB Debug/stm32f2xx_tim.o
+ .debug_frame   0x000033f4      0x4a0 Example THUMB Debug/stm32f2xx_usart.o
+ .debug_frame   0x00003894      0x640 /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
+ .debug_frame   0x00003ed4     0x3424 /Applications/CrossWorks for ARM 3.3/lib/libc_v7m_t_le_eabi.a(libc2.o)
 
-.debug_info     0x00000000     0xdb24
+.debug_info     0x00000000     0xd2c7
  .debug_info    0x00000000      0x52d Example THUMB Debug/system_stm32f2xx.o
  .debug_info    0x0000052d      0x77c Example THUMB Debug/main.o
- .debug_info    0x00000ca9     0x19c7 Example THUMB Debug/module.o
- .debug_info    0x00002670      0x776 Example THUMB Debug/ShaftEncoder.o
- .debug_info    0x00002de6      0xaba Example THUMB Debug/VNH3SP30TRdriver.o
- .debug_info    0x000038a0     0x1fce Example THUMB Debug/ftdicomsdriver.o
- .debug_info    0x0000586e      0xdf6 Example THUMB Debug/InterruptTemplate.o
- .debug_info    0x00006664      0x148 Example THUMB Debug/stm32f2xx_it.o
- .debug_info    0x000067ac      0x146 Example THUMB Debug/Utils.o
- .debug_info    0x000068f2      0x512 Example THUMB Debug/misc.o
- .debug_info    0x00006e04      0xc02 Example THUMB Debug/stm32f2xx_adc.o
- .debug_info    0x00007a06      0x70e Example THUMB Debug/stm32f2xx_dma.o
- .debug_info    0x00008114      0x5cf Example THUMB Debug/stm32f2xx_gpio.o
- .debug_info    0x000086e3      0x1d4 Example THUMB Debug/stm32f2xx_iwdg.o
- .debug_info    0x000088b7      0xc17 Example THUMB Debug/stm32f2xx_rcc.o
- .debug_info    0x000094ce     0x1c2b Example THUMB Debug/stm32f2xx_tim.o
- .debug_info    0x0000b0f9      0x98c Example THUMB Debug/stm32f2xx_usart.o
- .debug_info    0x0000ba85       0x7b Example THUMB Debug/thumb_crt0.o
- .debug_info    0x0000bb00       0xad Example THUMB Debug/STM32_Startup.o
- .debug_info    0x0000bbad     0x1f77 /Applications/CrossWorks for ARM 3.3/lib/libc_v7m_t_le_eabi.a(libc2.o)
+ .debug_info    0x00000ca9     0x1979 Example THUMB Debug/module.o
+ .debug_info    0x00002622      0xa21 Example THUMB Debug/VNH3SP30TRdriver.o
+ .debug_info    0x00003043     0x1fce Example THUMB Debug/ftdicomsdriver.o
+ .debug_info    0x00005011      0xdf6 Example THUMB Debug/InterruptTemplate.o
+ .debug_info    0x00005e07      0x148 Example THUMB Debug/stm32f2xx_it.o
+ .debug_info    0x00005f4f      0x146 Example THUMB Debug/Utils.o
+ .debug_info    0x00006095      0x512 Example THUMB Debug/misc.o
+ .debug_info    0x000065a7      0xc02 Example THUMB Debug/stm32f2xx_adc.o
+ .debug_info    0x000071a9      0x70e Example THUMB Debug/stm32f2xx_dma.o
+ .debug_info    0x000078b7      0x5cf Example THUMB Debug/stm32f2xx_gpio.o
+ .debug_info    0x00007e86      0x1d4 Example THUMB Debug/stm32f2xx_iwdg.o
+ .debug_info    0x0000805a      0xc17 Example THUMB Debug/stm32f2xx_rcc.o
+ .debug_info    0x00008c71     0x1c2b Example THUMB Debug/stm32f2xx_tim.o
+ .debug_info    0x0000a89c      0x98c Example THUMB Debug/stm32f2xx_usart.o
+ .debug_info    0x0000b228       0x7b Example THUMB Debug/thumb_crt0.o
+ .debug_info    0x0000b2a3       0xad Example THUMB Debug/STM32_Startup.o
+ .debug_info    0x0000b350     0x1f77 /Applications/CrossWorks for ARM 3.3/lib/libc_v7m_t_le_eabi.a(libc2.o)
 
-.debug_abbrev   0x00000000     0x1fe9
+.debug_abbrev   0x00000000     0x1e2c
  .debug_abbrev  0x00000000      0x139 Example THUMB Debug/system_stm32f2xx.o
  .debug_abbrev  0x00000139      0x1dd Example THUMB Debug/main.o
  .debug_abbrev  0x00000316      0x451 Example THUMB Debug/module.o
- .debug_abbrev  0x00000767      0x1cc Example THUMB Debug/ShaftEncoder.o
- .debug_abbrev  0x00000933      0x26a Example THUMB Debug/VNH3SP30TRdriver.o
- .debug_abbrev  0x00000b9d      0x452 Example THUMB Debug/ftdicomsdriver.o
- .debug_abbrev  0x00000fef      0x204 Example THUMB Debug/InterruptTemplate.o
- .debug_abbrev  0x000011f3       0x89 Example THUMB Debug/stm32f2xx_it.o
- .debug_abbrev  0x0000127c       0xdc Example THUMB Debug/Utils.o
- .debug_abbrev  0x00001358      0x148 Example THUMB Debug/misc.o
- .debug_abbrev  0x000014a0      0x199 Example THUMB Debug/stm32f2xx_adc.o
- .debug_abbrev  0x00001639      0x158 Example THUMB Debug/stm32f2xx_dma.o
- .debug_abbrev  0x00001791      0x1a6 Example THUMB Debug/stm32f2xx_gpio.o
- .debug_abbrev  0x00001937      0x104 Example THUMB Debug/stm32f2xx_iwdg.o
- .debug_abbrev  0x00001a3b      0x1e6 Example THUMB Debug/stm32f2xx_rcc.o
- .debug_abbrev  0x00001c21      0x18a Example THUMB Debug/stm32f2xx_tim.o
- .debug_abbrev  0x00001dab      0x158 Example THUMB Debug/stm32f2xx_usart.o
- .debug_abbrev  0x00001f03       0x14 Example THUMB Debug/thumb_crt0.o
- .debug_abbrev  0x00001f17       0x14 Example THUMB Debug/STM32_Startup.o
- .debug_abbrev  0x00001f2b       0xbe /Applications/CrossWorks for ARM 3.3/lib/libc_v7m_t_le_eabi.a(libc2.o)
+ .debug_abbrev  0x00000767      0x279 Example THUMB Debug/VNH3SP30TRdriver.o
+ .debug_abbrev  0x000009e0      0x452 Example THUMB Debug/ftdicomsdriver.o
+ .debug_abbrev  0x00000e32      0x204 Example THUMB Debug/InterruptTemplate.o
+ .debug_abbrev  0x00001036       0x89 Example THUMB Debug/stm32f2xx_it.o
+ .debug_abbrev  0x000010bf       0xdc Example THUMB Debug/Utils.o
+ .debug_abbrev  0x0000119b      0x148 Example THUMB Debug/misc.o
+ .debug_abbrev  0x000012e3      0x199 Example THUMB Debug/stm32f2xx_adc.o
+ .debug_abbrev  0x0000147c      0x158 Example THUMB Debug/stm32f2xx_dma.o
+ .debug_abbrev  0x000015d4      0x1a6 Example THUMB Debug/stm32f2xx_gpio.o
+ .debug_abbrev  0x0000177a      0x104 Example THUMB Debug/stm32f2xx_iwdg.o
+ .debug_abbrev  0x0000187e      0x1e6 Example THUMB Debug/stm32f2xx_rcc.o
+ .debug_abbrev  0x00001a64      0x18a Example THUMB Debug/stm32f2xx_tim.o
+ .debug_abbrev  0x00001bee      0x158 Example THUMB Debug/stm32f2xx_usart.o
+ .debug_abbrev  0x00001d46       0x14 Example THUMB Debug/thumb_crt0.o
+ .debug_abbrev  0x00001d5a       0x14 Example THUMB Debug/STM32_Startup.o
+ .debug_abbrev  0x00001d6e       0xbe /Applications/CrossWorks for ARM 3.3/lib/libc_v7m_t_le_eabi.a(libc2.o)
 
-.debug_aranges  0x00000000     0x1b90
+.debug_aranges  0x00000000     0x1b60
  .debug_aranges
                 0x00000000       0x30 Example THUMB Debug/system_stm32f2xx.o
  .debug_aranges
@@ -7763,61 +7764,58 @@ OUTPUT(Example THUMB Debug/Example.elf elf32-littlearm)
  .debug_aranges
                 0x00000070       0xd0 Example THUMB Debug/module.o
  .debug_aranges
-                0x00000140       0x30 Example THUMB Debug/ShaftEncoder.o
+                0x00000140       0x40 Example THUMB Debug/VNH3SP30TRdriver.o
  .debug_aranges
-                0x00000170       0x40 Example THUMB Debug/VNH3SP30TRdriver.o
+                0x00000180       0xa8 Example THUMB Debug/ftdicomsdriver.o
  .debug_aranges
-                0x000001b0       0xa8 Example THUMB Debug/ftdicomsdriver.o
+                0x00000228      0x160 Example THUMB Debug/InterruptTemplate.o
  .debug_aranges
-                0x00000258      0x160 Example THUMB Debug/InterruptTemplate.o
+                0x00000388       0x60 Example THUMB Debug/stm32f2xx_it.o
  .debug_aranges
-                0x000003b8       0x60 Example THUMB Debug/stm32f2xx_it.o
+                0x000003e8       0x20 Example THUMB Debug/Utils.o
  .debug_aranges
-                0x00000418       0x20 Example THUMB Debug/Utils.o
+                0x00000408       0x40 Example THUMB Debug/misc.o
  .debug_aranges
-                0x00000438       0x40 Example THUMB Debug/misc.o
+                0x00000448      0x148 Example THUMB Debug/stm32f2xx_adc.o
  .debug_aranges
-                0x00000478      0x148 Example THUMB Debug/stm32f2xx_adc.o
+                0x00000590       0xb0 Example THUMB Debug/stm32f2xx_dma.o
  .debug_aranges
-                0x000005c0       0xb0 Example THUMB Debug/stm32f2xx_dma.o
+                0x00000640       0x88 Example THUMB Debug/stm32f2xx_gpio.o
  .debug_aranges
-                0x00000670       0x88 Example THUMB Debug/stm32f2xx_gpio.o
+                0x000006c8       0x48 Example THUMB Debug/stm32f2xx_iwdg.o
  .debug_aranges
-                0x000006f8       0x48 Example THUMB Debug/stm32f2xx_iwdg.o
+                0x00000710      0x178 Example THUMB Debug/stm32f2xx_rcc.o
  .debug_aranges
-                0x00000740      0x178 Example THUMB Debug/stm32f2xx_rcc.o
+                0x00000888      0x2f8 Example THUMB Debug/stm32f2xx_tim.o
  .debug_aranges
-                0x000008b8      0x2f8 Example THUMB Debug/stm32f2xx_tim.o
+                0x00000b80      0x100 Example THUMB Debug/stm32f2xx_usart.o
  .debug_aranges
-                0x00000bb0      0x100 Example THUMB Debug/stm32f2xx_usart.o
+                0x00000c80       0x20 Example THUMB Debug/thumb_crt0.o
  .debug_aranges
-                0x00000cb0       0x20 Example THUMB Debug/thumb_crt0.o
+                0x00000ca0       0x20 Example THUMB Debug/STM32_Startup.o
  .debug_aranges
-                0x00000cd0       0x20 Example THUMB Debug/STM32_Startup.o
- .debug_aranges
-                0x00000cf0      0xea0 /Applications/CrossWorks for ARM 3.3/lib/libc_v7m_t_le_eabi.a(libc2.o)
+                0x00000cc0      0xea0 /Applications/CrossWorks for ARM 3.3/lib/libc_v7m_t_le_eabi.a(libc2.o)
 
-.debug_ranges   0x00000000     0x1a30
+.debug_ranges   0x00000000     0x1a10
  .debug_ranges  0x00000000       0x20 Example THUMB Debug/system_stm32f2xx.o
  .debug_ranges  0x00000020       0x30 Example THUMB Debug/main.o
  .debug_ranges  0x00000050       0xc0 Example THUMB Debug/module.o
- .debug_ranges  0x00000110       0x20 Example THUMB Debug/ShaftEncoder.o
- .debug_ranges  0x00000130       0x30 Example THUMB Debug/VNH3SP30TRdriver.o
- .debug_ranges  0x00000160       0x98 Example THUMB Debug/ftdicomsdriver.o
- .debug_ranges  0x000001f8      0x150 Example THUMB Debug/InterruptTemplate.o
- .debug_ranges  0x00000348       0x50 Example THUMB Debug/stm32f2xx_it.o
- .debug_ranges  0x00000398       0x10 Example THUMB Debug/Utils.o
- .debug_ranges  0x000003a8       0x30 Example THUMB Debug/misc.o
- .debug_ranges  0x000003d8      0x138 Example THUMB Debug/stm32f2xx_adc.o
- .debug_ranges  0x00000510       0xa0 Example THUMB Debug/stm32f2xx_dma.o
- .debug_ranges  0x000005b0       0x78 Example THUMB Debug/stm32f2xx_gpio.o
- .debug_ranges  0x00000628       0x38 Example THUMB Debug/stm32f2xx_iwdg.o
- .debug_ranges  0x00000660      0x168 Example THUMB Debug/stm32f2xx_rcc.o
- .debug_ranges  0x000007c8      0x2e8 Example THUMB Debug/stm32f2xx_tim.o
- .debug_ranges  0x00000ab0       0xf0 Example THUMB Debug/stm32f2xx_usart.o
- .debug_ranges  0x00000ba0      0xe90 /Applications/CrossWorks for ARM 3.3/lib/libc_v7m_t_le_eabi.a(libc2.o)
+ .debug_ranges  0x00000110       0x30 Example THUMB Debug/VNH3SP30TRdriver.o
+ .debug_ranges  0x00000140       0x98 Example THUMB Debug/ftdicomsdriver.o
+ .debug_ranges  0x000001d8      0x150 Example THUMB Debug/InterruptTemplate.o
+ .debug_ranges  0x00000328       0x50 Example THUMB Debug/stm32f2xx_it.o
+ .debug_ranges  0x00000378       0x10 Example THUMB Debug/Utils.o
+ .debug_ranges  0x00000388       0x30 Example THUMB Debug/misc.o
+ .debug_ranges  0x000003b8      0x138 Example THUMB Debug/stm32f2xx_adc.o
+ .debug_ranges  0x000004f0       0xa0 Example THUMB Debug/stm32f2xx_dma.o
+ .debug_ranges  0x00000590       0x78 Example THUMB Debug/stm32f2xx_gpio.o
+ .debug_ranges  0x00000608       0x38 Example THUMB Debug/stm32f2xx_iwdg.o
+ .debug_ranges  0x00000640      0x168 Example THUMB Debug/stm32f2xx_rcc.o
+ .debug_ranges  0x000007a8      0x2e8 Example THUMB Debug/stm32f2xx_tim.o
+ .debug_ranges  0x00000a90       0xf0 Example THUMB Debug/stm32f2xx_usart.o
+ .debug_ranges  0x00000b80      0xe90 /Applications/CrossWorks for ARM 3.3/lib/libc_v7m_t_le_eabi.a(libc2.o)
 
-.debug_macro    0x00000000    0x121c6
+.debug_macro    0x00000000    0x12041
  .debug_macro   0x00000000      0x183 Example THUMB Debug/system_stm32f2xx.o
  .debug_macro   0x00000183      0x88c Example THUMB Debug/system_stm32f2xx.o
  .debug_macro   0x00000a0f       0x5c Example THUMB Debug/system_stm32f2xx.o
@@ -7871,88 +7869,84 @@ OUTPUT(Example THUMB Debug/Example.elf elf32-littlearm)
  .debug_macro   0x0000ed97      0x240 Example THUMB Debug/module.o
  .debug_macro   0x0000efd7       0x76 Example THUMB Debug/module.o
  .debug_macro   0x0000f04d       0x3a Example THUMB Debug/module.o
- .debug_macro   0x0000f087      0x185 Example THUMB Debug/ShaftEncoder.o
- .debug_macro   0x0000f20c      0x174 Example THUMB Debug/VNH3SP30TRdriver.o
- .debug_macro   0x0000f380      0x1b1 Example THUMB Debug/ftdicomsdriver.o
- .debug_macro   0x0000f531       0x10 Example THUMB Debug/ftdicomsdriver.o
- .debug_macro   0x0000f541      0x202 Example THUMB Debug/InterruptTemplate.o
- .debug_macro   0x0000f743      0x203 Example THUMB Debug/stm32f2xx_it.o
- .debug_macro   0x0000f946      0x16a Example THUMB Debug/Utils.o
- .debug_macro   0x0000fab0      0x170 Example THUMB Debug/misc.o
- .debug_macro   0x0000fc20       0x7c Example THUMB Debug/misc.o
- .debug_macro   0x0000fc9c      0x1f3 Example THUMB Debug/stm32f2xx_adc.o
- .debug_macro   0x0000fe8f      0x3c9 Example THUMB Debug/stm32f2xx_adc.o
- .debug_macro   0x00010258      0x1be Example THUMB Debug/stm32f2xx_dma.o
- .debug_macro   0x00010416      0x471 Example THUMB Debug/stm32f2xx_dma.o
- .debug_macro   0x00010887      0x16a Example THUMB Debug/stm32f2xx_gpio.o
- .debug_macro   0x000109f1      0x258 Example THUMB Debug/stm32f2xx_gpio.o
- .debug_macro   0x00010c49      0x176 Example THUMB Debug/stm32f2xx_iwdg.o
- .debug_macro   0x00010dbf       0x5e Example THUMB Debug/stm32f2xx_iwdg.o
- .debug_macro   0x00010e1d      0x213 Example THUMB Debug/stm32f2xx_rcc.o
- .debug_macro   0x00011030      0x530 Example THUMB Debug/stm32f2xx_rcc.o
- .debug_macro   0x00011560      0x194 Example THUMB Debug/stm32f2xx_tim.o
- .debug_macro   0x000116f4      0x735 Example THUMB Debug/stm32f2xx_tim.o
- .debug_macro   0x00011e29      0x182 Example THUMB Debug/stm32f2xx_usart.o
- .debug_macro   0x00011fab      0x21b Example THUMB Debug/stm32f2xx_usart.o
+ .debug_macro   0x0000f087      0x174 Example THUMB Debug/VNH3SP30TRdriver.o
+ .debug_macro   0x0000f1fb      0x1b1 Example THUMB Debug/ftdicomsdriver.o
+ .debug_macro   0x0000f3ac       0x10 Example THUMB Debug/ftdicomsdriver.o
+ .debug_macro   0x0000f3bc      0x202 Example THUMB Debug/InterruptTemplate.o
+ .debug_macro   0x0000f5be      0x203 Example THUMB Debug/stm32f2xx_it.o
+ .debug_macro   0x0000f7c1      0x16a Example THUMB Debug/Utils.o
+ .debug_macro   0x0000f92b      0x170 Example THUMB Debug/misc.o
+ .debug_macro   0x0000fa9b       0x7c Example THUMB Debug/misc.o
+ .debug_macro   0x0000fb17      0x1f3 Example THUMB Debug/stm32f2xx_adc.o
+ .debug_macro   0x0000fd0a      0x3c9 Example THUMB Debug/stm32f2xx_adc.o
+ .debug_macro   0x000100d3      0x1be Example THUMB Debug/stm32f2xx_dma.o
+ .debug_macro   0x00010291      0x471 Example THUMB Debug/stm32f2xx_dma.o
+ .debug_macro   0x00010702      0x16a Example THUMB Debug/stm32f2xx_gpio.o
+ .debug_macro   0x0001086c      0x258 Example THUMB Debug/stm32f2xx_gpio.o
+ .debug_macro   0x00010ac4      0x176 Example THUMB Debug/stm32f2xx_iwdg.o
+ .debug_macro   0x00010c3a       0x5e Example THUMB Debug/stm32f2xx_iwdg.o
+ .debug_macro   0x00010c98      0x213 Example THUMB Debug/stm32f2xx_rcc.o
+ .debug_macro   0x00010eab      0x530 Example THUMB Debug/stm32f2xx_rcc.o
+ .debug_macro   0x000113db      0x194 Example THUMB Debug/stm32f2xx_tim.o
+ .debug_macro   0x0001156f      0x735 Example THUMB Debug/stm32f2xx_tim.o
+ .debug_macro   0x00011ca4      0x182 Example THUMB Debug/stm32f2xx_usart.o
+ .debug_macro   0x00011e26      0x21b Example THUMB Debug/stm32f2xx_usart.o
 
-.debug_line     0x00000000     0x863b
+.debug_line     0x00000000     0x813a
  .debug_line    0x00000000      0x4b2 Example THUMB Debug/system_stm32f2xx.o
  .debug_line    0x000004b2      0x758 Example THUMB Debug/main.o
- .debug_line    0x00000c0a      0x98d Example THUMB Debug/module.o
- .debug_line    0x00001597      0x517 Example THUMB Debug/ShaftEncoder.o
- .debug_line    0x00001aae      0x531 Example THUMB Debug/VNH3SP30TRdriver.o
- .debug_line    0x00001fdf      0x79b Example THUMB Debug/ftdicomsdriver.o
- .debug_line    0x0000277a      0xb6c Example THUMB Debug/InterruptTemplate.o
- .debug_line    0x000032e6      0x706 Example THUMB Debug/stm32f2xx_it.o
- .debug_line    0x000039ec      0x483 Example THUMB Debug/Utils.o
- .debug_line    0x00003e6f      0x4ee Example THUMB Debug/misc.o
- .debug_line    0x0000435d      0x7f2 Example THUMB Debug/stm32f2xx_adc.o
- .debug_line    0x00004b4f      0x67c Example THUMB Debug/stm32f2xx_dma.o
- .debug_line    0x000051cb      0x5de Example THUMB Debug/stm32f2xx_gpio.o
- .debug_line    0x000057a9      0x4fc Example THUMB Debug/stm32f2xx_iwdg.o
- .debug_line    0x00005ca5      0x83a Example THUMB Debug/stm32f2xx_rcc.o
- .debug_line    0x000064df      0xd05 Example THUMB Debug/stm32f2xx_tim.o
- .debug_line    0x000071e4      0x72d Example THUMB Debug/stm32f2xx_usart.o
- .debug_line    0x00007911      0x100 Example THUMB Debug/thumb_crt0.o
- .debug_line    0x00007a11      0x121 Example THUMB Debug/STM32_Startup.o
- .debug_line    0x00007b32      0xb09 /Applications/CrossWorks for ARM 3.3/lib/libc_v7m_t_le_eabi.a(libc2.o)
+ .debug_line    0x00000c0a      0x9a5 Example THUMB Debug/module.o
+ .debug_line    0x000015af      0x52f Example THUMB Debug/VNH3SP30TRdriver.o
+ .debug_line    0x00001ade      0x79b Example THUMB Debug/ftdicomsdriver.o
+ .debug_line    0x00002279      0xb6c Example THUMB Debug/InterruptTemplate.o
+ .debug_line    0x00002de5      0x706 Example THUMB Debug/stm32f2xx_it.o
+ .debug_line    0x000034eb      0x483 Example THUMB Debug/Utils.o
+ .debug_line    0x0000396e      0x4ee Example THUMB Debug/misc.o
+ .debug_line    0x00003e5c      0x7f2 Example THUMB Debug/stm32f2xx_adc.o
+ .debug_line    0x0000464e      0x67c Example THUMB Debug/stm32f2xx_dma.o
+ .debug_line    0x00004cca      0x5de Example THUMB Debug/stm32f2xx_gpio.o
+ .debug_line    0x000052a8      0x4fc Example THUMB Debug/stm32f2xx_iwdg.o
+ .debug_line    0x000057a4      0x83a Example THUMB Debug/stm32f2xx_rcc.o
+ .debug_line    0x00005fde      0xd05 Example THUMB Debug/stm32f2xx_tim.o
+ .debug_line    0x00006ce3      0x72d Example THUMB Debug/stm32f2xx_usart.o
+ .debug_line    0x00007410      0x100 Example THUMB Debug/thumb_crt0.o
+ .debug_line    0x00007510      0x121 Example THUMB Debug/STM32_Startup.o
+ .debug_line    0x00007631      0xb09 /Applications/CrossWorks for ARM 3.3/lib/libc_v7m_t_le_eabi.a(libc2.o)
 
-.debug_str      0x00000000    0x5e3cb
+.debug_str      0x00000000    0x5e2f2
  .debug_str     0x00000000    0x529bc Example THUMB Debug/system_stm32f2xx.o
                               0x52a7d (size before relaxing)
  .debug_str     0x000529bc     0x469e Example THUMB Debug/main.o
                               0x56e3c (size before relaxing)
- .debug_str     0x0005705a      0xf72 Example THUMB Debug/module.o
-                              0x57e40 (size before relaxing)
- .debug_str     0x00057fcc       0x63 Example THUMB Debug/ShaftEncoder.o
-                              0x53ec5 (size before relaxing)
- .debug_str     0x0005802f      0x149 Example THUMB Debug/VNH3SP30TRdriver.o
-                              0x530b1 (size before relaxing)
- .debug_str     0x00058178      0x7f6 Example THUMB Debug/ftdicomsdriver.o
+ .debug_str     0x0005705a      0xf3c Example THUMB Debug/module.o
+                              0x57e0a (size before relaxing)
+ .debug_str     0x00057f96      0x109 Example THUMB Debug/VNH3SP30TRdriver.o
+                              0x5303b (size before relaxing)
+ .debug_str     0x0005809f      0x7f6 Example THUMB Debug/ftdicomsdriver.o
                               0x54931 (size before relaxing)
- .debug_str     0x0005896e      0xf4c Example THUMB Debug/InterruptTemplate.o
+ .debug_str     0x00058895      0xf4c Example THUMB Debug/InterruptTemplate.o
                               0x56992 (size before relaxing)
- .debug_str     0x000598ba       0xcd Example THUMB Debug/stm32f2xx_it.o
+ .debug_str     0x000597e1       0xcd Example THUMB Debug/stm32f2xx_it.o
                               0x555e1 (size before relaxing)
- .debug_str     0x00059987       0x81 Example THUMB Debug/Utils.o
+ .debug_str     0x000598ae       0x81 Example THUMB Debug/Utils.o
                               0x528f1 (size before relaxing)
- .debug_str     0x00059a08      0x170 Example THUMB Debug/misc.o
+ .debug_str     0x0005992f      0x170 Example THUMB Debug/misc.o
                               0x52afe (size before relaxing)
- .debug_str     0x00059b78      0x82c Example THUMB Debug/stm32f2xx_adc.o
+ .debug_str     0x00059a9f      0x82c Example THUMB Debug/stm32f2xx_adc.o
                               0x531e2 (size before relaxing)
- .debug_str     0x0005a3a4      0x595 Example THUMB Debug/stm32f2xx_dma.o
+ .debug_str     0x0005a2cb      0x595 Example THUMB Debug/stm32f2xx_dma.o
                               0x52f63 (size before relaxing)
- .debug_str     0x0005a939      0x1dd Example THUMB Debug/stm32f2xx_gpio.o
+ .debug_str     0x0005a860      0x1dd Example THUMB Debug/stm32f2xx_gpio.o
                               0x52b9e (size before relaxing)
- .debug_str     0x0005ab16      0x164 Example THUMB Debug/stm32f2xx_iwdg.o
+ .debug_str     0x0005aa3d      0x164 Example THUMB Debug/stm32f2xx_iwdg.o
                               0x529a9 (size before relaxing)
- .debug_str     0x0005ac7a      0xa00 Example THUMB Debug/stm32f2xx_rcc.o
+ .debug_str     0x0005aba1      0xa00 Example THUMB Debug/stm32f2xx_rcc.o
                               0x5341f (size before relaxing)
- .debug_str     0x0005b67a      0xaff Example THUMB Debug/stm32f2xx_tim.o
+ .debug_str     0x0005b5a1      0xaff Example THUMB Debug/stm32f2xx_tim.o
                               0x53592 (size before relaxing)
- .debug_str     0x0005c179      0x508 Example THUMB Debug/stm32f2xx_usart.o
+ .debug_str     0x0005c0a0      0x508 Example THUMB Debug/stm32f2xx_usart.o
                               0x52eae (size before relaxing)
- .debug_str     0x0005c681     0x1d4a /Applications/CrossWorks for ARM 3.3/lib/libc_v7m_t_le_eabi.a(libc2.o)
+ .debug_str     0x0005c5a8     0x1d4a /Applications/CrossWorks for ARM 3.3/lib/libc_v7m_t_le_eabi.a(libc2.o)
                                0x1f1e (size before relaxing)
 
 .comment        0x00000000       0x4e
@@ -7960,7 +7954,6 @@ OUTPUT(Example THUMB Debug/Example.elf elf32-littlearm)
                                  0x4f (size before relaxing)
  .comment       0x00000000       0x4f Example THUMB Debug/main.o
  .comment       0x00000000       0x4f Example THUMB Debug/module.o
- .comment       0x00000000       0x4f Example THUMB Debug/ShaftEncoder.o
  .comment       0x00000000       0x4f Example THUMB Debug/VNH3SP30TRdriver.o
  .comment       0x00000000       0x4f Example THUMB Debug/ftdicomsdriver.o
  .comment       0x00000000       0x4f Example THUMB Debug/InterruptTemplate.o
@@ -7985,38 +7978,36 @@ OUTPUT(Example THUMB Debug/Example.elf elf32-littlearm)
  .ARM.attributes
                 0x00000066       0x33 Example THUMB Debug/module.o
  .ARM.attributes
-                0x00000099       0x33 Example THUMB Debug/ShaftEncoder.o
+                0x00000099       0x33 Example THUMB Debug/VNH3SP30TRdriver.o
  .ARM.attributes
-                0x000000cc       0x33 Example THUMB Debug/VNH3SP30TRdriver.o
+                0x000000cc       0x33 Example THUMB Debug/ftdicomsdriver.o
  .ARM.attributes
-                0x000000ff       0x33 Example THUMB Debug/ftdicomsdriver.o
+                0x000000ff       0x33 Example THUMB Debug/InterruptTemplate.o
  .ARM.attributes
-                0x00000132       0x33 Example THUMB Debug/InterruptTemplate.o
+                0x00000132       0x33 Example THUMB Debug/stm32f2xx_it.o
  .ARM.attributes
-                0x00000165       0x33 Example THUMB Debug/stm32f2xx_it.o
+                0x00000165       0x33 Example THUMB Debug/Utils.o
  .ARM.attributes
-                0x00000198       0x33 Example THUMB Debug/Utils.o
+                0x00000198       0x33 Example THUMB Debug/misc.o
  .ARM.attributes
-                0x000001cb       0x33 Example THUMB Debug/misc.o
+                0x000001cb       0x33 Example THUMB Debug/stm32f2xx_adc.o
  .ARM.attributes
-                0x000001fe       0x33 Example THUMB Debug/stm32f2xx_adc.o
+                0x000001fe       0x33 Example THUMB Debug/stm32f2xx_dma.o
  .ARM.attributes
-                0x00000231       0x33 Example THUMB Debug/stm32f2xx_dma.o
+                0x00000231       0x33 Example THUMB Debug/stm32f2xx_gpio.o
  .ARM.attributes
-                0x00000264       0x33 Example THUMB Debug/stm32f2xx_gpio.o
+                0x00000264       0x33 Example THUMB Debug/stm32f2xx_iwdg.o
  .ARM.attributes
-                0x00000297       0x33 Example THUMB Debug/stm32f2xx_iwdg.o
+                0x00000297       0x33 Example THUMB Debug/stm32f2xx_rcc.o
  .ARM.attributes
-                0x000002ca       0x33 Example THUMB Debug/stm32f2xx_rcc.o
+                0x000002ca       0x33 Example THUMB Debug/stm32f2xx_tim.o
  .ARM.attributes
-                0x000002fd       0x33 Example THUMB Debug/stm32f2xx_tim.o
+                0x000002fd       0x33 Example THUMB Debug/stm32f2xx_usart.o
  .ARM.attributes
-                0x00000330       0x33 Example THUMB Debug/stm32f2xx_usart.o
+                0x00000330       0x21 Example THUMB Debug/thumb_crt0.o
  .ARM.attributes
-                0x00000363       0x21 Example THUMB Debug/thumb_crt0.o
+                0x00000351       0x21 Example THUMB Debug/STM32_Startup.o
  .ARM.attributes
-                0x00000384       0x21 Example THUMB Debug/STM32_Startup.o
+                0x00000372       0x1b /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
  .ARM.attributes
-                0x000003a5       0x1b /Applications/CrossWorks for ARM 3.3/lib/libm_v7m_t_le_eabi.a(libm_asm.o)
- .ARM.attributes
-                0x000003c0       0x2d /Applications/CrossWorks for ARM 3.3/lib/libc_v7m_t_le_eabi.a(libc2.o)
+                0x0000038d       0x2d /Applications/CrossWorks for ARM 3.3/lib/libc_v7m_t_le_eabi.a(libc2.o)

@@ -58,7 +58,8 @@ void Module::Run()
     float val = 0.0;
     int LoopCounter = 1;
     ADC_SoftwareStartConv(ADC1);
-    //SetServoPos(0,0.5);
+    m_MainMotorDriver.SetSpeed(0.3f);
+    
     while(1)
     {
 /*    
@@ -117,7 +118,7 @@ void Module::Run()
         for(int ii=0;ii<360;ii++)
         {
           SetServoPos(0,(sin(val*0.0174)));
-//        m_MainMotorDriver.SetSpeed((sin(val)+1.0)/4.0);
+          m_MainMotorDriver.SetSpeed((sin(val)+1.0)/4.0);
           val += 1;
           Delay_ms(5);
         }
@@ -157,7 +158,7 @@ void Module::Run()
           for(int ii = 0; ii < 10000; ii++){}
         }
         //m_MainMotorDriver.SetSpeed(0.2f);
-        */
+        
         ///////////////////////////////// Test MPU9150
          // char TempData[21];
           //Enable DataReady Interrupt of sensor
@@ -175,12 +176,21 @@ void Module::Run()
         //MyEncoders.GetEncoderPoses(&MyPoses);
         
         ///////////////////////////////// Led Test
-        /*
+       */ 
+          GPIO_ResetBits(GPIOB,GPIO_Pin_0);
+          GPIO_ResetBits(GPIOB,GPIO_Pin_1);
+          GPIO_ResetBits(GPIOB,GPIO_Pin_2);
+          
           SetRgbLed(true,false,false);
           Delay_ms(1000);
+          
+          GPIO_SetBits(GPIOB,GPIO_Pin_0);
+          GPIO_SetBits(GPIOB,GPIO_Pin_1);
+          GPIO_SetBits(GPIOB,GPIO_Pin_2);
+          
           SetRgbLed(false,true,true);
           Delay_ms(1000);
-      */
+      
     /* Update IWDG counter */
     IWDG_ReloadCounter();
       
@@ -225,29 +235,29 @@ void Module::Delay_ms(int delay)
 
 void Module::Initialize()
 {
-    ConfigurePwm();
-    ConfigureLed();
-    ConfigureADC();
+    //ConfigurePwm();
+    //ConfigureLed();
+    //ConfigureADC();
 
-    MyEncoders.Config();
+    //MyEncoders.Config();
 
     //m_MPU9150Driver.initialise();
 
     //initialize the motor driver
     m_MainMotorDriver.Initialize(TIM10,RCC_APB2Periph_TIM10,
-                                 TIM11,RCC_APB2Periph_TIM11,
-                                 TIM9,RCC_APB2Periph_TIM9,
-                                 GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_0),
-                                 GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_1),
-                                 GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_8,GPIO_PinSource8,GPIO_AF_TIM10),
-                                 GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_6),
-                                 GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_3),
-                                 GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_9,GPIO_PinSource9,GPIO_AF_TIM11),
-                                 GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_4),
-                                 GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_5),
-                                 GPIO_Pin(GPIOE,RCC_AHB1Periph_GPIOE,GPIO_Pin_5,GPIO_PinSource5,GPIO_AF_TIM9));
-    m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeForward);
-    m_MainMotorDriver.SetSpeed(0.0f);
+                                 //TIM11,RCC_APB2Periph_TIM11,
+                                 //TIM9,RCC_APB2Periph_TIM9,
+                                 GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_0),
+                                 GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_7),
+                                 GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_1),
+                                 GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_5),
+                                 //GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_9,GPIO_PinSource9,GPIO_AF_TIM11),
+                                 GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_2),
+                                 GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_6),
+                                 GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_8,GPIO_PinSource8,GPIO_AF_TIM10));
+                                 //GPIO_Pin(GPIOE,RCC_AHB1Periph_GPIOE,GPIO_Pin_5,GPIO_PinSource5,GPIO_AF_TIM9));
+    m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeReverse);//eModeForward
+    m_MainMotorDriver.SetSpeed(0.5f);
     SetServoPos(0,0.5);
     SetServoPos(1,0.5);
     SetServoPos(2,0.5);
@@ -557,7 +567,30 @@ void Module::ConfigureInterrupts()
     TIM_ITConfig(MODULE_TIMER,TIM_IT_Update, ENABLE);
 
 }
+/*
+  NVIC_InitTypeDef NVIC_InitStructure;
+  // Configure the preemption priority and subpriority:
+  //   - 1 bits for pre-emption priority: possible value are 0 or 1 
+  //   - 3 bits for subpriority: possible value are 0..7
+  //   - Lower values gives higher priority  
 
+  NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
+
+  // Enable the WAKEUP_BUTTON_EXTI_IRQn Interrupt 
+  NVIC_InitStructure.NVIC_IRQChannel = WAKEUP_BUTTON_EXTI_IRQn;
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = PreemptionPriorityValue;
+  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+  NVIC_Init(&NVIC_InitStructure);
+
+  // Enable the KEY_BUTTON_EXTI_IRQn Interrupt 
+  NVIC_InitStructure.NVIC_IRQChannel = KEY_BUTTON_EXTI_IRQn;
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+  NVIC_Init(&NVIC_InitStructure);
+}
+*/
 
 //-----------------------------------------------------------------------------
 // Systick interrupt handlers, synchronises the periodic tasks of the module
