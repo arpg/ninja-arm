@@ -1,0 +1,106 @@
+<!DOCTYPE CrossStudio_for_ARM_Session_File>
+<session>
+ <Bookmarks/>
+ <Breakpoints/>
+ <ExecutionProfileWindow/>
+ <FrameBufferWindow>
+  <FrameBufferWindow addressText="" bufferWidth="-1" bufferHeight="-1" addressSpace="" />
+ </FrameBufferWindow>
+ <Memory1/>
+ <Memory2/>
+ <Memory3/>
+ <Memory4/>
+ <Project>
+  <ProjectSessionItem path="STM32F2XX-EVAL" name="unnamed" />
+  <ProjectSessionItem path="STM32F2XX-EVAL;Example" name="unnamed" />
+  <ProjectSessionItem path="STM32F2XX-EVAL;Example;Driver Files" name="unnamed" />
+  <ProjectSessionItem path="STM32F2XX-EVAL;Example;Source Files" name="unnamed" />
+ </Project>
+ <Register1/>
+ <Register2/>
+ <Register3/>
+ <Register4/>
+ <TargetWindow programAction="" uploadFileType="" programLoadAddress="" programSize="" uploadFileName="" uploadMemoryInterface="" programFileName="" uploadStartAddress="" programFileType="" uploadSize="" programMemoryInterface="" />
+ <TraceWindow>
+  <Trace enabled="Yes" />
+ </TraceWindow>
+ <Watch1>
+  <Watches active="1" update="Never" />
+ </Watch1>
+ <Watch2>
+  <Watches active="0" update="Never" />
+ </Watch2>
+ <Watch3>
+  <Watches active="0" update="Never" />
+ </Watch3>
+ <Watch4>
+  <Watches active="0" update="Never" />
+ </Watch4>
+ <Files>
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/Documents/CrossWorks Projects/STM32F2xx_StdPeriph_Lib_V1.1.0/Libraries/STM32F2xx_StdPeriph_Driver/src/misc.c" y="88" path="/Users/Sina/Documents/CrossWorks Projects/STM32F2xx_StdPeriph_Lib_V1.1.0/Libraries/STM32F2xx_StdPeriph_Driver/src/misc.c" left="0" selected="1" name="unnamed" top="72" />
+ </Files>
+ <ARMCrossStudioWindow activeProject="Example" autoConnectTarget="Olimex ARM-USB-TINY" debugSearchFileMap="C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 3.2/include/stlport/stl/_algobase.h
+
+C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 3.2/source/thumb_crt0.s
+
+C:/Users/Sina/AppData/Local/Rowley Associates Limited/CrossWorks for ARM/v3/packages/targets/CMSIS_3/CMSIS/Include/core_cm3.h
+
+C:/Users/Sina/AppData/Local/Rowley Associates Limited/CrossWorks for ARM/v3/packages/targets/CMSIS_3/CMSIS/Include/core_cmFunc.h
+
+C:/Users/Sina/AppData/Local/Rowley Associates Limited/CrossWorks for ARM/v3/packages/targets/STM32/STM32F2XX.vec
+
+C:/Users/Sina/AppData/Local/Rowley Associates Limited/CrossWorks for ARM/v3/packages/targets/STM32/STM32_Startup.s
+
+Drivers/MPU9150driver.h
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/Drivers/MPU9150Driver.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/Drivers/VNH3SP30TRdriver.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/Drivers/ftdicomsdriver.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/Drivers/ftdicomsdriver.h
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/misc.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_adc.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_dma.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_exti.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_gpio.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_i2c.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_iwdg.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_rcc.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_syscfg.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_tim.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_usart.c
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/ShaftEncoder.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/ShaftEncoder.h
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/Utilities/InterruptTemplate.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/main.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/module.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/stm32f2xx_it.cpp
+
+E:/University/PHD/Projects/Repository_Dev/NinjaCarProject/system_stm32f2xx.c
+
+Utilities/InterruptTemplate.h
+
+Utilities/Utils.h
+
+Utilities/interruptTemplate.h
+" fileDialogInitialDirectory="/Users/Sina/rpg/arm-ninja/STM32Driver/src" fileDialogDefaultFilter="*.c" autoConnectCapabilities="266111" debugSearchPath="" buildConfiguration="THUMB Debug" />
+</session>
