@@ -68,8 +68,9 @@ class Module : InterruptTemplate
       void Initialize();
       Module();
       void Run();
-      void SetRgbLed(const bool r, const bool g, const bool b);
+      void SetRgbLed(const bool r, const bool g);
       void SetServoPos(const int nServo, const float dPos);
+      void ConfigureBLDC();
       void Delay_ms(int delay);
       float temp_float[4]={0,0,0,0};
 };

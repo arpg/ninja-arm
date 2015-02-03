@@ -9,11 +9,11 @@
       arm_core_type="Cortex-M3"
       arm_fpu_type="None"
       arm_gcc_target="arm-unknown-eabi"
-      arm_linker_heap_size="2048"
+      arm_linker_heap_size="4048"
       arm_linker_jtag_pad_pre_dr="1"
       arm_linker_jtag_pad_pre_ir="5"
-      arm_linker_process_stack_size="2048"
-      arm_linker_stack_size="2048"
+      arm_linker_process_stack_size="4048"
+      arm_linker_stack_size="4048"
       arm_simulator_memory_simulation_filename="$(TargetsDir)/STM32/STM32SimulatorMemory.dll"
       arm_simulator_memory_simulation_parameter="STM32F207VG;0x100000;0x20000"
       arm_target_connect_with_reset="Yes"
@@ -51,7 +51,9 @@
       <file file_name="Math/matrix.cpp" />
       <file file_name="Math/vector.cpp" />
       <file file_name="Drivers/VNH3SP30TRdriver.cpp" />
-      <file file_name="Drivers/ftdicomsdriver.cpp" />
+      <file file_name="Drivers/ftdicomsdriver.cpp">
+        <configuration Name="THUMB Debug" build_exclude_from_build="No" />
+      </file>
       <file file_name="Utilities/InterruptTemplate.cpp" />
       <file file_name="stm32f2xx_it.cpp" />
       <file file_name="Utilities/Utils.cpp" />
@@ -127,4 +129,7 @@
     gcc_debugging_level="Level 1"
     gcc_optimization_level="None"
     hidden="Yes" />
+  <configuration
+    Name="Common"
+    c_user_include_directories=".;~/Documents/CrossWorks\\ Projects/STM32F2xx_StdPeriph_Lib_V1.1.0/" />
 </solution>

@@ -177,12 +177,28 @@ void Module::Run()
         
         ///////////////////////////////// Led Test
        */ 
-          m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeReverse);
-          SetRgbLed(true,false,false);
+            GPIO_SetBits(GPIOD,GPIO_Pin_5);
+            GPIO_ResetBits(GPIOD,GPIO_Pin_4);
+            
+            GPIO_SetBits(GPIOE,GPIO_Pin_10);
+            GPIO_ResetBits(GPIOA,GPIO_Pin_10);
+            
+            GPIO_SetBits(GPIOD,GPIO_Pin_14);
+            GPIO_ResetBits(GPIOD,GPIO_Pin_15);
+          //m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeReverse);
+          SetRgbLed(true,false);
           Delay_ms(1000);
           
-          m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeForward);
-          SetRgbLed(false,true,true);
+            GPIO_ResetBits(GPIOD,GPIO_Pin_5);
+            GPIO_SetBits(GPIOD,GPIO_Pin_4);
+            
+            GPIO_ResetBits(GPIOE,GPIO_Pin_10);
+            GPIO_SetBits(GPIOA,GPIO_Pin_10);
+            
+            GPIO_ResetBits(GPIOD,GPIO_Pin_14);
+            GPIO_SetBits(GPIOD,GPIO_Pin_15);
+          //m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeForward);
+          SetRgbLed(false,true);
           Delay_ms(1000);
       
     /* Update IWDG counter */
@@ -229,37 +245,22 @@ void Module::Delay_ms(int delay)
 
 void Module::Initialize()
 {
-    ConfigurePwm();
+    //ConfigurePwm();
     ConfigureLed();
-    ConfigureADC();
+    //ConfigureADC();
+    ConfigureBLDC();
 
     //MyEncoders.Config();
 
     //m_MPU9150Driver.initialise();
 
-    //initialize the motor driver
-    m_MainMotorDriver.Initialize(TIM10,RCC_APB2Periph_TIM10,
-                                 //TIM11,RCC_APB2Periph_TIM11,
-                                 //TIM9,RCC_APB2Periph_TIM9,
-                                 GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_5),
-                                 GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_4),
-                                 GPIO_Pin(GPIOE,RCC_AHB1Periph_GPIOE,GPIO_Pin_10),
-                                 GPIO_Pin(GPIOA,RCC_AHB1Periph_GPIOA,GPIO_Pin_10),
-                                 //GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_9,GPIO_PinSource9,GPIO_AF_TIM11),
-                                 GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_14),
-                                 GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_15),
-                                 GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_8,GPIO_PinSource8,GPIO_AF_TIM10));
-                                 //GPIO_Pin(GPIOE,RCC_AHB1Periph_GPIOE,GPIO_Pin_5,GPIO_PinSource5,GPIO_AF_TIM9));
-    /*m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeReverse);//eModeForward
-    m_MainMotorDriver.SetSpeed(0.5f);
-    */
     
-    SetServoPos(0,0.5);
+    //SetServoPos(0,0.5);
 
-    m_ComsDriver.Initialize(GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_10,GPIO_PinSource10,GPIO_AF_USART3),
-                            GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_11,GPIO_PinSource11,GPIO_AF_USART3),
-                            GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_13,GPIO_PinSource13,GPIO_AF_USART3),
-                            GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_14,GPIO_PinSource14,GPIO_AF_USART3));
+    //m_ComsDriver.Initialize(GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_10,GPIO_PinSource10,GPIO_AF_USART3),
+    //                        GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_11,GPIO_PinSource11,GPIO_AF_USART3),
+    //                        GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_13,GPIO_PinSource13,GPIO_AF_USART3),
+    //                        GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_14,GPIO_PinSource14,GPIO_AF_USART3));
     //configure the timer used to measure the dT between
     //consecutive cycles
 //                configureTimer();
@@ -269,13 +270,13 @@ void Module::Initialize()
 //		_venusGps.initialise();
 
 		//configureInterrupts();
-          SetRgbLed(true,true,true);
-          Delay_ms(200);
-          SetRgbLed(false,false,false);
+          SetRgbLed(false,false);
+          Delay_ms(1000);
+          SetRgbLed(true,true);
           Delay_ms(200);
           
           
-          //Init_WatchDog();
+          Init_WatchDog();
           
 }
 
@@ -449,8 +450,9 @@ void Module::ConfigurePwm()
 void Module::ConfigureLed()
 {
     //Enable PIOE clock which controls the LED
-    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE,ENABLE);
-
+    //RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE,ENABLE);
+    RCCSetClock(GPIOE,RCC_AHB1Periph_GPIOE, ENABLE);
+    
     GPIO_InitTypeDef GPIO_InitStructure;
     GPIO_StructInit(&GPIO_InitStructure);
 
@@ -459,14 +461,14 @@ void Module::ConfigureLed()
     GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
     GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
 
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2|GPIO_Pin_3|GPIO_Pin_4;
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2|GPIO_Pin_3;
     GPIO_Init(GPIOE, &GPIO_InitStructure);
 
-    GPIO_SetBits(GPIOE,GPIO_Pin_2|GPIO_Pin_3|GPIO_Pin_4);
+    GPIO_SetBits(GPIOE,GPIO_Pin_2|GPIO_Pin_3);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void Module::SetRgbLed(const bool r, const bool g, const bool b)
+void Module::SetRgbLed(const bool r, const bool g)
 {
     if(r){
         GPIO_ResetBits(GPIOE,GPIO_Pin_2);
@@ -478,12 +480,6 @@ void Module::SetRgbLed(const bool r, const bool g, const bool b)
         GPIO_ResetBits(GPIOE,GPIO_Pin_3);
      }else{
         GPIO_SetBits(GPIOE,GPIO_Pin_3);
-    }
-
-    if(b){
-        GPIO_ResetBits(GPIOE,GPIO_Pin_4);
-     }else{
-        GPIO_SetBits(GPIOE,GPIO_Pin_4);
     }
 }
 
@@ -523,6 +519,46 @@ void Module::SetServoPos(const int nServo, const float dPos)
     }
 }
 
+void Module::ConfigureBLDC()
+{
+
+    //Enable PIOE clock which controls the LED
+    //RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE,ENABLE);
+
+  /*  GPIO_InitTypeDef GPIO_InitStructure;
+    GPIO_StructInit(&GPIO_InitStructure);
+
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+    GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+    GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5|GPIO_Pin_4|GPIO_Pin_14|GPIO_Pin_15;
+    GPIO_Init(GPIOD, &GPIO_InitStructure);
+    
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
+    GPIO_Init(GPIOE, &GPIO_InitStructure);
+    
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+ */   
+   
+//initialize the motor driver
+    m_MainMotorDriver.Initialize(TIM10,
+                                 RCC_APB2Periph_TIM10,
+                                 GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_5),
+                                 GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_4),
+                                 GPIO_Pin(GPIOE,RCC_AHB1Periph_GPIOE,GPIO_Pin_10),
+                                 GPIO_Pin(GPIOA,RCC_AHB1Periph_GPIOA,GPIO_Pin_10),
+                                 //GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_9,GPIO_PinSource9,GPIO_AF_TIM11),
+                                 GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_14),
+                                 GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_15),
+                                 GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_8,GPIO_PinSource8,GPIO_AF_TIM10));
+                                 //GPIO_Pin(GPIOE,RCC_AHB1Periph_GPIOE,GPIO_Pin_5,GPIO_PinSource5,GPIO_AF_TIM9));
+ /*   m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeReverse);//eModeForward
+    m_MainMotorDriver.SetSpeed(0.5f);
+    */
+}
 //-----------------------------------------------------------------------------
 // Configure the interrupts for the module
 //-----------------------------------------------------------------------------
