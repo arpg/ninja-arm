@@ -52,39 +52,12 @@ void VNH3SP30TRDriver::Initialize(TIM_TypeDef* pPwmTimer,
     m_InAPin3 = inAPin3;
     m_InBPin3 = inBPin3;
 
-    int a;
-    a = inAPin.m_nPin;
-    a = inBPin.m_nPin;
-    a = inAPin2.m_nPin;
-    a = inBPin2.m_nPin;
-    a = inAPin3.m_nPin;
-    a = inBPin3.m_nPin;
-
-/*    GPIO_InitTypeDef GPIO_InitStructure;
-    GPIO_StructInit(&GPIO_InitStructure);
-
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
-    GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-    GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5|GPIO_Pin_4|GPIO_Pin_14|GPIO_Pin_15;
-    GPIO_Init(GPIOD, &GPIO_InitStructure);
-    
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
-    GPIO_Init(GPIOE, &GPIO_InitStructure);
-    
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
-    GPIO_Init(GPIOA, &GPIO_InitStructure);
-*/
-    //RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB,ENABLE);
-
     //initialize the control GPIOs
     GPIO_InitTypeDef GPIO_InitStructure;
     GPIO_StructInit(&GPIO_InitStructure);
 
     //enable the GPIO clocks
- /*   RCCSetClock(inAPin.m_pGpio,inAPin.m_nGpioClk, ENABLE);
+/*    RCCSetClock(inAPin.m_pGpio,inAPin.m_nGpioClk, ENABLE);
     RCCSetClock(inBPin.m_pGpio,inBPin.m_nGpioClk, ENABLE);
     
     RCCSetClock(inAPin2.m_pGpio,inAPin2.m_nGpioClk, ENABLE);
@@ -92,7 +65,7 @@ void VNH3SP30TRDriver::Initialize(TIM_TypeDef* pPwmTimer,
     
     RCCSetClock(inAPin3.m_pGpio,inAPin3.m_nGpioClk, ENABLE);
     RCCSetClock(inBPin3.m_pGpio,inBPin3.m_nGpioClk, ENABLE);
- */   
+*/    
     //configure the GPIO pins    
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
@@ -116,7 +89,7 @@ void VNH3SP30TRDriver::Initialize(TIM_TypeDef* pPwmTimer,
     
     GPIO_InitStructure.GPIO_Pin = inBPin3.m_nPin;
     GPIO_Init(inBPin3.m_pGpio, &GPIO_InitStructure);
-/*
+
     //configure the PWM pin
     //enable the GPIO clocks
     RCCSetClock(pwmPin.m_pGpio,pwmPin.m_nGpioClk, ENABLE);
@@ -165,7 +138,7 @@ void VNH3SP30TRDriver::Initialize(TIM_TypeDef* pPwmTimer,
 
     // TIM3 enable counter 
     TIM_Cmd(pPwmTimer, ENABLE);
-*/
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -173,42 +146,22 @@ void VNH3SP30TRDriver::SetMode(const VNH3SP30TRDriver::Mode eMode)
 {
     switch(eMode){
         case eModeForward:
-            GPIO_SetBits(GPIOD,GPIO_Pin_5);
-            GPIO_ResetBits(GPIOD,GPIO_Pin_4);
-            
-            GPIO_SetBits(GPIOE,GPIO_Pin_10);
-            GPIO_ResetBits(GPIOA,GPIO_Pin_10);
-            
-            GPIO_SetBits(GPIOD,GPIO_Pin_14);
-            GPIO_ResetBits(GPIOD,GPIO_Pin_15);
-            
-/*            GPIO_SetBits(m_InAPin.m_pGpio,m_InAPin.m_nPin);
             GPIO_ResetBits(m_InBPin.m_pGpio,m_InBPin.m_nPin);
-
-            GPIO_SetBits(m_InAPin2.m_pGpio,m_InAPin2.m_nPin);
             GPIO_ResetBits(m_InBPin2.m_pGpio,m_InBPin2.m_nPin);
-
-            GPIO_SetBits(m_InAPin3.m_pGpio,m_InAPin3.m_nPin);
             GPIO_ResetBits(m_InBPin3.m_pGpio,m_InBPin3.m_nPin);
-*/            break;
+            GPIO_SetBits(m_InAPin2.m_pGpio,m_InAPin2.m_nPin);
+            GPIO_SetBits(m_InAPin.m_pGpio,m_InAPin.m_nPin);
+            GPIO_SetBits(m_InAPin3.m_pGpio,m_InAPin3.m_nPin);
+            break;
 
         case eModeReverse:
-            //GPIO_ResetBits(GPIOD,GPIO_Pin_5);
-            //GPIO_SetBits(GPIOD,GPIO_Pin_4);
-            
-            //GPIO_ResetBits(GPIOE,GPIO_Pin_10);
-           // GPIO_SetBits(GPIOA,GPIO_Pin_10);
-            
-           // GPIO_ResetBits(GPIOD,GPIO_Pin_14);
-/*            GPIO_ResetBits(m_InAPin.m_pGpio,m_InAPin.m_nPin);
-            GPIO_SetBits(m_InBPin.m_pGpio,m_InBPin.m_nPin);
-
+            GPIO_ResetBits(m_InAPin.m_pGpio,m_InAPin.m_nPin);
             GPIO_ResetBits(m_InAPin2.m_pGpio,m_InAPin2.m_nPin);
-            GPIO_SetBits(m_InBPin2.m_pGpio,m_InBPin2.m_nPin);
-
             GPIO_ResetBits(m_InAPin3.m_pGpio,m_InAPin3.m_nPin);
+            GPIO_SetBits(m_InBPin.m_pGpio,m_InBPin.m_nPin);
+            GPIO_SetBits(m_InBPin2.m_pGpio,m_InBPin2.m_nPin);
             GPIO_SetBits(m_InBPin3.m_pGpio,m_InBPin3.m_nPin);
-*/            break;
+            break;
 
         case eModeBrakeGND:
             GPIO_ResetBits(m_InAPin.m_pGpio,m_InAPin.m_nPin);

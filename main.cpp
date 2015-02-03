@@ -63,7 +63,7 @@ int main(void)
   Module module;
     
   //module.SetRgbLed(true,true,true);
-  module.Delay_ms(500);
+  module.Delay_ms(100);
   //module.SetRgbLed(false,false,false);
     
   module.Initialize();
