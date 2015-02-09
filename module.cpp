@@ -57,7 +57,7 @@ void Module::Run()
 {
     float val = 0.0;
     int LoopCounter = 1;
-    ADC_SoftwareStartConv(ADC1);
+//    ADC_SoftwareStartConv(ADC1);
     //m_MainMotorDriver.SetSpeed(0.3f);
     
     while(1)
@@ -145,20 +145,22 @@ void Module::Run()
         */
         /////////////////////////////// Test Motor
         /*
+        SetRgbLed(true,false);
         m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeForward);
-        for(int j=10000; j>5; j--)
+        for(int j=10; j>1; j--)
         {
-          m_MainMotorDriver.SetSpeed(((float)j/10000));
-          for(int ii = 0; ii < 10000; ii++){}
+          //m_MainMotorDriver.SetSpeed(((float)j/10000));
+          Delay_ms(10);
         }
-        //m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeReverse);
-        for(int j=5; j<10000; j++)
+        SetRgbLed(false,true);
+        m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeReverse);
+        for(int j=1; j<10; j++)
         {
-          m_MainMotorDriver.SetSpeed(((float)j/10000));
-          for(int ii = 0; ii < 10000; ii++){}
+          //m_MainMotorDriver.SetSpeed(((float)j/10000));
+          Delay_ms(10);
         }
         //m_MainMotorDriver.SetSpeed(0.2f);
-        
+        */
         ///////////////////////////////// Test MPU9150
          // char TempData[21];
           //Enable DataReady Interrupt of sensor
@@ -176,14 +178,17 @@ void Module::Run()
         //MyEncoders.GetEncoderPoses(&MyPoses);
         
         ///////////////////////////////// Led Test
-       */ 
+        
 
+          m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeForward);
           SetRgbLed(true,false);
           Delay_ms(100);
-          
+          //GPIO_ResetBits(GPIOB,GPIO_Pin_8);
+          //m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeReverse);
           SetRgbLed(false,true);
           Delay_ms(100);
-          
+          //m_MainMotorDriver.SetSpeed(0.5);
+          //GPIO_SetBits(GPIOB,GPIO_Pin_8);
     /* Update IWDG counter */
     IWDG_ReloadCounter();
       
@@ -228,30 +233,33 @@ void Module::Delay_ms(int delay)
 
 void Module::Initialize()
 {
-    ConfigurePwm();
+    //ConfigurePwm();
     ConfigureLed();
-    ConfigureADC();
+    //ConfigureADC();
     
     //MyEncoders.Config();
 
     //m_MPU9150Driver.initialise();
-
  //initialize the motor driver
-    m_MainMotorDriver.Initialize(TIM10,
-                                 RCC_APB2Periph_TIM10,
+    m_MainMotorDriver.Initialize(TIM4,
+                                 RCC_APB1Periph_TIM4,
                                  GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_5),
                                  GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_4),
                                  GPIO_Pin(GPIOE,RCC_AHB1Periph_GPIOE,GPIO_Pin_10),
-                                 GPIO_Pin(GPIOA,RCC_AHB1Periph_GPIOA,GPIO_Pin_10),
+                                 GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_13),//A10
                                  //GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_9,GPIO_PinSource9,GPIO_AF_TIM11),
                                  GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_14),
                                  GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_15),
-                                 GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_8,GPIO_PinSource8,GPIO_AF_TIM10));
+                                 GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_8,GPIO_PinSource8,GPIO_AF_TIM4));
                                  //GPIO_Pin(GPIOE,RCC_AHB1Periph_GPIOE,GPIO_Pin_5,GPIO_PinSource5,GPIO_AF_TIM9));
-    //m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeReverse);//eModeForward
-    //m_MainMotorDriver.SetSpeed(0.5f);
-    
-   
+    m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeReverse);//eModeForward
+    //m_MainMotorDriver.SetSpeed(0.9);
+
+
+//////////////////////////////////////////////////
+  ConfigurePwm_test();
+    int nClampedPos = (0.5 * (float)(m_nPwmMax-m_nPwmMin) ) + m_nPwmMin;
+    TIM_SetCompare1(TIM4, nClampedPos);   
     //SetServoPos(0,0.5);
 
     //m_ComsDriver.Initialize(GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_10,GPIO_PinSource10,GPIO_AF_USART3),
@@ -273,7 +281,6 @@ void Module::Initialize()
           Delay_ms(100);
           
           Init_WatchDog();
-          
 }
 
 void Module::ADC_Push2Pack(Transmit_CommandPacket &_data)
@@ -441,6 +448,81 @@ void Module::ConfigurePwm()
     /* TIM3 enable counter */
     TIM_Cmd(TIM4, ENABLE);
 }
+///////////////////////////////////////////////////////////////////////////////
+void Module::ConfigurePwm_test()
+{
+    //configure the GPIO pins
+    RCCSetClock(GPIOB,RCC_AHB1Periph_GPIOB,ENABLE);
+
+    GPIO_InitTypeDef GPIO_InitStructure;
+    GPIO_StructInit(&GPIO_InitStructure);
+
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+    GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
+    GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+
+    // pin configuration
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
+    GPIO_Init(GPIOB, &GPIO_InitStructure);
+
+    GPIO_PinAFConfig(GPIOB, GPIO_PinSource8,GPIO_AF_TIM4);
+
+    RCCSetClock(TIM4,RCC_APB1Periph_TIM4,ENABLE);
+
+    RCC_ClocksTypeDef RCC_Clocks;
+    RCC_GetClocksFreq(&RCC_Clocks);
+
+    //configure the timer
+    TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
+    TIM_TimeBaseStructInit(&TIM_TimeBaseStructure);
+
+    // Compute the prescaler value
+    //200Khz timer clock, period at 2ms equals [0.01 / (1/2000000)] = 20000 ticks
+    //therefore servo positions between 1ms and 2ms equal 2000->4000 ticks (repeated 100 times a second)
+    int a = (int)RCC_Clocks.PCLK2_Frequency;
+    uint16_t prescalerValue = (uint16_t)((double)RCC_Clocks.PCLK2_Frequency / (double)m_nPwmFreq) - 1;
+
+    // Time base configuration
+    TIM_TimeBaseStructure.TIM_Period = m_nPwmPeriod;
+    TIM_TimeBaseStructure.TIM_Prescaler = (uint16_t)prescalerValue;
+    TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+    TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+
+    TIM_TimeBaseInit(TIM4, &TIM_TimeBaseStructure);
+
+    /* -----------------------------------------------------------------------
+    TIM3 Configuration: generate 4 PWM signals with 4 different duty cycles:
+    The TIM3CLK frequency is set to SystemCoreClock / 2  (Hz), to get TIM3 counter
+    clock at 20 MHz the Prescaler is computed as following:
+    - Prescaler = (TIM3CLK / TIM3 counter clock) - 1
+    SystemCoreClock is set to 120 MHz for STM32F2xx devices
+
+    The TIM3 is running at 30 KHz: TIM3 Frequency = TIM3 counter clock/(ARR + 1)
+                                          = 20 MHz / 666 = 30 KHz
+    TIM3 Channel1 duty cycle = (TIM3_CCR1/ TIM3_ARR)* 100 = 50%
+    TIM3 Channel2 duty cycle = (TIM3_CCR2/ TIM3_ARR)* 100 = 37.5%
+    TIM3 Channel3 duty cycle = (TIM3_CCR3/ TIM3_ARR)* 100 = 25%
+    TIM3 Channel4 duty cycle = (TIM3_CCR4/ TIM3_ARR)* 100 = 12.5%
+    ----------------------------------------------------------------------- */
+
+    TIM_OCInitTypeDef OCInitStructure;
+    TIM_OCStructInit(&OCInitStructure);
+
+    /* PWM1 Mode configuration: Channel1 */
+    OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+    OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+    OCInitStructure.TIM_Pulse = m_nPwmMid;
+    OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
+
+    TIM_OC1Init(TIM4, &OCInitStructure);
+    TIM_OC1PreloadConfig(TIM4, TIM_OCPreload_Enable);
+
+    TIM_ARRPreloadConfig(TIM4, ENABLE);
+
+    /* TIM3 enable counter */
+    TIM_Cmd(TIM4, ENABLE);
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 void Module::ConfigureLed()
@@ -515,46 +597,6 @@ void Module::SetServoPos(const int nServo, const float dPos)
     }
 }
 
-void Module::ConfigureBLDC()
-{
-
-    //Enable PIOE clock which controls the LED
-    //RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE,ENABLE);
-
-  /*  GPIO_InitTypeDef GPIO_InitStructure;
-    GPIO_StructInit(&GPIO_InitStructure);
-
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
-    GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-    GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5|GPIO_Pin_4|GPIO_Pin_14|GPIO_Pin_15;
-    GPIO_Init(GPIOD, &GPIO_InitStructure);
-    
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
-    GPIO_Init(GPIOE, &GPIO_InitStructure);
-    
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
-    GPIO_Init(GPIOA, &GPIO_InitStructure);
- */   
-   
-//initialize the motor driver
-    m_MainMotorDriver.Initialize(TIM10,
-                                 RCC_APB2Periph_TIM10,
-                                 GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_5),
-                                 GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_4),
-                                 GPIO_Pin(GPIOE,RCC_AHB1Periph_GPIOE,GPIO_Pin_10),
-                                 GPIO_Pin(GPIOA,RCC_AHB1Periph_GPIOA,GPIO_Pin_10),
-                                 //GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_9,GPIO_PinSource9,GPIO_AF_TIM11),
-                                 GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_14),
-                                 GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_15),
-                                 GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_8,GPIO_PinSource8,GPIO_AF_TIM10));
-                                 //GPIO_Pin(GPIOE,RCC_AHB1Periph_GPIOE,GPIO_Pin_5,GPIO_PinSource5,GPIO_AF_TIM9));
- /*   m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeReverse);//eModeForward
-    m_MainMotorDriver.SetSpeed(0.5f);
-    */
-}
 //-----------------------------------------------------------------------------
 // Configure the interrupts for the module
 //-----------------------------------------------------------------------------

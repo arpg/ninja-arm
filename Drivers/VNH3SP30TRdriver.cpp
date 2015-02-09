@@ -3,7 +3,7 @@
 #include "stm32f2xx_rcc.h"
 #include "stm32f2xx_tim.h"
 #include "stm32f2xx_gpio.h"
-//#include <algorithm>
+//#include <algorithm.h>
 
 uint16_t VNH3SP30TRDriver::m_nPwmPeriod = 27;
 
@@ -13,22 +13,6 @@ VNH3SP30TRDriver::VNH3SP30TRDriver()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-/*void VNH3SP30TRDriver::Initialize(TIM_TypeDef* pPwmTimer,
-                                  const uint32_t pwmTimerClk,
-                                  TIM_TypeDef* pPwmTimer2,
-                                  const uint32_t pwmTimerClk2,
-                                  TIM_TypeDef* pPwmTimer3,
-                                  const uint32_t pwmTimerClk3,
-                                  const GPIO_Pin inAPin,
-                                  const GPIO_Pin inBPin,
-                                  const GPIO_Pin pwmPin,
-                                  const GPIO_Pin inAPin2,
-                                  const GPIO_Pin inBPin2,
-                                  const GPIO_Pin pwmPin2,
-                                  const GPIO_Pin inAPin3,
-                                  const GPIO_Pin inBPin3,
-                                  const GPIO_Pin pwmPin3
-                                  )*/
 void VNH3SP30TRDriver::Initialize(TIM_TypeDef* pPwmTimer,
                                   const uint32_t pwmTimerClk,
                                   const GPIO_Pin inAPin,
@@ -57,7 +41,7 @@ void VNH3SP30TRDriver::Initialize(TIM_TypeDef* pPwmTimer,
     GPIO_StructInit(&GPIO_InitStructure);
 
     //enable the GPIO clocks
-/*    RCCSetClock(inAPin.m_pGpio,inAPin.m_nGpioClk, ENABLE);
+    RCCSetClock(inAPin.m_pGpio,inAPin.m_nGpioClk, ENABLE);
     RCCSetClock(inBPin.m_pGpio,inBPin.m_nGpioClk, ENABLE);
     
     RCCSetClock(inAPin2.m_pGpio,inAPin2.m_nGpioClk, ENABLE);
@@ -65,10 +49,10 @@ void VNH3SP30TRDriver::Initialize(TIM_TypeDef* pPwmTimer,
     
     RCCSetClock(inAPin3.m_pGpio,inAPin3.m_nGpioClk, ENABLE);
     RCCSetClock(inBPin3.m_pGpio,inBPin3.m_nGpioClk, ENABLE);
-*/    
+    
     //configure the GPIO pins    
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
     GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
     GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;
 
@@ -89,15 +73,15 @@ void VNH3SP30TRDriver::Initialize(TIM_TypeDef* pPwmTimer,
     
     GPIO_InitStructure.GPIO_Pin = inBPin3.m_nPin;
     GPIO_Init(inBPin3.m_pGpio, &GPIO_InitStructure);
-
+/*
     //configure the PWM pin
     //enable the GPIO clocks
     RCCSetClock(pwmPin.m_pGpio,pwmPin.m_nGpioClk, ENABLE);
 
     //configure the GPIO pins   
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
-    GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+    GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
     GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;
     
     //configure pin AF
@@ -135,10 +119,10 @@ void VNH3SP30TRDriver::Initialize(TIM_TypeDef* pPwmTimer,
     TIM_OC1Init(pPwmTimer, &OCInitStructure);
 
     TIM_OC1PreloadConfig(pPwmTimer, TIM_OCPreload_Enable);
-
+    TIM_ARRPreloadConfig(pPwmTimer, ENABLE);
     // TIM3 enable counter 
     TIM_Cmd(pPwmTimer, ENABLE);
-
+*/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -155,6 +139,7 @@ void VNH3SP30TRDriver::SetMode(const VNH3SP30TRDriver::Mode eMode)
             break;
 
         case eModeReverse:
+            
             GPIO_ResetBits(m_InAPin.m_pGpio,m_InAPin.m_nPin);
             GPIO_ResetBits(m_InAPin2.m_pGpio,m_InAPin2.m_nPin);
             GPIO_ResetBits(m_InAPin3.m_pGpio,m_InAPin3.m_nPin);
@@ -188,16 +173,11 @@ void VNH3SP30TRDriver::SetMode(const VNH3SP30TRDriver::Mode eMode)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void VNH3SP30TRDriver::SetSpeed(float nSpeed)
+void VNH3SP30TRDriver::SetSpeed(const float nSpeed)
 {
-    //clamp the speed
-    if(nSpeed < 0.05){
-        nSpeed = 0;
-    }
-    nSpeed *= 1;  // Calibration Parameter
 
     //int nClampedSpeed = std::max(0,std::min((int)m_nPwmPeriod,(int)(nSpeed*(float)m_nPwmPeriod)));
-    int nClampedSpeed;
+    int nClampedSpeed = (int)(nSpeed*(float)m_nPwmPeriod);
     float dClampedPos;
     if((int)m_nPwmPeriod>(int)(nSpeed*(float)m_nPwmPeriod))
       nClampedSpeed = (int)(nSpeed*(float)m_nPwmPeriod);

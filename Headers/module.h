@@ -42,6 +42,7 @@ class Module : InterruptTemplate
       void ConfigureLed();
       void ConfigureADC();
       void ConfigurePwm();
+      void ConfigurePwm_test();
       void ConfigureInterrupts();
       void Adc_Comm_Init();
       void Adc_Channel_Init();

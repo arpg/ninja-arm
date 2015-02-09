@@ -58,7 +58,7 @@ int main(void)
   unsigned long int a2 = RCC_Clocks.HCLK_Frequency;
   unsigned long int a3 = RCC_Clocks.PCLK1_Frequency;
   unsigned long int a4 = RCC_Clocks.PCLK2_Frequency;
-  SysTick_Config(RCC_Clocks.HCLK_Frequency / 100);
+  SysTick_Config(RCC_Clocks.HCLK_Frequency / 200);
 
   Module module;
     
