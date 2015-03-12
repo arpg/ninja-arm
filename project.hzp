@@ -43,9 +43,6 @@
       <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc" />
       <file file_name="main.cpp" />
       <file file_name="module.cpp" />
-      <file file_name="Drivers/MPU9150Driver.cpp">
-        <configuration Name="THUMB Debug" build_exclude_from_build="Yes" />
-      </file>
       <file file_name="ShaftEncoder.cpp" />
       <file file_name="Math/mathRoutines.cpp" />
       <file file_name="Math/matrix.cpp" />
@@ -57,6 +54,9 @@
       <file file_name="Utilities/InterruptTemplate.cpp" />
       <file file_name="stm32f2xx_it.cpp" />
       <file file_name="Utilities/Utils.cpp" />
+      <file file_name="Drivers/MPU9150Driver.cpp" />
+      <file file_name="Drivers/MPU9150driverDMA.cpp" />
+      <file file_name="Drivers/USART3DMA.cpp" />
     </folder>
     <folder
       Name="Driver Files"

@@ -4,7 +4,7 @@
 // This file contains the implementation of the I2C driver to communicate with
 // the MPU9150 sensor
 //
-// Author: Nima Keivan
+// Author: Nima Keivan, Sina Aghli
 //-----------------------------------------------------------------------------
 
 #include "stm32f2xx_exti.h"
@@ -71,10 +71,10 @@
 //-----------------------------------------------------------------------------
 // I2C can operate either in fast mode or standard mode
 //-----------------------------------------------------------------------------
-#define MPU9150_FAST_I2C_MODE//STANDARD_I2C_MODE
+#define STANDARD_I2C_MODE   //MPU9150_FAST_I2C_MODE
 
 #ifdef MPU9150_FAST_I2C_MODE
-#define MPU9150_I2C_SPEED 340000
+#define MPU9150_I2C_SPEED       340000
 #define MPU9150_I2C_DUTYCYCLE I2C_DutyCycle_16_9
 #else /* STANDARD_I2C_MODE*/
 #define MPU9150_I2C_SPEED       1000000
@@ -96,7 +96,7 @@
 //-----------------------------------------------------------------------------
 // Address of the MPU9150 itself
 //-----------------------------------------------------------------------------
-//ATTENTION   ATTENTION
+//ATTENTION
 // the 10-bit mode, the address is written to bits [0 .. 9], and in 7-bit - in bits [1 .. 7]
 // For Example for slave address 0b1101000 (0x68) you should enter 0x11010000 (0xD0)
 #define MPU9150_ADDRESS         0x68<<1  // b1101000

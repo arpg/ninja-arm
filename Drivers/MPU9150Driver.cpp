@@ -124,7 +124,7 @@ bool MPU9150Driver::getRegister(char DesAddress, char RegAddress, char &value)
     
     //send the register and wait for EV8_2 which means the byte has gone out
     I2C_SendData(MPU9150_I2Cx, RegAddress);
-//    while (!I2C_CheckEvent(MPU9150_I2Cx, I2C_EVENT_MASTER_BYTE_TRANSMITTED)) {}
+    //while (!I2C_CheckEvent(MPU9150_I2Cx, I2C_EVENT_MASTER_BYTE_TRANSMITTED)) {}
     for(ii=0;ii<loops;++ii)
       if(I2C_CheckEvent(MPU9150_I2Cx, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
         break;
@@ -132,7 +132,7 @@ bool MPU9150Driver::getRegister(char DesAddress, char RegAddress, char &value)
 
     //generate a ReStart condition and wait for it to go through (the SB flag to be set)
     I2C_GenerateSTART(MPU9150_I2Cx, ENABLE);
-//    while (!I2C_CheckEvent(MPU9150_I2Cx, I2C_EVENT_MASTER_MODE_SELECT)) {}
+    //while (!I2C_CheckEvent(MPU9150_I2Cx, I2C_EVENT_MASTER_MODE_SELECT)) {}
     for(ii=0;ii<loops;++ii)
       if(I2C_CheckEvent(MPU9150_I2Cx, I2C_EVENT_MASTER_MODE_SELECT))
         break;

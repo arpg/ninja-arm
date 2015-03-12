@@ -19,7 +19,7 @@
 #include <string.h>
 //#include "imuKalman.h"
 #include "interruptTemplate.h"
-#include "UartPacketDriver.h"
+//#include "UartPacketDriver.h"
 
 //#include "LSM303Driver.h"
 //#include "IMU3000Driver.h"
@@ -33,6 +33,8 @@ uint16_t Module::m_nPwmPeriod = 0.006 / (1.0/(double)Module::m_nPwmFreq);//0.02 
 uint16_t Module::m_nPwmMin = 320;//0.01 / (1.0/(double)Module::m_nPwmFreq);
 uint16_t Module::m_nPwmMax = 590;//0.2 / (1.0/(double)Module::m_nPwmFreq);
 uint16_t Module::m_nPwmMid = (Module::m_nPwmMax-Module::m_nPwmMin)*0.5+Module::m_nPwmMin;//0.0015 / (1.0/(double)Module::m_nPwmFreq);
+uint16_t Module::acc_MaxRange = 480;
+uint16_t Module::acc_MinRange = 450;
 
 __IO uint16_t ADC1ConvertedValue[6] = {0,0,0,0,0,0};
 __IO uint32_t ADC1ConvertedVoltage = 0;
@@ -57,12 +59,14 @@ void Module::Run()
 {
     float val = 0.0;
     int LoopCounter = 1;
-//    ADC_SoftwareStartConv(ADC1);
+    unsigned int a=450;
+    unsigned int b=0;
+    ADC_SoftwareStartConv(ADC1);
     //m_MainMotorDriver.SetSpeed(0.3f);
     
     while(1)
     {
-/*    
+    
         unsigned char pPacketData[256];
         memset(pPacketData, 0, 256);
         short nLengthOut=5;
@@ -71,10 +75,10 @@ void Module::Run()
 //  Transmit New Package
 ////////////////////////////////////////////////////////////////
         Transmit_CommandPacket TCmdPack;
-        m_MPU9150Driver.Push2Pack(TCmdPack);
+//        m_MPU9150Driver.Push2Pack(TCmdPack);
         MyEncoders.Push2Pack(TCmdPack);
         ADC_Push2Pack(TCmdPack);
-        m_ComsDriver.AddChecksum(TCmdPack);
+/*        m_ComsDriver.AddChecksum(TCmdPack);
         m_ComsDriver.beginWritePacket(&TCmdPack.m_cDelimiter1,TCmdPack.m_cSize);
           
 ////////////////////////////////////////////////////////////////
@@ -124,13 +128,12 @@ void Module::Run()
         }
 */
         ///////////////////////////////// USART Transmit package
-
-/*
         CommandPacket CMDPACK;
         CMDPACK.m_nSteering = 65532;
         CMDPACK.m_nSpeed = -12345;
+        IWDG_ReloadCounter();
+        //m_ComsDriver.beginWritePacket(&CMDPACK.m_cDelimiter1,2);
         m_ComsDriver.beginWritePacket(&CMDPACK.m_cDelimiter1,(short int)CMDPACK.m_cSize);
-*/
         ///////////////////////////////// ADC Test
         //int Pot1Value = (int)ADC1->DR;//ADC1ConvertedValue;
         //int Pot2Value = ADC1ConvertedValue[0];
@@ -162,34 +165,31 @@ void Module::Run()
         //m_MainMotorDriver.SetSpeed(0.2f);
         */
         ///////////////////////////////// Test MPU9150
-         // char TempData[21];
+      /*    char TempData[21];
           //Enable DataReady Interrupt of sensor
-          //m_MPU9150Driver.getRegister(0x38,TempData);
+          m_MPU9150Driver.getRegister(MPU9150_ADDRESS,0x38,TempData[0]);
           
-         // m_MPU9150Driver.getRegister(0x38,TempData);
+          m_MPU9150Driver.getRegister(MPU9150_ADDRESS,0x38,TempData[1]);
 
           
-          //m_MPU9150Driver.setRegister(MPU9150_Ext_IRQen,1);
-          //MPU9150_Data_Structure IMU;
-          //m_MPU9150Driver.getData(IMU);
-          //m_MPU9150Driver.getRegister(MPU9150_ACCEL_XOUT_H,TempData);
+          m_MPU9150Driver.setRegister(MPU9150_Ext_IRQen,1);
+          MPU9150_Data_Structure IMU;
+          m_MPU9150Driver.getData(IMU);
+          m_MPU9150Driver.getRegister(MPU9150_ADDRESS,MPU9150_ACCEL_XOUT_H,TempData[2]);*/
         ///////////////////////////////// Encoder Test
         //EncoderPoses MyPoses;
         //MyEncoders.GetEncoderPoses(&MyPoses);
         
         ///////////////////////////////// Led Test
-        
 
-          m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeForward);
+          //m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeForward);
           SetRgbLed(true,false);
           Delay_ms(100);
-          //GPIO_ResetBits(GPIOB,GPIO_Pin_8);
           //m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeReverse);
           SetRgbLed(false,true);
           Delay_ms(100);
           //m_MainMotorDriver.SetSpeed(0.5);
-          //GPIO_SetBits(GPIOB,GPIO_Pin_8);
-    /* Update IWDG counter */
+    // Update IWDG counter
     IWDG_ReloadCounter();
       
     }
@@ -210,7 +210,7 @@ Counter Reload Value = 250ms/IWDG counter clock period
 = LsiFreq/(32 * 4)
 = LsiFreq/128
 */
-  IWDG_SetReload(200);
+  IWDG_SetReload(600);
 
   /* Reload IWDG counter */
   IWDG_ReloadCounter();
@@ -233,39 +233,38 @@ void Module::Delay_ms(int delay)
 
 void Module::Initialize()
 {
-    //ConfigurePwm();
+    ConfigurePwm();
     ConfigureLed();
-    //ConfigureADC();
+/////////////
+    ConfigureADC();
+//    m_MPU9150Driver.initialise();
     
-    //MyEncoders.Config();
+    MyEncoders.Config();
 
-    //m_MPU9150Driver.initialise();
- //initialize the motor driver
-    m_MainMotorDriver.Initialize(TIM4,
-                                 RCC_APB1Periph_TIM4,
-                                 GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_5),
+    //initialize the motor driver
+/*    m_MainMotorDriver.Initialize(TIM10,RCC_APB2Periph_TIM10,
+                                 GPIO_Pin(GPIOE,RCC_AHB1Periph_GPIOE,GPIO_Pin_13),
+                                 //GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_5),
                                  GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_4),
                                  GPIO_Pin(GPIOE,RCC_AHB1Periph_GPIOE,GPIO_Pin_10),
                                  GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_13),//A10
-                                 //GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_9,GPIO_PinSource9,GPIO_AF_TIM11),
                                  GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_14),
                                  GPIO_Pin(GPIOD,RCC_AHB1Periph_GPIOD,GPIO_Pin_15),
-                                 GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_8,GPIO_PinSource8,GPIO_AF_TIM4));
-                                 //GPIO_Pin(GPIOE,RCC_AHB1Periph_GPIOE,GPIO_Pin_5,GPIO_PinSource5,GPIO_AF_TIM9));
+                                 GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_8,GPIO_PinSource8,GPIO_AF_TIM10));
+                                 //GPIO_Pin(GPIOE,RCC_AHB1Periph_GPIOE,GPIO_Pin_13,GPIO_PinSource13,GPIO_AF_TIM1));
+                                 
     m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeReverse);//eModeForward
-    //m_MainMotorDriver.SetSpeed(0.9);
+    m_MainMotorDriver.SetSpeed(0.9);
+*/
 
+    SetServoPos(0,0.9);
+    SetServoPos(1,0.9);
 
-//////////////////////////////////////////////////
-  ConfigurePwm_test();
-    int nClampedPos = (0.5 * (float)(m_nPwmMax-m_nPwmMin) ) + m_nPwmMin;
-    TIM_SetCompare1(TIM4, nClampedPos);   
-    //SetServoPos(0,0.5);
+    m_ComsDriver.Initialize(GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_10,GPIO_PinSource10,GPIO_AF_USART3),
+                            GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_11,GPIO_PinSource11,GPIO_AF_USART3),
+                            GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_13,GPIO_PinSource13,GPIO_AF_USART3),
+                            GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_14,GPIO_PinSource14,GPIO_AF_USART3));
 
-    //m_ComsDriver.Initialize(GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_10,GPIO_PinSource10,GPIO_AF_USART3),
-    //                        GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_11,GPIO_PinSource11,GPIO_AF_USART3),
-    //                        GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_13,GPIO_PinSource13,GPIO_AF_USART3),
-    //                        GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_14,GPIO_PinSource14,GPIO_AF_USART3));
     //configure the timer used to measure the dT between
     //consecutive cycles
 //                configureTimer();
@@ -274,13 +273,15 @@ void Module::Initialize()
 //		_imu3000.initialise();
 //		_venusGps.initialise();
 
-		//configureInterrupts();
-          SetRgbLed(false,false);
-          Delay_ms(100);
-          SetRgbLed(true,true);
-          Delay_ms(100);
-          
-          Init_WatchDog();
+	//	ConfigureInterrupts();
+/*  
+    usart3driver.RCC_Configuration();
+    usart3driver.NVIC_Configuration();
+    usart3driver.GPIO_Configuration();
+    usart3driver.USART3_Configuration();
+    usart3driver.DMA_Configuration();
+*/
+    //Init_WatchDog();
 }
 
 void Module::ADC_Push2Pack(Transmit_CommandPacket &_data)
@@ -388,10 +389,11 @@ void Module::ConfigurePwm()
     GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
 
     // pin configuration
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12;
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12|GPIO_Pin_13;
     GPIO_Init(GPIOD, &GPIO_InitStructure);
 
     GPIO_PinAFConfig(GPIOD, GPIO_PinSource12,GPIO_AF_TIM4);
+    GPIO_PinAFConfig(GPIOD, GPIO_PinSource13,GPIO_AF_TIM4);
 
     RCCSetClock(TIM4,RCC_APB1Periph_TIM4,ENABLE);
 
@@ -411,7 +413,7 @@ void Module::ConfigurePwm()
     // Time base configuration
     TIM_TimeBaseStructure.TIM_Period = m_nPwmPeriod;
     TIM_TimeBaseStructure.TIM_Prescaler = (uint16_t)prescalerValue;
-    TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+    TIM_TimeBaseStructure.TIM_ClockDivision = 1;//0;
     TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
 
     TIM_TimeBaseInit(TIM4, &TIM_TimeBaseStructure);
@@ -434,7 +436,7 @@ void Module::ConfigurePwm()
     TIM_OCInitTypeDef OCInitStructure;
     TIM_OCStructInit(&OCInitStructure);
 
-    /* PWM1 Mode configuration: Channel1 */
+    // PWM1 Mode configuration: Channel1
     OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
     OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
     OCInitStructure.TIM_Pulse = m_nPwmMid;
@@ -443,84 +445,20 @@ void Module::ConfigurePwm()
     TIM_OC1Init(TIM4, &OCInitStructure);
     TIM_OC1PreloadConfig(TIM4, TIM_OCPreload_Enable);
 
-    TIM_ARRPreloadConfig(TIM4, ENABLE);
-
-    /* TIM3 enable counter */
-    TIM_Cmd(TIM4, ENABLE);
-}
-///////////////////////////////////////////////////////////////////////////////
-void Module::ConfigurePwm_test()
-{
-    //configure the GPIO pins
-    RCCSetClock(GPIOB,RCC_AHB1Periph_GPIOB,ENABLE);
-
-    GPIO_InitTypeDef GPIO_InitStructure;
-    GPIO_StructInit(&GPIO_InitStructure);
-
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
-    GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
-    GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-
-    // pin configuration
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
-    GPIO_Init(GPIOB, &GPIO_InitStructure);
-
-    GPIO_PinAFConfig(GPIOB, GPIO_PinSource8,GPIO_AF_TIM4);
-
-    RCCSetClock(TIM4,RCC_APB1Periph_TIM4,ENABLE);
-
-    RCC_ClocksTypeDef RCC_Clocks;
-    RCC_GetClocksFreq(&RCC_Clocks);
-
-    //configure the timer
-    TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
-    TIM_TimeBaseStructInit(&TIM_TimeBaseStructure);
-
-    // Compute the prescaler value
-    //200Khz timer clock, period at 2ms equals [0.01 / (1/2000000)] = 20000 ticks
-    //therefore servo positions between 1ms and 2ms equal 2000->4000 ticks (repeated 100 times a second)
-    int a = (int)RCC_Clocks.PCLK2_Frequency;
-    uint16_t prescalerValue = (uint16_t)((double)RCC_Clocks.PCLK2_Frequency / (double)m_nPwmFreq) - 1;
-
-    // Time base configuration
-    TIM_TimeBaseStructure.TIM_Period = m_nPwmPeriod;
-    TIM_TimeBaseStructure.TIM_Prescaler = (uint16_t)prescalerValue;
-    TIM_TimeBaseStructure.TIM_ClockDivision = 0;
-    TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-
-    TIM_TimeBaseInit(TIM4, &TIM_TimeBaseStructure);
-
-    /* -----------------------------------------------------------------------
-    TIM3 Configuration: generate 4 PWM signals with 4 different duty cycles:
-    The TIM3CLK frequency is set to SystemCoreClock / 2  (Hz), to get TIM3 counter
-    clock at 20 MHz the Prescaler is computed as following:
-    - Prescaler = (TIM3CLK / TIM3 counter clock) - 1
-    SystemCoreClock is set to 120 MHz for STM32F2xx devices
-
-    The TIM3 is running at 30 KHz: TIM3 Frequency = TIM3 counter clock/(ARR + 1)
-                                          = 20 MHz / 666 = 30 KHz
-    TIM3 Channel1 duty cycle = (TIM3_CCR1/ TIM3_ARR)* 100 = 50%
-    TIM3 Channel2 duty cycle = (TIM3_CCR2/ TIM3_ARR)* 100 = 37.5%
-    TIM3 Channel3 duty cycle = (TIM3_CCR3/ TIM3_ARR)* 100 = 25%
-    TIM3 Channel4 duty cycle = (TIM3_CCR4/ TIM3_ARR)* 100 = 12.5%
-    ----------------------------------------------------------------------- */
-
-    TIM_OCInitTypeDef OCInitStructure;
     TIM_OCStructInit(&OCInitStructure);
 
-    /* PWM1 Mode configuration: Channel1 */
+    // PWM1 Mode configuration: Channel2 
     OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
     OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
     OCInitStructure.TIM_Pulse = m_nPwmMid;
     OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
 
-    TIM_OC1Init(TIM4, &OCInitStructure);
-    TIM_OC1PreloadConfig(TIM4, TIM_OCPreload_Enable);
+    TIM_OC2Init(TIM4, &OCInitStructure);
+    TIM_OC2PreloadConfig(TIM4, TIM_OCPreload_Enable);
 
     TIM_ARRPreloadConfig(TIM4, ENABLE);
 
-    /* TIM3 enable counter */
+    // TIM4 enable counter
     TIM_Cmd(TIM4, ENABLE);
 }
 
@@ -576,6 +514,8 @@ void Module::SetServoPos(const int nServo, const float dPos)
       dClampedPos = dPos;
 
     int nClampedPos = (dClampedPos * (float)(m_nPwmMax-m_nPwmMin) ) + m_nPwmMin;
+    int nClampedAcc = (dClampedPos * (float)(acc_MaxRange-acc_MinRange) ) + acc_MinRange;
+
     //int nClampedPos = dPos;
     switch(nServo){
         case 0:
@@ -583,7 +523,7 @@ void Module::SetServoPos(const int nServo, const float dPos)
             break;
 
         case 1:
-            //TIM_SetCompare2(TIM4, nClampedPos);
+            TIM_SetCompare2(TIM4, nClampedAcc);
             break;
 
         case 2:
@@ -602,6 +542,7 @@ void Module::SetServoPos(const int nServo, const float dPos)
 //-----------------------------------------------------------------------------
 void Module::ConfigureInterrupts()
 {
+/*
     //register this class to receive interrupts
     InterruptTemplate::registerForInterrupt(TIM2_INTERRUPT_HANDLER,this);
     InterruptTemplate::registerForInterrupt(SYSTICK_INTERRUPT_HANDLER,this);
@@ -616,9 +557,7 @@ void Module::ConfigureInterrupts()
 
     //and now enable the Update (overflow) interrupt bit
     TIM_ITConfig(MODULE_TIMER,TIM_IT_Update, ENABLE);
-
-}
-/*
+*/
   NVIC_InitTypeDef NVIC_InitStructure;
   // Configure the preemption priority and subpriority:
   //   - 1 bits for pre-emption priority: possible value are 0 or 1 
@@ -629,7 +568,7 @@ void Module::ConfigureInterrupts()
 
   // Enable the WAKEUP_BUTTON_EXTI_IRQn Interrupt 
   NVIC_InitStructure.NVIC_IRQChannel = WAKEUP_BUTTON_EXTI_IRQn;
-  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = PreemptionPriorityValue;
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;//PreemptionPriorityValue;
   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
   NVIC_Init(&NVIC_InitStructure);
@@ -641,7 +580,6 @@ void Module::ConfigureInterrupts()
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
   NVIC_Init(&NVIC_InitStructure);
 }
-*/
 
 //-----------------------------------------------------------------------------
 // Systick interrupt handlers, synchronises the periodic tasks of the module
@@ -651,4 +589,23 @@ void Module::onInterruptSystick()
 
 
 }
+
+
+void Module::TIM3_Configuration(void)
+{
+    TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
+ 
+    TIM_TimeBaseStructure.TIM_Prescaler = 0;
+    TIM_TimeBaseStructure.TIM_Period = 65535; // Maximal
+    TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;
+    TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+ 
+    TIM_TimeBaseInit(TIM8, &TIM_TimeBaseStructure);
+ 
+    // TIM_EncoderMode_TI1: Counter counts on TI1FP1 edge depending on TI2FP2 level.
+    TIM_EncoderInterfaceConfig(TIM8, TIM_EncoderMode_TI1, TIM_ICPolarity_Rising, TIM_ICPolarity_Rising);
+     
+    TIM_Cmd(TIM8, ENABLE);
+}
+
 

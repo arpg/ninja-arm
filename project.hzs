@@ -4,11 +4,10 @@
   <BookmarkItem column="-1" line="12" path="/Users/Sina/rpg/ninja-arm/ShaftEncoder.cpp" number="1" extra="GPIO_InitStructurePan.GPIO_Pin = Encoder1_CHA_GPIO_Pin | Encoder1_CHB_GPIO_Pin;" name="unnamed" color="5" />
  </Bookmarks>
  <Breakpoints>
-  <BreakpointListItem line="164" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="4" counter="0" isFunctionBreakpoint="false" filename="/Users/Sina/rpg/ninja-arm/Drivers/VNH3SP30TRdriver.cpp" expression="" />
+  <BreakpointListItem line="97" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="4" counter="0" isFunctionBreakpoint="false" filename="/Users/Sina/rpg/ninja-arm/Drivers/VNH3SP30TRdriver.cpp" expression="" />
   <BreakpointListItem line="700" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="4" counter="0" isFunctionBreakpoint="false" filename="/Users/Sina/rpg/arm-ninja/Drivers/ftdicomsdriver.cpp" expression="" />
   <BreakpointListItem line="61" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="4" counter="0" isFunctionBreakpoint="false" filename="/Users/Sina/rpg/arm-ninja/main.cpp" expression="" />
-  <BreakpointListItem line="180" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="2" counter="0" isFunctionBreakpoint="false" filename="/Users/Sina/rpg/ninja-arm/module.cpp" expression="" />
-  <BreakpointListItem line="231" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="2" counter="0" isFunctionBreakpoint="false" filename="/Users/Sina/rpg/ninja-arm/module.cpp" expression="" />
+  <BreakpointListItem line="292" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="2" counter="0" isFunctionBreakpoint="false" filename="/Users/Sina/rpg/ninja-arm/module.cpp" expression="" />
   <BreakpointListItem line="1246" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="4" counter="0" isFunctionBreakpoint="false" filename="/Users/Sina/Documents/CrossWorks Projects/STM32F2xx_StdPeriph_Lib_V1.1.0/Libraries/STM32F2xx_StdPeriph_Driver/src/stm32f2xx_rcc.c" expression="" />
   <BreakpointListItem line="288" action="" hardwareBreakpoint="" trigger="" useHWbreakpoint="false" group="Breakpoints" type="Breakpoint" state="4" counter="0" isFunctionBreakpoint="false" filename="/Users/Sina/rpg/arm-ninja/system_stm32f2xx.c" expression="" />
  </Breakpoints>
@@ -54,6 +53,10 @@
  <Watch1>
   <Watches active="1" update="Never" >
    <Watchpoint linenumber="96" radix="2" name="a" expression="a" filename="/Users/Sina/rpg/ninja-arm/Drivers/VNH3SP30TRdriver.cpp" />
+   <Watchpoint linenumber="99" radix="11" name="m_nPwmPeriod" expression="VNH3SP30TRDriver::m_nPwmPeriod" filename="/Users/Sina/rpg/ninja-arm/Drivers/VNH3SP30TRdriver.cpp" />
+   <Watchpoint linenumber="451" radix="11" name="m_nPwmMid" expression="Module::m_nPwmMid" filename="/Users/Sina/rpg/ninja-arm/module.cpp" />
+   <Watchpoint linenumber="97" radix="11" name="prescalerValue" expression="prescalerValue" filename="/Users/Sina/rpg/ninja-arm/Drivers/VNH3SP30TRdriver.cpp" />
+   <Watchpoint evalMode="1" linenumber="287" evalType="1" radix="16" name="_data" expression="_data" filename="/Users/Sina/rpg/ninja-arm/module.cpp" />
   </Watches>
  </Watch1>
  <Watch2>
@@ -66,11 +69,11 @@
   <Watches active="0" update="Never" />
  </Watch4>
  <Files>
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/rpg/ninja-arm/main.cpp" y="44" path="/Users/Sina/rpg/ninja-arm/main.cpp" left="0" selected="0" name="unnamed" top="24" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="21" debugPath="/Users/Sina/rpg/ninja-arm/module.cpp" y="471" path="/Users/Sina/rpg/ninja-arm/module.cpp" left="0" selected="1" name="unnamed" top="456" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="2" debugPath="/Users/Sina/rpg/ninja-arm/Drivers/VNH3SP30TRdriver.cpp" y="75" path="/Users/Sina/rpg/ninja-arm/Drivers/VNH3SP30TRdriver.cpp" left="0" selected="0" name="unnamed" top="56" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/rpg/ninja-arm/stm32f2xx_it.cpp" y="62" path="/Users/Sina/rpg/ninja-arm/stm32f2xx_it.cpp" left="0" selected="0" name="unnamed" top="47" />
-  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/rpg/ninja-arm/Headers/module.h" y="44" path="/Users/Sina/rpg/ninja-arm/Headers/module.h" left="0" selected="0" name="unnamed" top="36" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/rpg/ninja-arm/main.cpp" y="44" path="/Users/Sina/rpg/ninja-arm/main.cpp" left="0" selected="0" name="unnamed" top="29" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="51" debugPath="/Users/Sina/rpg/ninja-arm/module.cpp" y="170" path="/Users/Sina/rpg/ninja-arm/module.cpp" left="0" selected="1" name="unnamed" top="158" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="19" debugPath="/Users/Sina/rpg/ninja-arm/Headers/module.h" y="67" path="/Users/Sina/rpg/ninja-arm/Headers/module.h" left="0" selected="0" name="unnamed" top="48" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="27" debugPath="/Users/Sina/rpg/ninja-arm/Drivers/MPU9150Driver.cpp" y="106" path="/Users/Sina/rpg/ninja-arm/Drivers/MPU9150Driver.cpp" left="0" selected="0" name="unnamed" top="0" />
+  <SessionOpenFile useTextEdit="1" useBinaryEdit="0" codecName="Default" x="0" debugPath="/Users/Sina/rpg/ninja-arm/Drivers/MPU9150Driver.h" y="0" path="/Users/Sina/rpg/ninja-arm/Drivers/MPU9150Driver.h" left="0" selected="0" name="unnamed" top="123" />
  </Files>
  <ARMCrossStudioWindow activeProject="Example" autoConnectTarget="Olimex ARM-USB-TINY" debugSearchFileMap="C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 3.2/include/stlport/stl/_algobase.h
 
@@ -139,5 +142,5 @@ Utilities/InterruptTemplate.h
 Utilities/Utils.h
 
 Utilities/interruptTemplate.h
-" fileDialogInitialDirectory="/Users/Sina/rpg/arm-ninja/Utilities" fileDialogDefaultFilter="*.c;*.cpp;*.cxx;*.cc;*.h;*.hpp;*.hxx" autoConnectCapabilities="266111" debugSearchPath="" buildConfiguration="THUMB Debug" />
+" fileDialogInitialDirectory="/Users/Sina/rpg/ninja-arm/Drivers" fileDialogDefaultFilter="*.c;*.cpp;*.cxx;*.cc;*.h;*.hpp;*.hxx" autoConnectCapabilities="266111" debugSearchPath="" buildConfiguration="THUMB Debug" />
 </session>

@@ -392,6 +392,18 @@ void InterruptTemplate::onNotifyInterruptDma2Stream3()
 //    }
 //}
 
+void InterruptTemplate::onInterruptDma1Stream1() {
+int a;
+a++;
+//do nothing
+}
+void InterruptTemplate::onInterruptDma1Stream3() {
+int a;
+a++;
+//do nothing
+}
+
+
 //-----------------------------------------------------------------------------
 // Empty function definitions
 //-----------------------------------------------------------------------------
@@ -408,11 +420,9 @@ void InterruptTemplate::onInterruptUsart3() {}
 void InterruptTemplate::onInterruptSpi1() {}
 void InterruptTemplate::onInterruptSpi2() {}
 void InterruptTemplate::onInterruptDma1Stream0() {}
-void InterruptTemplate::onInterruptDma1Stream1() {}
 void InterruptTemplate::onInterruptDma1Stream2() {}
-void InterruptTemplate::onInterruptDma1Stream3() {}
 void InterruptTemplate::onInterruptDma1Stream4() {}
-
 void InterruptTemplate::onInterruptDma2Stream0() {}
 void InterruptTemplate::onInterruptDma2Stream3() {}
 void InterruptTemplate::onInterruptDma2Stream4() {}
+

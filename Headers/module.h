@@ -30,8 +30,9 @@
 #include "Drivers/VNH3SP30TRdriver.h"
 #include "Drivers/ftdicomsdriver.h"  
 #include "Headers/ShaftEncoder.h"
+#include "Drivers/USART3DMA.h"
 //#include "Drivers/MPU9150driverDMA.h"
-//#include "Drivers/MPU9150driver.h"
+#include "Drivers/MPU9150driver.h"
 
 class Module : InterruptTemplate
 {
@@ -50,22 +51,24 @@ class Module : InterruptTemplate
       void GPIO_Config();
       void ADC_Push2Pack(Transmit_CommandPacket &_data);
       void Init_WatchDog();
-
-    virtual void onInterruptSystick();
+      void TIM3_Configuration();
+      virtual void onInterruptSystick();
 
       static uint16_t m_nPwmPeriod;
       static uint16_t m_nPwmMin;
       static uint16_t m_nPwmMax;
       static uint32_t m_nPwmFreq;
       static uint16_t m_nPwmMid;
-
+      static uint16_t acc_MaxRange;
+      static uint16_t acc_MinRange;
 
     public:
-      VNH3SP30TRDriver m_MainMotorDriver;
-      FtdiComsDriver m_ComsDriver;
-      Encoder MyEncoders;
-      //MPU9150Driver m_MPU9150Driver;
-      //MPU9150_Data_Structure IMU_Data;
+      //VNH3SP30TRDriver m_MainMotorDriver;
+      FtdiComsDriver          m_ComsDriver;
+      Encoder                 MyEncoders;
+      MPU9150Driver           m_MPU9150Driver;
+      MPU9150_Data_Structure  IMU_Data;
+      serialdriver            usart3driver;
       void Initialize();
       Module();
       void Run();

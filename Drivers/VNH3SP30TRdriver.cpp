@@ -5,7 +5,7 @@
 #include "stm32f2xx_gpio.h"
 //#include <algorithm.h>
 
-uint16_t VNH3SP30TRDriver::m_nPwmPeriod = 27;
+uint16_t VNH3SP30TRDriver::m_nPwmPeriod = 500;
 
 ///////////////////////////////////////////////////////////////////////////////
 VNH3SP30TRDriver::VNH3SP30TRDriver()
@@ -53,8 +53,8 @@ void VNH3SP30TRDriver::Initialize(TIM_TypeDef* pPwmTimer,
     //configure the GPIO pins    
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
-    GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-    GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;
+    GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
+    GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP ;
 
     GPIO_InitStructure.GPIO_Pin = inAPin.m_nPin;
     GPIO_Init(inAPin.m_pGpio, &GPIO_InitStructure);
@@ -73,56 +73,49 @@ void VNH3SP30TRDriver::Initialize(TIM_TypeDef* pPwmTimer,
     
     GPIO_InitStructure.GPIO_Pin = inBPin3.m_nPin;
     GPIO_Init(inBPin3.m_pGpio, &GPIO_InitStructure);
-/*
+
     //configure the PWM pin
     //enable the GPIO clocks
     RCCSetClock(pwmPin.m_pGpio,pwmPin.m_nGpioClk, ENABLE);
 
     //configure the GPIO pins   
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
-    GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;
-    
-    //configure pin AF
+    GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
     GPIO_InitStructure.GPIO_Pin = pwmPin.m_nPin;
-    GPIO_Init(pwmPin.m_pGpio, &GPIO_InitStructure);
-    GPIO_PinAFConfig(pwmPin.m_pGpio, pwmPin.m_nPinSource, pwmPin.m_nPinAF);
-
+    GPIO_Init(pwmPin.m_pGpio, &GPIO_InitStructure);    
+    
+    RCC_APB2PeriphClockCmd(pwmTimerClk,ENABLE);
     //configure the timer
     TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
     TIM_TimeBaseStructInit(&TIM_TimeBaseStructure);
 
     RCC_ClocksTypeDef RCC_Clocks;
     RCC_GetClocksFreq(&RCC_Clocks);
-
     // Compute the prescaler value
-    uint16_t prescalerValue = (uint16_t)((RCC_Clocks.PCLK2_Frequency) / 1000000) - 1;
-
+    uint16_t prescalerValue = (uint16_t)((RCC_Clocks.PCLK2_Frequency) / 5000000);
     // Time base configuration
     TIM_TimeBaseStructure.TIM_Period = m_nPwmPeriod;
     TIM_TimeBaseStructure.TIM_Prescaler = prescalerValue;
-    TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+    TIM_TimeBaseStructure.TIM_ClockDivision = 1;
     TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-
     TIM_TimeBaseInit(pPwmTimer, &TIM_TimeBaseStructure);
+    TIM_Cmd(pPwmTimer, ENABLE);
 
+    //Initialize pwm channels
     TIM_OCInitTypeDef OCInitStructure;
     TIM_OCStructInit(&OCInitStructure);
-
-    // PWM1 Mode configuration: Channel1 
+    // PWM1 Mode configuration: Channel1
     OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
     OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
-    OCInitStructure.TIM_Pulse = 0;
-    OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_Low;//TIM_OCPolarity_High;
-
+    OCInitStructure.TIM_Pulse = 250;
+    OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
     TIM_OC1Init(pPwmTimer, &OCInitStructure);
-
     TIM_OC1PreloadConfig(pPwmTimer, TIM_OCPreload_Enable);
-    TIM_ARRPreloadConfig(pPwmTimer, ENABLE);
-    // TIM3 enable counter 
-    TIM_Cmd(pPwmTimer, ENABLE);
-*/
+    //configure pin AF
+    GPIO_PinAFConfig(pwmPin.m_pGpio, pwmPin.m_nPinSource, pwmPin.m_nPinAF);
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////

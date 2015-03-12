@@ -63,7 +63,7 @@ int main(void)
   Module module;
     
   //module.SetRgbLed(true,true,true);
-  module.Delay_ms(100);
+  module.Delay_ms(1000);
   //module.SetRgbLed(false,false,false);
     
   module.Initialize();
@@ -121,6 +121,16 @@ void assert_failed(uint8_t* file, uint32_t line)
   {
   }
 }
+
+
+
+void DMA1_Stream3_IRQHandler(void)
+{
+int a;
+a++;
+}
+
+
 #endif
 
 /**
