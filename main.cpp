@@ -130,7 +130,15 @@ int a;
 a++;
 }
 
-
+void DMA1_Stream1_IRQHandler(void) // USART3 RX DMA Transfer Complete Interrupt
+{
+  if (DMA_GetITStatus(DMA1_Stream1, DMA_IT_TCIF1))
+  {
+	// ----------
+	
+    DMA_ClearITPendingBit(DMA1_Stream1, DMA_IT_TCIF1);
+  }
+} 
 #endif
 
 /**

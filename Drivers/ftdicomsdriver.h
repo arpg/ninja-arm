@@ -56,8 +56,8 @@
 #define FTDI_COMMAND_TIMEOUT            2		//command time in intervals of systick
 #define FTDI_BAUD                       356000    //115200*3
 
-#define FTDI_PACKET_DELIMITER1          0xD0
-#define FTDI_PACKET_DELIMITER2          0xAA
+#define FTDI_PACKET_DELIMITER1          0xD0 // 208
+#define FTDI_PACKET_DELIMITER2          0xAA // 170
 
 //-----------------------------------------------------------------------------
 // Size of RX TX buffers
@@ -117,13 +117,15 @@ bool ReadPacket(unsigned char *packetBuffer, short &lengthOut);
 bool beginWritePacket(char *data, short length);
 void AddChecksum(Transmit_CommandPacket &_data);
 bool ChkChksum(CommandPacket* _data);
+void USART3_IRQ(void);
 //bool processPacket(char *data, short &dataLength, short &sender, char &rssi);
 //bool apiPollParameterValue(const char* parameter);
 //void apiSendTxPacket16(short address,char *data,short dataLength,bool disableAck =false, bool broadcastPanID =false);
 
 //register read functions
 char getAI() { return _regAI; }
-
+#define RXBUFFERSIZE 4
+uint8_t RxBuffer[RXBUFFERSIZE];
 
 
 private:
@@ -136,6 +138,7 @@ void apiSendPacket();
 int findPackageHeader(unsigned char *buffer, short length);
 int findPackageLength(unsigned char *buffer, short length);
 
+void my_configureUart();
 void configureUart();
 void configureInterrupts();
 

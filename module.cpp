@@ -61,25 +61,22 @@ void Module::Run()
     int LoopCounter = 1;
     unsigned int a=450;
     unsigned int b=0;
+    unsigned char pPacketData[256];
+    memset(pPacketData, 0, 256);
+    short nLengthOut=5;
+    Transmit_CommandPacket TCmdPack;
     ADC_SoftwareStartConv(ADC1);
-    //m_MainMotorDriver.SetSpeed(0.3f);
-    
+    //m_ComsDriver.beginWritePacket(&TCmdPack.m_cDelimiter1,(short int)TCmdPack.m_cSize);
     while(1)
     {
-    
-        unsigned char pPacketData[256];
-        memset(pPacketData, 0, 256);
-        short nLengthOut=5;
-        
 ////////////////////////////////////////////////////////////////
 //  Transmit New Package
 ////////////////////////////////////////////////////////////////
-        Transmit_CommandPacket TCmdPack;
 //        m_MPU9150Driver.Push2Pack(TCmdPack);
         MyEncoders.Push2Pack(TCmdPack);
         ADC_Push2Pack(TCmdPack);
-/*        m_ComsDriver.AddChecksum(TCmdPack);
-        m_ComsDriver.beginWritePacket(&TCmdPack.m_cDelimiter1,TCmdPack.m_cSize);
+        m_ComsDriver.AddChecksum(TCmdPack);
+        //m_ComsDriver.beginWritePacket(&TCmdPack.m_cDelimiter1,TCmdPack.m_cSize);
           
 ////////////////////////////////////////////////////////////////
 //  Receive New Package and apply commands
@@ -92,16 +89,16 @@ void Module::Run()
 
                 if(pPacket->m_nSpeed > 250.0){
                     //SetRgbLed(0,0,true);
-                    m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeForward);
-                    m_MainMotorDriver.SetSpeed(((double)pPacket->m_nSpeed-250)/250.0);
+                    //m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeForward);
+                    //m_MainMotorDriver.SetSpeed(((double)pPacket->m_nSpeed-250)/250.0);
                 }else{
                     //SetRgbLed(true,0,0);
-                    m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeReverse);
-                    m_MainMotorDriver.SetSpeed((250.0 -(double)pPacket->m_nSpeed)/250.0);
+                    //m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeReverse);
+                    //m_MainMotorDriver.SetSpeed((250.0 -(double)pPacket->m_nSpeed)/250.0);
                 }
             }
         }
-
+/*
         if(LoopCounter > 100)
         {
           SetRgbLed(true,false,false);
@@ -115,6 +112,8 @@ void Module::Run()
         else if(LoopCounter>0)
           LoopCounter++;
 */
+  m_ComsDriver.beginWritePacket(&TCmdPack.m_cDelimiter1,TCmdPack.m_cSize);
+          
 ////////////////////////////////////////////////////////////////
 //  Test Functions for Debug
 ////////////////////////////////////////////////////////////////
@@ -128,12 +127,12 @@ void Module::Run()
         }
 */
         ///////////////////////////////// USART Transmit package
-        CommandPacket CMDPACK;
+/*        CommandPacket CMDPACK;
         CMDPACK.m_nSteering = 65532;
         CMDPACK.m_nSpeed = -12345;
-        IWDG_ReloadCounter();
         //m_ComsDriver.beginWritePacket(&CMDPACK.m_cDelimiter1,2);
         m_ComsDriver.beginWritePacket(&CMDPACK.m_cDelimiter1,(short int)CMDPACK.m_cSize);
+*/        
         ///////////////////////////////// ADC Test
         //int Pot1Value = (int)ADC1->DR;//ADC1ConvertedValue;
         //int Pot2Value = ADC1ConvertedValue[0];

@@ -58,10 +58,80 @@ void FtdiComsDriver::Initialize(GPIO_Pin txPin, GPIO_Pin rxPin, GPIO_Pin ctsPin,
     _txCount = 0;
 
     //configure the UART
-    configureUart();
+    //configureUart();
+    my_configureUart();
 
     //configure the DMA interrupts
     configureInterrupts();
+    //USART3_IRQ();
+}
+
+void FtdiComsDriver::my_configureUart()
+{
+  GPIO_InitTypeDef GPIO_InitStruct;
+  NVIC_InitTypeDef NVIC_InitStructure;
+  USART_InitTypeDef USART_InitStruct;
+  DMA_InitTypeDef DMA_InitStructure;
+  
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE); //USART3 Clock Enable
+  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE); //GPIOB Clock Enable
+  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA1, ENABLE); //DMA1 Clock Enable
+ 
+  GPIO_InitStruct.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11;
+  GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
+  GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
+  GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
+  GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;  
+  GPIO_Init(GPIOB, &GPIO_InitStruct);
+  
+  GPIO_PinAFConfig(GPIOB, GPIO_PinSource10, GPIO_AF_USART3); //USART3 Tx Pin
+  GPIO_PinAFConfig(GPIOB, GPIO_PinSource11, GPIO_AF_USART3); //USART3 Rx Pin
+  
+  NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+  
+  // Enable the USART3 RX DMA Interrupt
+  NVIC_InitStructure.NVIC_IRQChannel = DMA1_Stream1_IRQn;
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+  NVIC_Init(&NVIC_InitStructure);
+  
+  USART_InitStruct.USART_BaudRate = 19200;
+  USART_InitStruct.USART_WordLength = USART_WordLength_8b;
+  USART_InitStruct.USART_StopBits = USART_StopBits_1;
+  USART_InitStruct.USART_Parity = USART_Parity_No;
+  USART_InitStruct.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+  USART_InitStruct.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+  
+  USART_Init(USART3, &USART_InitStruct);
+  
+  USART_Cmd(USART3, ENABLE); // Enable USART3
+
+
+  // ----- USART3 DMA Rx Stream Init -----
+  DMA_DeInit(DMA1_Stream1);
+  
+  DMA_InitStructure.DMA_Channel = DMA_Channel_4;
+  DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&USART3->DR;
+  DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)RxBuffer;
+  DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory; // Receive From Per to Mem
+  DMA_InitStructure.DMA_BufferSize = RXBUFFERSIZE;
+  DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+  DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+  DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
+  DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
+  DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
+  DMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh;
+  DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Enable; // ??????
+  DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_Full;
+  DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;
+  DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;
+  
+  DMA_Init(DMA1_Stream1, &DMA_InitStructure);
+  
+  USART_DMACmd(USART3, USART_DMAReq_Rx, ENABLE); // Enable USART Rx DMA Request
+  DMA_ITConfig(DMA1_Stream1, DMA_IT_TC, ENABLE); // Enable Transfer Complete Interrupt
+  DMA_Cmd(DMA1_Stream1, ENABLE); // Enable DMA Rx Stream
 }
 
 //-----------------------------------------------------------------------------
@@ -229,6 +299,15 @@ void FtdiComsDriver::configureInterrupts()
     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0F;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
+}
+
+
+void FtdiComsDriver::USART3_IRQ(void)
+{
+    InterruptTemplate::registerForInterrupt(USART3_INTERRUPT_HANDLER,this);
+    int a;
+    a++;
+
 }
 
 //-----------------------------------------------------------------------------
