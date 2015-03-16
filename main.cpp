@@ -33,8 +33,21 @@
 /* Private variables ---------------------------------------------------------*/
 static __IO uint32_t TimingDelay;
 
-/* Private function prototypes -----------------------------------------------*/
-/* Private functions ---------------------------------------------------------*/
+void DMA1_Stream3_IRQHandler(void)
+{
+int a;
+a++;
+}
+
+void DMA1_Stream1_IRQHandler(void) // USART3 RX DMA Transfer Complete Interrupt
+{
+  if (DMA_GetITStatus(DMA1_Stream1, DMA_IT_TCIF1))
+  {
+	// ----------
+	
+    DMA_ClearITPendingBit(DMA1_Stream1, DMA_IT_TCIF1);
+  }
+} 
 
 /**
   * @brief  Main program.
@@ -124,21 +137,7 @@ void assert_failed(uint8_t* file, uint32_t line)
 
 
 
-void DMA1_Stream3_IRQHandler(void)
-{
-int a;
-a++;
-}
 
-void DMA1_Stream1_IRQHandler(void) // USART3 RX DMA Transfer Complete Interrupt
-{
-  if (DMA_GetITStatus(DMA1_Stream1, DMA_IT_TCIF1))
-  {
-	// ----------
-	
-    DMA_ClearITPendingBit(DMA1_Stream1, DMA_IT_TCIF1);
-  }
-} 
 #endif
 
 /**

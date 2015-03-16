@@ -19,24 +19,24 @@
 #define I2C2EV_INTERRUPT_HANDLER g_handlersI2c2Ev
 #define I2C3EV_INTERRUPT_HANDLER g_handlersI2c3Ev
 #define USART3_INTERRUPT_HANDLER g_handlersUsart3
-#define USART3_INTERRUPT_HANDLER g_handlersSpi1
-#define USART3_INTERRUPT_HANDLER g_handlersSpi2
+//#define USART3_INTERRUPT_HANDLER g_handlersSpi1
+//#define USART3_INTERRUPT_HANDLER g_handlersSpi2
 
 #define DMA1STREAM0_INTERRUPT_HANDLER g_handlersDma1Stream0
 #define DMA1STREAM1_INTERRUPT_HANDLER g_handlersDma1Stream1
 #define DMA1STREAM2_INTERRUPT_HANDLER g_handlersDma1Stream2
 #define DMA1STREAM3_INTERRUPT_HANDLER g_handlersDma1Stream3
-#define DMA1STREAM3_INTERRUPT_HANDLER g_handlersDma1Stream4
+//#define DMA1STREAM3_INTERRUPT_HANDLER g_handlersDma1Stream4
 
 #define DMA2STREAM0_INTERRUPT_HANDLER g_handlersDma2Stream0
 #define DMA2STREAM3_INTERRUPT_HANDLER g_handlersDma2Stream3
-#define DMA2STREAM3_INTERRUPT_HANDLER g_handlersDma2Stream4
+//#define DMA2STREAM3_INTERRUPT_HANDLER g_handlersDma2Stream4
 
 
 //-----------------------------------------------------------------------------
 // the maximum number of interrupt handlers that can be registered for a single interrupt
 //-----------------------------------------------------------------------------
-#define MAX_INTERRUPT_HANDLERS 2
+#define MAX_INTERRUPT_HANDLERS 1
 
 
 class InterruptTemplate

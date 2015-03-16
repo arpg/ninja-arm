@@ -65,19 +65,24 @@ void Module::Run()
     memset(pPacketData, 0, 256);
     short nLengthOut=5;
     Transmit_CommandPacket TCmdPack;
+    CommandPacket RCmdPack;
     ADC_SoftwareStartConv(ADC1);
+    usart3driver.DMA_Configuration(&TCmdPack.m_cDelimiter1,&RCmdPack.m_cDelimiter1,(short int)TCmdPack.m_cSize,(short int)RCmdPack.m_cSize);
     //m_ComsDriver.beginWritePacket(&TCmdPack.m_cDelimiter1,(short int)TCmdPack.m_cSize);
+    
     while(1)
     {
+      
 ////////////////////////////////////////////////////////////////
 //  Transmit New Package
 ////////////////////////////////////////////////////////////////
 //        m_MPU9150Driver.Push2Pack(TCmdPack);
-        MyEncoders.Push2Pack(TCmdPack);
-        ADC_Push2Pack(TCmdPack);
-        m_ComsDriver.AddChecksum(TCmdPack);
-        //m_ComsDriver.beginWritePacket(&TCmdPack.m_cDelimiter1,TCmdPack.m_cSize);
-          
+        //MyEncoders.Push2Pack(TCmdPack);
+        //ADC_Push2Pack(TCmdPack);
+        //m_ComsDriver.AddChecksum(TCmdPack);
+        /*
+        m_ComsDriver.beginWritePacket(&TCmdPack.m_cDelimiter1,TCmdPack.m_cSize);
+         
 ////////////////////////////////////////////////////////////////
 //  Receive New Package and apply commands
 ////////////////////////////////////////////////////////////////
@@ -98,6 +103,7 @@ void Module::Run()
                 }
             }
         }
+*/
 /*
         if(LoopCounter > 100)
         {
@@ -112,7 +118,6 @@ void Module::Run()
         else if(LoopCounter>0)
           LoopCounter++;
 */
-  m_ComsDriver.beginWritePacket(&TCmdPack.m_cDelimiter1,TCmdPack.m_cSize);
           
 ////////////////////////////////////////////////////////////////
 //  Test Functions for Debug
@@ -232,13 +237,13 @@ void Module::Delay_ms(int delay)
 
 void Module::Initialize()
 {
-    ConfigurePwm();
+    //ConfigurePwm();
     ConfigureLed();
 /////////////
-    ConfigureADC();
+    //ConfigureADC();
 //    m_MPU9150Driver.initialise();
     
-    MyEncoders.Config();
+   // MyEncoders.Config();
 
     //initialize the motor driver
 /*    m_MainMotorDriver.Initialize(TIM10,RCC_APB2Periph_TIM10,
@@ -258,12 +263,12 @@ void Module::Initialize()
 
     SetServoPos(0,0.9);
     SetServoPos(1,0.9);
-
+/*
     m_ComsDriver.Initialize(GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_10,GPIO_PinSource10,GPIO_AF_USART3),
                             GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_11,GPIO_PinSource11,GPIO_AF_USART3),
                             GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_13,GPIO_PinSource13,GPIO_AF_USART3),
                             GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_14,GPIO_PinSource14,GPIO_AF_USART3));
-
+*/
     //configure the timer used to measure the dT between
     //consecutive cycles
 //                configureTimer();
@@ -272,14 +277,14 @@ void Module::Initialize()
 //		_imu3000.initialise();
 //		_venusGps.initialise();
 
-	//	ConfigureInterrupts();
-/*  
+		//  ConfigureInterrupts();
+ 
     usart3driver.RCC_Configuration();
     usart3driver.NVIC_Configuration();
     usart3driver.GPIO_Configuration();
     usart3driver.USART3_Configuration();
-    usart3driver.DMA_Configuration();
-*/
+    //usart3driver.DMA_Configuration();
+
     //Init_WatchDog();
 }
 

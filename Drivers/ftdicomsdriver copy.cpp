@@ -313,7 +313,7 @@ void FtdiComsDriver::configureUart()
     DMA_Cmd(FTDI_RX_DMA_STREAM, ENABLE);
 
     //enable TC interrupt for the RX stream
-//    DMA_ITConfig(FTDI_RX_DMA_STREAM,DMA_IT_TC,ENABLE);
+    DMA_ITConfig(FTDI_RX_DMA_STREAM,DMA_IT_TC,ENABLE);
 }
 
 //-----------------------------------------------------------------------------
@@ -427,7 +427,7 @@ void FtdiComsDriver::onEndTx()
     _lastTx = _txFull;
 
     //and now we can enabled the TXBUFE interrupt
-//    DMA_ITConfig(FTDI_TX_DMA_STREAM,DMA_IT_TC,ENABLE);
+    DMA_ITConfig(FTDI_TX_DMA_STREAM,DMA_IT_TC,ENABLE);
 }
 //////////////////////////////////////////////////////////////////////////////////
 void FtdiComsDriver::onInterruptDma1Stream3()
@@ -595,7 +595,7 @@ bool FtdiComsDriver::beginWritePacket(char *data, short length)
         _txFull = 0;  //if the buffer overflows, we must empty it so we can keep sending
         enableInterrupts();
         //enable the ENDTX interrupt so this stuff actually gets sent
-//        DMA_ITConfig(FTDI_TX_DMA_STREAM,DMA_IT_TC,ENABLE);
+        DMA_ITConfig(FTDI_TX_DMA_STREAM,DMA_IT_TC,ENABLE);
 
         return 0;
     }
@@ -610,8 +610,7 @@ bool FtdiComsDriver::beginWritePacket(char *data, short length)
     //check to see if we have already finished, if so jump straight to the function,
     //otherwise enable the end interrupt
     if( DMA_GetCmdStatus(FTDI_TX_DMA_STREAM) == ENABLE && DMA_GetCurrDataCounter(FTDI_TX_DMA_STREAM)!=0)
-//        DMA_ITConfig(FTDI_TX_DMA_STREAM,DMA_IT_TC,ENABLE);
-        DMA_ITConfig(FTDI_TX_DMA_STREAM,DMA_IT_TC,DISABLE);
+        DMA_ITConfig(FTDI_TX_DMA_STREAM,DMA_IT_TC,ENABLE);
     else
         onEndTx();
 

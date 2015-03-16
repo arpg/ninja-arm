@@ -118,12 +118,7 @@ bool beginWritePacket(char *data, short length);
 void AddChecksum(Transmit_CommandPacket &_data);
 bool ChkChksum(CommandPacket* _data);
 void USART3_IRQ(void);
-//bool processPacket(char *data, short &dataLength, short &sender, char &rssi);
-//bool apiPollParameterValue(const char* parameter);
-//void apiSendTxPacket16(short address,char *data,short dataLength,bool disableAck =false, bool broadcastPanID =false);
 
-//register read functions
-char getAI() { return _regAI; }
 #define RXBUFFERSIZE 4
 uint8_t RxBuffer[RXBUFFERSIZE];
 
@@ -131,13 +126,9 @@ uint8_t RxBuffer[RXBUFFERSIZE];
 private:
 void apiPreparePacket(short length,char apiIdent, char frameId, char *packetData);
 void apiCopyPacketData(const char *data1, const short length1, const char * data2, const short length2);
-//bool apiGetParameterValue(const char* parameter,char *value,short &valueLength);
-//bool apiSetParameterValue(const char* parameter,const char *value,const short valueLength,const bool waitUntilFinished = true );
 void apiSendPacket();
-
 int findPackageHeader(unsigned char *buffer, short length);
 int findPackageLength(unsigned char *buffer, short length);
-
 void my_configureUart();
 void configureUart();
 void configureInterrupts();
@@ -163,9 +154,6 @@ int _totalPacketLength; //the total length of the packet so far
 //registers that hold information about transferred bytes
 int _txCount;
 
-//register values that have been polled from the Xbee
-char _regAI;
-int _regMY;
 
 GPIO_Pin m_TxPin;
 GPIO_Pin m_RxPin;

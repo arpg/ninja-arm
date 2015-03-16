@@ -70,9 +70,8 @@ void serialdriver::USART3_Configuration(void)
  
 // Output as a loop, received data overwrites, and subsequently outputs during next cycle
  
-char Buffer[] = "The quick brown fox jumps over the lazy dog\r\n";
  
-void serialdriver::DMA_Configuration(void)
+void serialdriver::DMA_Configuration( char *_tx_data, char *_rx_data, int tx_size, int rx_size)
 {
   DMA_InitTypeDef  DMA_InitStructure;
  
@@ -82,8 +81,8 @@ void serialdriver::DMA_Configuration(void)
  
   DMA_InitStructure.DMA_Channel = DMA_Channel_4;
   DMA_InitStructure.DMA_DIR = DMA_DIR_MemoryToPeripheral; // Transmit
-  DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)Buffer;
-  DMA_InitStructure.DMA_BufferSize = (uint16_t)sizeof(Buffer) - 1;
+  DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)_tx_data;
+  DMA_InitStructure.DMA_BufferSize = tx_size - 1;
   DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&USART3->DR;
   DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
   DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
@@ -102,19 +101,19 @@ void serialdriver::DMA_Configuration(void)
   USART_DMACmd(USART3, USART_DMAReq_Tx, ENABLE);
  
   /* Enable DMA Stream Transfer Complete interrupt */
- // DMA_ITConfig(DMA1_Stream3, DMA_IT_TC, ENABLE);
+  //DMA_ITConfig(DMA1_Stream3, DMA_IT_TC, ENABLE);
  
   /* Enable the DMA TX Stream */
   DMA_Cmd(DMA1_Stream3, ENABLE);
  
   // USART3_RX DMA Channel 4, DMA1, Stream1
  
-  //DMA_DeInit(DMA1_Stream1);
+  DMA_DeInit(DMA1_Stream1);
  
   DMA_InitStructure.DMA_Channel = DMA_Channel_4;
   DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory; // Receive
-  DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)Buffer;
-  DMA_InitStructure.DMA_BufferSize = (uint16_t)sizeof(Buffer) - 1;
+  DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)_rx_data;
+  DMA_InitStructure.DMA_BufferSize = rx_size - 1;
   DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)&USART3->DR;
   DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
   DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
@@ -133,14 +132,15 @@ void serialdriver::DMA_Configuration(void)
   USART_DMACmd(USART3, USART_DMAReq_Rx, ENABLE);
  
   /* Enable DMA Stream Transfer Complete interrupt */
-  DMA_ITConfig(DMA1_Stream1, DMA_IT_TC, ENABLE);
+  //DMA_ITConfig(DMA1_Stream1, DMA_IT_TC, ENABLE);
  
   /* Enable the DMA RX Stream */
   DMA_Cmd(DMA1_Stream1, ENABLE);
+
 }
  
 /**************************************************************************************/
- /*
+
 void serialdriver::DMA1_Stream3_IRQHandler(void) // USART3_TX
 {
   // Test on DMA Stream Transfer Complete interrupt 
@@ -150,9 +150,9 @@ void serialdriver::DMA1_Stream3_IRQHandler(void) // USART3_TX
     DMA_ClearITPendingBit(DMA1_Stream3, DMA_IT_TCIF3);
   }
 }
-*/
+
 /**************************************************************************************/
-/*
+
 void serialdriver::DMA1_Stream1_IRQHandler(void) // USART3_RX
 {
   // Test on DMA Stream Transfer Complete interrupt
@@ -162,17 +162,21 @@ void serialdriver::DMA1_Stream1_IRQHandler(void) // USART3_RX
     DMA_ClearITPendingBit(DMA1_Stream1, DMA_IT_TCIF1);
   }
 }
-*/ 
+
 /**************************************************************************************/
  
 void serialdriver::NVIC_Configuration(void)
 {
-  NVIC_InitTypeDef NVIC_InitStructure;
- 
+  //and now register this class to receive the RX and TX interrupts
+  InterruptTemplate::initialiseHandlers();
+  InterruptTemplate::registerForInterrupt(DMA1STREAM1_INTERRUPT_HANDLER,this);
+  InterruptTemplate::registerForInterrupt(DMA1STREAM3_INTERRUPT_HANDLER,this);
+
+  NVIC_InitTypeDef NVIC_InitStructure; 
   /* Configure the Priority Group to 2 bits */
   NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
  
-  /* Enable the USART3 TX DMA Interrupt */
+   //Enable the USART3 TX DMA Interrupt 
   NVIC_InitStructure.NVIC_IRQChannel = DMA1_Stream3_IRQn;
   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
@@ -188,4 +192,3 @@ void serialdriver::NVIC_Configuration(void)
 }
  
 /**************************************************************************************/
-
