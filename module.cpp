@@ -67,8 +67,27 @@ void Module::Run()
     Transmit_CommandPacket TCmdPack;
     CommandPacket RCmdPack;
     ADC_SoftwareStartConv(ADC1);
-    usart3driver.DMA_Configuration(&TCmdPack.m_cDelimiter1,&RCmdPack.m_cDelimiter1,(short int)TCmdPack.m_cSize,(short int)RCmdPack.m_cSize);
-    //m_ComsDriver.beginWritePacket(&TCmdPack.m_cDelimiter1,(short int)TCmdPack.m_cSize);
+    TCmdPack.Acc_x=0;
+    TCmdPack.Acc_y=1;
+    TCmdPack.Acc_z=2;
+    TCmdPack.Gyro_x=3;
+    TCmdPack.Gyro_y=4;
+    TCmdPack.Gyro_z=5;
+    TCmdPack.Mag_x=6;
+    TCmdPack.Mag_y=7;
+    TCmdPack.Mag_z=8;
+    TCmdPack.Enc_LB=9;
+    TCmdPack.Enc_LF=-10;
+    TCmdPack.Enc_RB=11;
+    TCmdPack.Enc_RF=12;
+    TCmdPack.ADC_Steer=13;
+    TCmdPack.ADC_LB=14;
+    TCmdPack.ADC_LF=15;
+    TCmdPack.ADC_RB=16;
+    TCmdPack.ADC_RF=17;
+    
+    usart3driver.DMA_Configuration(&TCmdPack.m_cDelimiter1,&RCmdPack.m_cDelimiter1,(short int)TCmdPack.m_cSize-1,(short int)RCmdPack.m_cSize-1);
+//    usart3driver.CopyToTransmitBuff(&TCmdPack,(short int)TCmdPack.m_cSize);
     
     while(1)
     {
@@ -77,18 +96,20 @@ void Module::Run()
 //  Transmit New Package
 ////////////////////////////////////////////////////////////////
 //        m_MPU9150Driver.Push2Pack(TCmdPack);
-        //MyEncoders.Push2Pack(TCmdPack);
-        //ADC_Push2Pack(TCmdPack);
+        MyEncoders.Push2Pack(TCmdPack);
+        ADC_Push2Pack(TCmdPack);
         //m_ComsDriver.AddChecksum(TCmdPack);
+        SetAcc(RCmdPack.m_nSpeed);
+        SetServoPos(0,RCmdPack.m_nSteering);
         /*
         m_ComsDriver.beginWritePacket(&TCmdPack.m_cDelimiter1,TCmdPack.m_cSize);
          
 ////////////////////////////////////////////////////////////////
 //  Receive New Package and apply commands
 ////////////////////////////////////////////////////////////////
-        if( m_ComsDriver.ReadPacket(pPacketData,nLengthOut) == true) {
+        if( usart3driver.ReadPacket(pPacketData,nLengthOut) == true) {
             CommandPacket* pPacket = (CommandPacket*)pPacketData;
-            if(m_ComsDriver.ChkChksum(pPacket))
+            if(usart3driver.ChkChksum(pPacket))
             {
                 SetServoPos(0,(double)pPacket->m_nSteering/500.0);
 
@@ -237,14 +258,14 @@ void Module::Delay_ms(int delay)
 
 void Module::Initialize()
 {
-    //ConfigurePwm();
+    ConfigurePwm();
     ConfigureLed();
 /////////////
-    //ConfigureADC();
-//    m_MPU9150Driver.initialise();
+    ConfigureADC();
     
-   // MyEncoders.Config();
+    MyEncoders.Config();
 
+//    m_MPU9150Driver.initialise();
     //initialize the motor driver
 /*    m_MainMotorDriver.Initialize(TIM10,RCC_APB2Periph_TIM10,
                                  GPIO_Pin(GPIOE,RCC_AHB1Periph_GPIOE,GPIO_Pin_13),
@@ -262,7 +283,6 @@ void Module::Initialize()
 */
 
     SetServoPos(0,0.9);
-    SetServoPos(1,0.9);
 /*
     m_ComsDriver.Initialize(GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_10,GPIO_PinSource10,GPIO_AF_USART3),
                             GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_11,GPIO_PinSource11,GPIO_AF_USART3),
@@ -291,11 +311,11 @@ void Module::Initialize()
 void Module::ADC_Push2Pack(Transmit_CommandPacket &_data)
 {
     _data.ADC_LB = ADC1ConvertedValue[4];
-    _data.ADC_LF_yaw = ADC1ConvertedValue[0];
-    _data.ADC_LF_rol = ADC1ConvertedValue[1];
+    _data.ADC_Steer = ADC1ConvertedValue[0];
+    _data.ADC_LF = ADC1ConvertedValue[1];
     _data.ADC_RB = ADC1ConvertedValue[5];
-    _data.ADC_RF_yaw = ADC1ConvertedValue[2];
-    _data.ADC_RF_rol = ADC1ConvertedValue[3];
+  //  _data.ADC_RF_yaw = ADC1ConvertedValue[2];
+    _data.ADC_RF = ADC1ConvertedValue[3];
 }
 void Module::Adc_Comm_Init(void)
 {
@@ -506,19 +526,29 @@ void Module::SetRgbLed(const bool r, const bool g)
 ///////////////////////////////////////////////////////////////////////////////
 // Servo position range is 0-2000
 ///////////////////////////////////////////////////////////////////////////////
-void Module::SetServoPos(const int nServo, const float dPos)
-{
 
-    float dClampedPos;
-    if(dPos>1.0f)
-      dClampedPos = 1.0f;
-    else if(dPos<0)
-      dClampedPos = 0.0f;
+void Module::SetAcc(signed int acc_value)
+{
+    float nClampedacc_value;
+    if(acc_value>32767)
+      nClampedacc_value = 32767;
+    else if(acc_value<0)
+      nClampedacc_value = 0;
     else
-      dClampedPos = dPos;
+      nClampedacc_value = acc_value;
+
+    nClampedacc_value = ((int)(nClampedacc_value/32767) * (acc_MaxRange-acc_MinRange) ) + acc_MinRange;
+
+    TIM_SetCompare2(TIM4, nClampedacc_value);
+
+}
+void Module::SetServoPos(const int nServo, const int nPos)
+{
+    
+    float dClampedPos;
+    dClampedPos = float(nPos/32767);
 
     int nClampedPos = (dClampedPos * (float)(m_nPwmMax-m_nPwmMin) ) + m_nPwmMin;
-    int nClampedAcc = (dClampedPos * (float)(acc_MaxRange-acc_MinRange) ) + acc_MinRange;
 
     //int nClampedPos = dPos;
     switch(nServo){
@@ -526,16 +556,12 @@ void Module::SetServoPos(const int nServo, const float dPos)
             TIM_SetCompare1(TIM4, nClampedPos);
             break;
 
-        case 1:
-            TIM_SetCompare2(TIM4, nClampedAcc);
-            break;
-
         case 2:
-            //TIM_SetCompare3(TIM4, nClampedPos);
+            TIM_SetCompare3(TIM4, nClampedPos);
             break;
 
         case 3:
-            //TIM_SetCompare4(TIM4, nClampedPos);
+            TIM_SetCompare4(TIM4, nClampedPos);
             break;
 
     }

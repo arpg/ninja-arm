@@ -1,5 +1,5 @@
-//#ifndef __FTDICOMSDRIVER_H
-//#define __FTDICOMSDRIVER_H
+#ifndef __USART3DMA_H
+#define __USART3DMA_H
 #pragma once
 
 #include "Utilities/Utils.h"
@@ -162,4 +162,4 @@ GPIO_Pin m_RtsPin;
 
 };
 
-//#endif // FTDICOMSDRIVER_H
+#endif // __USART3DMA_H

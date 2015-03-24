@@ -28,10 +28,8 @@
 
 #include "Utilities/InterruptTemplate.h"
 #include "Drivers/VNH3SP30TRdriver.h"
-#include "Drivers/ftdicomsdriver.h"  
 #include "Headers/ShaftEncoder.h"
 #include "Drivers/USART3DMA.h"
-//#include "Drivers/MPU9150driverDMA.h"
 #include "Drivers/MPU9150driver.h"
 
 class Module : InterruptTemplate
@@ -53,6 +51,7 @@ class Module : InterruptTemplate
       void Init_WatchDog();
       void TIM3_Configuration();
       virtual void onInterruptSystick();
+      void SetAcc(signed int acc_value);
 
       static uint16_t m_nPwmPeriod;
       static uint16_t m_nPwmMin;
@@ -64,7 +63,7 @@ class Module : InterruptTemplate
 
     public:
       //VNH3SP30TRDriver m_MainMotorDriver;
-      FtdiComsDriver          m_ComsDriver;
+      //FtdiComsDriver          m_ComsDriver;
       Encoder                 MyEncoders;
       MPU9150Driver           m_MPU9150Driver;
       MPU9150_Data_Structure  IMU_Data;
@@ -73,7 +72,7 @@ class Module : InterruptTemplate
       Module();
       void Run();
       void SetRgbLed(const bool r, const bool g);
-      void SetServoPos(const int nServo, const float dPos);
+      void SetServoPos(const int nServo, const int dPos);
       void ConfigureBLDC();
       void Delay_ms(int delay);
       float temp_float[4]={0,0,0,0};
