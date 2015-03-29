@@ -49,7 +49,7 @@
       <file file_name="Math/vector.cpp" />
       <file file_name="Drivers/VNH3SP30TRdriver.cpp" />
       <file file_name="Drivers/ftdicomsdriver.cpp">
-        <configuration Name="THUMB Debug" build_exclude_from_build="No" />
+        <configuration Name="THUMB Debug" build_exclude_from_build="Yes" />
       </file>
       <file file_name="Utilities/InterruptTemplate.cpp" />
       <file file_name="stm32f2xx_it.cpp" />

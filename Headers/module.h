@@ -51,7 +51,7 @@ class Module : InterruptTemplate
       void Init_WatchDog();
       void TIM3_Configuration();
       virtual void onInterruptSystick();
-      void SetAcc(signed int acc_value);
+      void SetAcc(const float acc_value);
 
       static uint16_t m_nPwmPeriod;
       static uint16_t m_nPwmMin;
@@ -72,7 +72,7 @@ class Module : InterruptTemplate
       Module();
       void Run();
       void SetRgbLed(const bool r, const bool g);
-      void SetServoPos(const int nServo, const int dPos);
+      void SetServoPos(const int nServo, const float Steering_value);
       void ConfigureBLDC();
       void Delay_ms(int delay);
       float temp_float[4]={0,0,0,0};

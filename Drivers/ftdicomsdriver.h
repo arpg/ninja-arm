@@ -73,8 +73,8 @@ struct CommandPacket
     char m_cDelimiter1 = FTDI_PACKET_DELIMITER1;
     char m_cDelimiter2 = FTDI_PACKET_DELIMITER2;
     char m_cSize = sizeof(CommandPacket);
-    int m_nSteering;
-    int m_nSpeed;
+    double m_nSteering;
+    double m_nSpeed;
     unsigned short int   Checksum;
 };
 

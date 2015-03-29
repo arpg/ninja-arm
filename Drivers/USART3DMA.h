@@ -18,8 +18,8 @@ struct CommandPacket
     char m_cDelimiter1 = USART3_PACKET_DELIMITER1;
     char m_cDelimiter2 = USART3_PACKET_DELIMITER2;
     char m_cSize = sizeof(CommandPacket);
-    int m_nSteering;
-    int m_nSpeed;
+    float m_nSteering;
+    float m_nSpeed;
     unsigned short int   Checksum;
 };
 
@@ -48,10 +48,14 @@ struct Transmit_CommandPacket
     short int   ADC_RB;
     short int   ADC_RF;
     unsigned short int   Checksum;
+    char dummy;
 };
 
 class serialdriver:InterruptTemplate{
 public:
+    char _rx_buff[4*sizeof(CommandPacket)];
+    char _rx_buff_cp[4*sizeof(CommandPacket)];
+    char _out_buff[sizeof(Transmit_CommandPacket)];
     void RCC_Configuration(void);
     void GPIO_Configuration(void);
     void USART3_Configuration(void);
@@ -59,11 +63,10 @@ public:
     void DMA1_Stream3_IRQHandler(void);
     void DMA1_Stream1_IRQHandler(void);
     void NVIC_Configuration(void);
-//    bool ChkChksum(CommandPacket* _data);
-//    void AddChecksum(Transmit_CommandPacket &_data);
-//    bool ReadPacket(unsigned char *packetBuffer, short &lengthOut);
-//    int  findPackageHeader(unsigned char *buffer, short length);
-//    int  findPackageLength(unsigned char *buffer, short length);
-//    void CopyToTransmitBuff( Transmit_CommandPacket* _data, short int size );
+    bool ChkChksum(CommandPacket* _data);
+    void AddChecksum(Transmit_CommandPacket &_data);
+    void Sendpack(Transmit_CommandPacket& _data);
+    bool ReadPacket(CommandPacket* _data);
+    int  findPackageHeader(unsigned char *buffer, short length);
 };
 //#endif

@@ -4,6 +4,7 @@
 #include "stm32f2xx_gpio.h"
 #include "stm32f2xx_usart.h"
 #include "stm32f2xx_dma.h"
+#include <cstring>
 /**************************************************************************************/
  
 void serialdriver::RCC_Configuration(void)
@@ -192,7 +193,25 @@ void serialdriver::NVIC_Configuration(void)
 }
  
 /**************************************************************************************/
-/*
+void serialdriver::AddChecksum(Transmit_CommandPacket &_data)
+{
+  unsigned char* DataPtr = (unsigned char*)&_data;
+  unsigned short int Sum = 0;
+
+  for(int ii=0;ii<sizeof(Transmit_CommandPacket)-3;ii++)
+    Sum += DataPtr[ii];
+  
+  _data.Checksum = Sum;
+
+}
+
+void serialdriver::Sendpack(Transmit_CommandPacket& _data)
+{
+  AddChecksum(_data);
+  memmove(&_out_buff,&_data,sizeof(Transmit_CommandPacket));  
+}
+
+
 
 bool serialdriver::ChkChksum(CommandPacket* _data)
 {
@@ -207,19 +226,37 @@ bool serialdriver::ChkChksum(CommandPacket* _data)
   else
     return(false);
 }
-void serialdriver::AddChecksum(Transmit_CommandPacket &_data)
+
+int serialdriver::findPackageHeader(unsigned char *buffer, short length)
 {
-  unsigned char* DataPtr = (unsigned char*)&_data;
-  unsigned short int Sum = 0;
-
-  for(int ii=0;ii<sizeof(Transmit_CommandPacket)-2;ii++)
-    Sum += DataPtr[ii];
-  
-  _data.Checksum = Sum;
-
+    for( int ii = 0 ; ii < length-1 ; ii++ )
+    {
+        if(buffer[ii] ==  USART3_PACKET_DELIMITER1 &&
+           buffer[ii+1] == USART3_PACKET_DELIMITER2)
+            return ii;
+    }
+    return -1;
 }
 
 
+bool serialdriver::ReadPacket(CommandPacket* _data)
+{
+int a = sizeof(_rx_buff);
+  memmove(_rx_buff_cp,_rx_buff,sizeof(_rx_buff));
+  int head_position = 0;
+  for(int ii=0 ; ii<4 ; ii++)
+  {
+    int head_position = findPackageHeader((unsigned char *)_rx_buff_cp+head_position+1,sizeof(_rx_buff)-head_position);
+    if( sizeof(_rx_buff_cp)>(head_position+sizeof(CommandPacket))){
+        memmove(_data,_rx_buff_cp+head_position,sizeof(CommandPacket));
+        if( ChkChksum(_data))
+          return true;
+    }else
+        break;
+  }
+    return false;
+}
+/*
 bool serialdriver::ReadPacket(unsigned char *packetBuffer, short &lengthOut)
 {
     int i = _rxRead;
@@ -333,20 +370,6 @@ bool serialdriver::ReadPacket(unsigned char *packetBuffer, short &lengthOut)
     //and reenable the interrupts
     enableInterrupts();
     return true;
-}
-
-//-----------------------------------------------------------------------------
-// Finds the start of the package using the header
-//-----------------------------------------------------------------------------
-int serialdriver::findPackageHeader(unsigned char *buffer, short length)
-{
-    for( int ii = 0 ; ii < length-1 ; ii++ )
-    {
-        if(buffer[ii] ==  FTDI_PACKET_DELIMITER1 &&
-           buffer[ii+1] == FTDI_PACKET_DELIMITER2)
-            return ii;
-    }
-    return -1;
 }
 
 //-----------------------------------------------------------------------------

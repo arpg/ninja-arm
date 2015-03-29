@@ -67,41 +67,45 @@ void Module::Run()
     Transmit_CommandPacket TCmdPack;
     CommandPacket RCmdPack;
     ADC_SoftwareStartConv(ADC1);
-    TCmdPack.Acc_x=0;
-    TCmdPack.Acc_y=1;
-    TCmdPack.Acc_z=2;
-    TCmdPack.Gyro_x=3;
-    TCmdPack.Gyro_y=4;
-    TCmdPack.Gyro_z=5;
-    TCmdPack.Mag_x=6;
-    TCmdPack.Mag_y=7;
-    TCmdPack.Mag_z=8;
-    TCmdPack.Enc_LB=9;
-    TCmdPack.Enc_LF=-10;
-    TCmdPack.Enc_RB=11;
-    TCmdPack.Enc_RF=12;
-    TCmdPack.ADC_Steer=13;
-    TCmdPack.ADC_LB=14;
-    TCmdPack.ADC_LF=15;
-    TCmdPack.ADC_RB=16;
-    TCmdPack.ADC_RF=17;
-    
-    usart3driver.DMA_Configuration(&TCmdPack.m_cDelimiter1,&RCmdPack.m_cDelimiter1,(short int)TCmdPack.m_cSize-1,(short int)RCmdPack.m_cSize-1);
-//    usart3driver.CopyToTransmitBuff(&TCmdPack,(short int)TCmdPack.m_cSize);
+/*
+    Transmit_CommandPacket TTCmdPack;
+    TTCmdPack.Acc_x=0;
+    TTCmdPack.Acc_y=1;
+    TTCmdPack.Acc_z=2;
+    TTCmdPack.Gyro_x=3;
+    TTCmdPack.Gyro_y=4;
+    TTCmdPack.Gyro_z=5;
+    TTCmdPack.Mag_x=6;
+    TTCmdPack.Mag_y=7;
+    TTCmdPack.Mag_z=8;
+    TTCmdPack.Enc_LB=9;
+    TTCmdPack.Enc_LF=-10;
+    TTCmdPack.Enc_RB=11;
+    TTCmdPack.Enc_RF=12;
+    TTCmdPack.ADC_Steer=13;
+    TTCmdPack.ADC_LB=14;
+    TTCmdPack.ADC_LF=15;
+    TTCmdPack.ADC_RB=16;
+    TTCmdPack.ADC_RF=17;
+*/    
+    usart3driver.DMA_Configuration(&TCmdPack.m_cDelimiter1,usart3driver._rx_buff,(short int)TCmdPack.m_cSize,(short int)sizeof(usart3driver._rx_buff));
     
     while(1)
     {
-      
+
+        
 ////////////////////////////////////////////////////////////////
 //  Transmit New Package
 ////////////////////////////////////////////////////////////////
-//        m_MPU9150Driver.Push2Pack(TCmdPack);
         MyEncoders.Push2Pack(TCmdPack);
         ADC_Push2Pack(TCmdPack);
-        //m_ComsDriver.AddChecksum(TCmdPack);
-        SetAcc(RCmdPack.m_nSpeed);
-        SetServoPos(0,RCmdPack.m_nSteering);
+        usart3driver.Sendpack(TCmdPack);
+        if(usart3driver.ReadPacket(&RCmdPack)){
+          SetAcc(RCmdPack.m_nSpeed);
+          SetServoPos(0,RCmdPack.m_nSteering);
+        }
         /*
+//        m_MPU9150Driver.Push2Pack(TCmdPack);
         m_ComsDriver.beginWritePacket(&TCmdPack.m_cDelimiter1,TCmdPack.m_cSize);
          
 ////////////////////////////////////////////////////////////////
@@ -209,10 +213,10 @@ void Module::Run()
 
           //m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeForward);
           SetRgbLed(true,false);
-          Delay_ms(100);
+          Delay_ms(50);
           //m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeReverse);
           SetRgbLed(false,true);
-          Delay_ms(100);
+          Delay_ms(50);
           //m_MainMotorDriver.SetSpeed(0.5);
     // Update IWDG counter
     IWDG_ReloadCounter();
@@ -305,7 +309,7 @@ void Module::Initialize()
     usart3driver.USART3_Configuration();
     //usart3driver.DMA_Configuration();
 
-    //Init_WatchDog();
+    Init_WatchDog();
 }
 
 void Module::ADC_Push2Pack(Transmit_CommandPacket &_data)
@@ -527,28 +531,37 @@ void Module::SetRgbLed(const bool r, const bool g)
 // Servo position range is 0-2000
 ///////////////////////////////////////////////////////////////////////////////
 
-void Module::SetAcc(signed int acc_value)
+void Module::SetAcc(const float acc_value)
 {
-    float nClampedacc_value;
-    if(acc_value>32767)
-      nClampedacc_value = 32767;
+    float dClampedacc_value;
+    if(acc_value>1)
+      dClampedacc_value = 1;
     else if(acc_value<0)
-      nClampedacc_value = 0;
+      dClampedacc_value = 0;
     else
-      nClampedacc_value = acc_value;
+      dClampedacc_value = acc_value;
 
-    nClampedacc_value = ((int)(nClampedacc_value/32767) * (acc_MaxRange-acc_MinRange) ) + acc_MinRange;
+    unsigned int nClampedacc_value = (unsigned int)((dClampedacc_value) * (float)(acc_MaxRange-acc_MinRange) ) + acc_MinRange;
 
     TIM_SetCompare2(TIM4, nClampedacc_value);
 
 }
-void Module::SetServoPos(const int nServo, const int nPos)
+void Module::SetServoPos(const int nServo, const float steering_value)
 {
     
-    float dClampedPos;
-    dClampedPos = float(nPos/32767);
+    float dClamped_value;
+    if(steering_value>1)
+      dClamped_value = 1;
+    else if(steering_value<-1)
+      dClamped_value = -1;
+    else
+      dClamped_value = steering_value;
+    
+    //change the range from [-1,1] to [0,1]
+    dClamped_value += 1;
+    dClamped_value /= 2;
 
-    int nClampedPos = (dClampedPos * (float)(m_nPwmMax-m_nPwmMin) ) + m_nPwmMin;
+    unsigned int nClampedPos = (unsigned int)(dClamped_value * (float)(m_nPwmMax-m_nPwmMin) ) + m_nPwmMin;
 
     //int nClampedPos = dPos;
     switch(nServo){
