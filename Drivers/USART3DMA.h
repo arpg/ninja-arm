@@ -20,6 +20,7 @@ struct CommandPacket
     char m_cSize = sizeof(CommandPacket);
     float m_nSteering;
     float m_nSpeed;
+    char timestamp;
     unsigned short int   Checksum;
 };
 
@@ -47,6 +48,7 @@ struct Transmit_CommandPacket
     short int   ADC_LF;
     short int   ADC_RB;
     short int   ADC_RF;
+    char timestamp;
     unsigned short int   Checksum;
     char dummy;
 };
@@ -68,5 +70,7 @@ public:
     void Sendpack(Transmit_CommandPacket& _data);
     bool ReadPacket(CommandPacket* _data);
     int  findPackageHeader(unsigned char *buffer, short length);
+    char timestamp_time;
+    void FlushBuffers( void );
 };
 //#endif

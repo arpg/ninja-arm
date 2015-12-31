@@ -138,6 +138,8 @@ void serialdriver::DMA_Configuration( char *_tx_data, char *_rx_data, int tx_siz
   /* Enable the DMA RX Stream */
   DMA_Cmd(DMA1_Stream1, ENABLE);
 
+  timestamp_time = 0;
+
 }
  
 /**************************************************************************************/
@@ -207,6 +209,7 @@ void serialdriver::AddChecksum(Transmit_CommandPacket &_data)
 
 void serialdriver::Sendpack(Transmit_CommandPacket& _data)
 {
+  _data.timestamp = timestamp_time++;
   AddChecksum(_data);
   memmove(&_out_buff,&_data,sizeof(Transmit_CommandPacket));  
 }
@@ -238,6 +241,14 @@ int serialdriver::findPackageHeader(unsigned char *buffer, short length)
     return -1;
 }
 
+void serialdriver::FlushBuffers( void )
+{
+    for(int ii=0;ii<sizeof(_rx_buff);ii++)
+      _rx_buff[ii] = 0;
+    for(int ii=0;ii<sizeof(_rx_buff_cp);ii++)
+      _rx_buff_cp[ii] = 0;
+    
+}
 
 bool serialdriver::ReadPacket(CommandPacket* _data)
 {

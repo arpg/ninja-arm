@@ -33,7 +33,7 @@ uint16_t Module::m_nPwmPeriod = 0.006 / (1.0/(double)Module::m_nPwmFreq);//0.02 
 uint16_t Module::m_nPwmMin = 320;//0.01 / (1.0/(double)Module::m_nPwmFreq);
 uint16_t Module::m_nPwmMax = 590;//0.2 / (1.0/(double)Module::m_nPwmFreq);
 uint16_t Module::m_nPwmMid = (Module::m_nPwmMax-Module::m_nPwmMin)*0.5+Module::m_nPwmMin;//0.0015 / (1.0/(double)Module::m_nPwmFreq);
-uint16_t Module::acc_MaxRange = 480;
+uint16_t Module::acc_MaxRange = 480-15; //limitted
 uint16_t Module::acc_MinRange = 450;
 
 __IO uint16_t ADC1ConvertedValue[6] = {0,0,0,0,0,0};
@@ -58,38 +58,19 @@ Module::Module()
 void Module::Run()
 {
     float val = 0.0;
+    int dead_counter = 0;
     int LoopCounter = 1;
     unsigned int a=450;
     unsigned int b=0;
     unsigned char pPacketData[256];
     memset(pPacketData, 0, 256);
     short nLengthOut=5;
+    char prev_time = 0;
     Transmit_CommandPacket TCmdPack;
     CommandPacket RCmdPack;
     ADC_SoftwareStartConv(ADC1);
-/*
-    Transmit_CommandPacket TTCmdPack;
-    TTCmdPack.Acc_x=0;
-    TTCmdPack.Acc_y=1;
-    TTCmdPack.Acc_z=2;
-    TTCmdPack.Gyro_x=3;
-    TTCmdPack.Gyro_y=4;
-    TTCmdPack.Gyro_z=5;
-    TTCmdPack.Mag_x=6;
-    TTCmdPack.Mag_y=7;
-    TTCmdPack.Mag_z=8;
-    TTCmdPack.Enc_LB=9;
-    TTCmdPack.Enc_LF=-10;
-    TTCmdPack.Enc_RB=11;
-    TTCmdPack.Enc_RF=12;
-    TTCmdPack.ADC_Steer=13;
-    TTCmdPack.ADC_LB=14;
-    TTCmdPack.ADC_LF=15;
-    TTCmdPack.ADC_RB=16;
-    TTCmdPack.ADC_RF=17;
-*/    
     usart3driver.DMA_Configuration(&TCmdPack.m_cDelimiter1,usart3driver._rx_buff,(short int)TCmdPack.m_cSize,(short int)sizeof(usart3driver._rx_buff));
-    
+    usart3driver.FlushBuffers();
     while(1)
     {
 
@@ -101,11 +82,20 @@ void Module::Run()
         ADC_Push2Pack(TCmdPack);
         usart3driver.Sendpack(TCmdPack);
         if(usart3driver.ReadPacket(&RCmdPack)){
-          SetAcc(RCmdPack.m_nSpeed);
-          SetServoPos(0,RCmdPack.m_nSteering);
+          if(RCmdPack.timestamp != prev_time){
+            SetAcc(RCmdPack.m_nSpeed);
+            SetServoPos(0,RCmdPack.m_nSteering);
+            prev_time = RCmdPack.timestamp;
+            dead_counter = 0;
+          }else
+          {  dead_counter++;
+          }
+          if(dead_counter > 50)
+            SetAcc(0);
         }
+        IWDG_ReloadCounter();
         /*
-//        m_MPU9150Driver.Push2Pack(TCmdPack);
+        m_MPU9150Driver.Push2Pack(TCmdPack);
         m_ComsDriver.beginWritePacket(&TCmdPack.m_cDelimiter1,TCmdPack.m_cSize);
          
 ////////////////////////////////////////////////////////////////
@@ -213,14 +203,11 @@ void Module::Run()
 
           //m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeForward);
           SetRgbLed(true,false);
-          Delay_ms(50);
+          Delay_ms(10);
           //m_MainMotorDriver.SetMode(VNH3SP30TRDriver::eModeReverse);
           SetRgbLed(false,true);
-          Delay_ms(50);
+          Delay_ms(10);
           //m_MainMotorDriver.SetSpeed(0.5);
-    // Update IWDG counter
-    IWDG_ReloadCounter();
-      
     }
 }
 
@@ -239,7 +226,7 @@ Counter Reload Value = 250ms/IWDG counter clock period
 = LsiFreq/(32 * 4)
 = LsiFreq/128
 */
-  IWDG_SetReload(600);
+  IWDG_SetReload(300);
 
   /* Reload IWDG counter */
   IWDG_ReloadCounter();
@@ -262,8 +249,13 @@ void Module::Delay_ms(int delay)
 
 void Module::Initialize()
 {
-    ConfigurePwm();
     ConfigureLed();
+    SetRgbLed(true,false);
+    Delay_ms(100);
+    SetRgbLed(false,true);
+    Delay_ms(100);
+    ConfigurePwm();
+    
 /////////////
     ConfigureADC();
     
@@ -286,7 +278,8 @@ void Module::Initialize()
     m_MainMotorDriver.SetSpeed(0.9);
 */
 
-    SetServoPos(0,0.9);
+    SetServoPos(0,0);
+    SetAcc(0);
 /*
     m_ComsDriver.Initialize(GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_10,GPIO_PinSource10,GPIO_AF_USART3),
                             GPIO_Pin(GPIOB,RCC_AHB1Periph_GPIOB,GPIO_Pin_11,GPIO_PinSource11,GPIO_AF_USART3),
@@ -307,8 +300,7 @@ void Module::Initialize()
     usart3driver.NVIC_Configuration();
     usart3driver.GPIO_Configuration();
     usart3driver.USART3_Configuration();
-    //usart3driver.DMA_Configuration();
-
+    
     Init_WatchDog();
 }
 

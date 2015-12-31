@@ -76,7 +76,7 @@ int main(void)
   Module module;
     
   //module.SetRgbLed(true,true,true);
-  module.Delay_ms(1000);
+//  module.Delay_ms(1000);
   //module.SetRgbLed(false,false,false);
     
   module.Initialize();
